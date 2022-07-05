@@ -1,4 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
+.card{
+    @apply block text-center p-6 max-w-xs bg-white rounded-lg border border-gray-200 shadow-lg hover:bg-gray-100;
+}

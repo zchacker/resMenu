@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+Route::get('/', [\App\Http\Controllers\Home::class, 'index'])->name('home');
+
+Route::get('/home', [\App\Http\Controllers\Section::class, 'index'])->name('section.home');
+
+Route::prefix('/service')->group(function(){
+
 });
