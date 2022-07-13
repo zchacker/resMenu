@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Cairo:wght@900&display=swap);
 /*
 ! tailwindcss v3.1.4 | MIT License | https://tailwindcss.com
 */
@@ -545,6 +545,9 @@ video {
 .-z-10{
   z-index: -10;
 }
+.m-auto{
+  margin: auto;
+}
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -552,6 +555,14 @@ video {
 .mx-4{
   margin-left: 1rem;
   margin-right: 1rem;
+}
+.my-6{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.my-5{
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 .ml-1{
   margin-left: 0.25rem;
@@ -622,8 +633,8 @@ video {
 .h-full{
   height: 100%;
 }
-.h-56{
-  height: 14rem;
+.h-auto{
+  height: auto;
 }
 .min-h-screen{
   min-height: 100vh;
@@ -646,14 +657,20 @@ video {
 .w-full{
   width: 100%;
 }
+.w-14{
+  width: 3.5rem;
+}
 .max-w-6xl{
   max-width: 72rem;
+}
+.transform{
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .grid-cols-1{
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
-.place-items-stretch{
-  place-items: stretch;
+.place-items-center{
+  place-items: center;
 }
 .items-center{
   align-items: center;
@@ -690,6 +707,9 @@ video {
 }
 .overflow-hidden{
   overflow: hidden;
+}
+.overflow-x-auto{
+  overflow-x: auto;
 }
 .rounded-lg{
   border-radius: 0.5rem;
@@ -734,6 +754,9 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(34 197 94 / var(--tw-bg-opacity));
 }
+.fill-red-600{
+  fill: #dc2626;
+}
 .object-cover{
   -o-object-fit: cover;
      object-fit: cover;
@@ -768,13 +791,17 @@ video {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
-.px-\[10\%\]{
-  padding-left: 10%;
-  padding-right: 10%;
+.px-\[0\%\]{
+  padding-left: 0%;
+  padding-right: 0%;
 }
 .py-\[5\%\]{
   padding-top: 5%;
   padding-bottom: 5%;
+}
+.px-\[10\%\]{
+  padding-left: 10%;
+  padding-right: 10%;
 }
 .pt-8{
   padding-top: 2rem;
@@ -801,6 +828,10 @@ video {
 }
 .text-\[2\.5rem\]{
   font-size: 2.5rem;
+}
+.text-3xl{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 .font-semibold{
   font-weight: 600;
@@ -857,6 +888,14 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-red-600{
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+.text-gray-100{
+  --tw-text-opacity: 1;
+  color: rgb(243 244 246 / var(--tw-text-opacity));
 }
 .underline{
   -webkit-text-decoration-line: underline;
@@ -1035,23 +1074,41 @@ video {
     margin-right: 0px;
   }
 
+  .lg\:flex{
+    display: flex;
+  }
+
   .lg\:w-\[1050px\]{
     width: 1050px;
+  }
+
+  .lg\:w-\[400px\]{
+    width: 400px;
+  }
+
+  .lg\:place-items-stretch{
+    place-items: stretch;
   }
 
   .lg\:px-8{
     padding-left: 2rem;
     padding-right: 2rem;
   }
+
+  .lg\:px-\[10\%\]{
+    padding-left: 10%;
+    padding-right: 10%;
+  }
 }
 
 .card{
-  display: block;
+  display: grid;
   max-width: 20rem;
+  place-items: center;
   border-radius: 0.5rem;
   border-width: 1px;
   --tw-border-opacity: 1;
-  border-color: rgb(229 231 235 / var(--tw-border-opacity));
+  border-color: rgb(243 244 246 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   padding: 1.5rem;
@@ -1063,5 +1120,39 @@ video {
 
 .card:hover{
   --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.icon_home{
+  height: 5rem;
+  width: 5rem;
+  align-self: center;
+  stroke: #dc2626;
+  text-align: center;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.menue_sample_wraper{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  width: 90%;
+  place-content: center;
+  place-items: center;
+  border-radius: 0.75rem;
+  padding: 0px;
+}
+
+@media (min-width: 1024px){
+
+  .menue_sample_wraper{
+    width: 250px;
+  }
+}
+
+.menue_sample_img{
+  border-radius: 0.75rem;
 }
