@@ -20,3 +20,12 @@
 .menue_sample_img{
     @apply rounded-xl
 }
+
+/*form style*/
+.lable_form{
+    @apply block text-gray-700 text-sm font-bold mb-2
+}
+
+.form_input{
+    @apply block w-1/3 border-blue-300 focus:outline-blue-400 focus:outline-1 border-[1px] shadow-sm rounded-md p-1
+}

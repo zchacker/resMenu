@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <title>welcome</title>
+    <title>أسهل منصة توليد منيو باركود ذكي</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
                 <div class="flex space-x-7">
                     <div>
                         <!-- Website Logo -->
-                        <a href="#" class="flex items-center py-4 px-4">
+                        <a href="{{ route('home' , app()->getLocale() ) }}" class="flex items-center py-4 px-4">
                             <img src="{{asset('img/logo.png')}}" alt="Logo" class="h-12 w-auto ml-1">
                             <!-- <span class="font-semibold text-gray-500 text-lg">Navigation</span> -->
                         </a>
@@ -33,8 +33,8 @@
                 </div>
                 <!-- Secondary Navbar items -->
                 <div class="hidden md:flex items-center space-x-3 ">
-                    <a href="" class="py-2 px-2 font-medium text-gray-300 rounded  hover:text-white transition duration-300">دخول</a>
-                    <a href="" class="py-2 px-5 font-medium text-black bg-yellow-500 rounded-full hover:bg-yellow-400 transition duration-300">انضم الان</a>
+                    <a href="" class="py-2 px-2 font-medium text-gray-300 rounded  hover:text-white transition duration-300">  دخول</a>
+                    <a href="{{ route('register' , app()->getLocale() ) }}" class="py-2 px-5 font-medium text-black bg-yellow-500 rounded-full hover:bg-yellow-400 transition duration-300">انضم الان</a>
                 </div>
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
