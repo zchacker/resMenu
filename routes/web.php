@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\Home::class, 'index'])->name('home');
 Route::get('/register' , [\App\Http\Controllers\AuthClient::class , 'register'])->name('register');
 Route::post('/register_submit' , [\App\Http\Controllers\AuthClient::class , 'requestRegister'])->name('submit.register');
+Route::get('/login' , [\App\Http\Controllers\AuthClient::class , 'loginView'])->name('login');
+Route::post('/login_submit' , [\App\Http\Controllers\AuthClient::class , 'login'])->name('submit.login');
 
 
 Route::group(['prefix' => '{language?}'], function($language){
@@ -37,11 +39,19 @@ Route::group(['prefix' => '{language?}'], function($language){
 
     Route::get('/', [\App\Http\Controllers\Home::class, 'index'])->name('home');
     Route::get('/register' , [\App\Http\Controllers\AuthClient::class , 'register'])->name('register');
+    Route::get('/login' , [\App\Http\Controllers\AuthClient::class , 'loginView'])->name('login');
     Route::prefix('/service')->group(function(){
         
     });
 
 });
 
+
+Route::group([ 'middleware' => ['auth:user'] ] , function(){
+    
+    Route::get('/dashboard/home', [\App\Http\Controllers\Clinet\Home::class, 'index'])->name('dashboard.home');
+    Route::get('/dashboard/logout', [\App\Http\Controllers\AuthClient::class, 'logout'])->name('dashboard.logout');
+
+});
 
 
