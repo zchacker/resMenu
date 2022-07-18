@@ -11,8 +11,17 @@ class Home extends Controller
     public function index(Request $request)
     {
 
-        return view('home_dashboard.home');
+        return view('client_dashboard.home');
     }
 
+    public function shop(Request $request)
+    {
+        return view('client_dashboard.shop');
+    }
+
+    public function updateShop(Request $request)
+    {
+        
+    }
 
 }

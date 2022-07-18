@@ -50,6 +50,8 @@ Route::group(['prefix' => '{language?}'], function($language){
 Route::group([ 'middleware' => ['auth:user'] ] , function(){
     
     Route::get('/dashboard/home', [\App\Http\Controllers\Clinet\Home::class, 'index'])->name('dashboard.home');
+    Route::get('/dashboard/shop', [\App\Http\Controllers\Clinet\Home::class, 'shop'])->name('dashboard.shop');
+    Route::post('/dashboard/shop/update', [\App\Http\Controllers\Clinet\Home::class, 'updateShop'])->name('dashboard.update.shop');
     Route::get('/dashboard/logout', [\App\Http\Controllers\AuthClient::class, 'logout'])->name('dashboard.logout');
 
 });

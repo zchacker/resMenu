@@ -12,17 +12,19 @@
 
 <body>
 
+    
     <div class="flex">
+        <!-- header page  -->
         <nav class="lg:w-72">
-            <span class="absolute shadow-md p-2 border-gray-100 border-solid border-2 rounded-md text-black text-4xl top-5 right-4 cursor-pointer" onclick="openSidebar()">                
+            <span class="absolute shadow-md p-2 border-gray-100 border-solid border-2 rounded-md text-black text-4xl top-5 right-4 cursor-pointer" onclick="openSidebar()">
                 <!-- <img src="{{ asset('imgs/menu.svg') }}" class="h-8 w-8" alt="القائمة"> -->
                 <i class="las la-bars la-3xl"></i>
             </span>
             <div class="sidebar z-50 transition duration-150 ease-in-out  hidden lg:block fixed top-0 bottom-0 lg:right-0 p-2 w-[250px] overflow-y-auto text-center bg-[#17203d]">
                 <div class="text-gray-100 text-xl">
-                    <div class="p-2.5 mt-1 flex items-center">                        
-                        <h1 class="font-bold text-right text-white lg:text-[1.6rem] ml-3" >لوحة التحكم</h1>
-                        
+                    <div class="p-2.5 mt-1 flex items-center">
+                        <h1 class="font-bold text-right text-white lg:text-[1.6rem] ml-3">لوحة التحكم</h1>
+
                         <div class="lg:hidden left-0 absolute">
                             <i class="las la-times-circle la-2x h-8 w-8 ml-5 cursor-pointer" onclick="openSidebar()"></i>
                         </div>
@@ -32,13 +34,13 @@
                 </div>
                 <div class="navbar_item">
 
-                    <i class="las la-home la-2x"></i>                                        
-                    <a href="{{ route('home') }}" class="navbar_item_text">الرئيسية</a>
+                    <i class="las la-home la-2x"></i>
+                    <a href="{{ route('dashboard.home') }}" class="navbar_item_text">الرئيسية</a>
 
                 </div>
                 <div class="navbar_item">
                     <i class="las la-store-alt la-2x"></i>
-                    <a href="{{ route('home') }}" class="navbar_item_text">متجرك</a>
+                    <a href="{{ route('dashboard.shop') }}" class="navbar_item_text">متجرك</a>
                 </div>
                 <div class="navbar_item">
                     <i class="las la-box la-2x"></i>
@@ -51,11 +53,11 @@
                 <div class="navbar_item">
                     <i class="las la-qrcode la-2x"></i>
                     <a href="{{ route('home') }}" class="navbar_item_text">باركود</a>
-                </div> 
+                </div>
                 <div class="navbar_item">
                     <i class="lab la-whatsapp la-2x"></i>
                     <a href="{{ route('home') }}" class="navbar_item_text">ربط مع whatsApp</a>
-                </div> 
+                </div>
                 <div class="navbar_item">
                     <i class="las la-poll la-2x"></i>
                     <span class="navbar_item_text">الباقة</span>
@@ -63,7 +65,7 @@
                 <div class="navbar_item">
                     <i class="las la-file-invoice la-2x"></i>
                     <span class="navbar_item_text">المدفوعات</span>
-                </div>              
+                </div>
                 <div class="navbar_item">
                     <i class="las la-cog la-2x"></i>
                     <span class="navbar_item_text">الاعدادات</span>
@@ -92,7 +94,7 @@
                     <i class="las la-power-off la-2x"></i>
                     <a href="{{ route('dashboard.logout') }}" class="navbar_item_text">تسجيل الخروج</a>
                 </div>
-                
+
             </div>
         </nav>
 
@@ -108,10 +110,6 @@
                 document.querySelector(".sidebar").classList.toggle("hidden");
             }
         </script>
-
-    </div>
-
-
-</body>
-
-</html>
+        <!-- end of header  -->
+        
+        <!-- start of body  -->
