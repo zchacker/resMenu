@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MenusModel;
 use App\Models\RestrantsModel;
 use App\Models\UsersModel;
 use Illuminate\Http\Request;
@@ -57,6 +58,11 @@ class AuthClient extends Controller
             ]);
 
             if($user && $restrants){
+
+                $menu = MenusModel::create([
+                    'restrant_id' => $restrants->id ,
+                    'templete_id' => 1
+                ]);
 
                 if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $password]))
                 {

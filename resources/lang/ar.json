@@ -19,7 +19,20 @@
     "shop_name" : "اسم المتجر",
     "shop_message" : "اكتب وصف للمتجر",
     "shop_address" : "عنوان المتجر",
+    "working_hours" : "ساعات العمل",
     "map" : "الخريطة",
     "slag" : "رابط المتجر",
-    "save": "حفظ"
+    "save": "حفظ",
+
+    "unknown_error" : "خطأ غير معروف",
+    "updated_successfuly" : "تم التحديث بنجاح",
+    "added_successfuly" : "تمت الاضافة بنجاح",
+    "shop_name_required" : "اسم المتجر مطلوب",
+    "shop_address_required" : "عنوان المتجر مطلوب",
+    "working_hours_required" : "اسم المتجر مطلوب",
+    "categories" : "الاصناف",
+    "add_category" : "إضافة تصنيف جديد",
+    "category_name" : "اسم القسم او التصنيف",
+    "category_name_required" : "يرجى إدخال اسم التصنيف"
+
 }
