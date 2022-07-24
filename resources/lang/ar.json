@@ -23,6 +23,8 @@
     "map" : "الخريطة",
     "slag" : "رابط المتجر",
     "save": "حفظ",
+    "edit" : "تعديل",
+    "delete" : "حذف",
 
     "unknown_error" : "خطأ غير معروف",
     "updated_successfuly" : "تم التحديث بنجاح",
@@ -32,6 +34,7 @@
     "working_hours_required" : "اسم المتجر مطلوب",
     "categories" : "الاصناف",
     "add_category" : "إضافة تصنيف جديد",
+    "edit_category" : "تعديل التصنيف",
     "category_name" : "اسم القسم او التصنيف",
     "category_name_required" : "يرجى إدخال اسم التصنيف"
 

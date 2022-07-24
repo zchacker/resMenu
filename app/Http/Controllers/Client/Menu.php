@@ -95,4 +95,14 @@ class Menu extends Controller
         }
     }
 
+    public function delete_menu_category(Request $request)
+    {
+
+        $category_id = $request->id;
+        MenuCategoriesModel::where(['id' => $category_id])->delete();
+        return redirect()->back();
+        
+    }
+
+
 }

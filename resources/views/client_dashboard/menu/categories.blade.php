@@ -9,7 +9,8 @@
             <a href="javascript:void()" class="w-full h-full">
                 <p class="font-bold">{{ $category->title_ar }}</p>
             </a>
-            <a href="#" class="text-red-600 font-bold hover:underline">Edit</a>
+            <a href="{{ route('dashboard.categories.edit') }}/{{ $category->id }}" class="text-orange-600 mx-2 font-bold hover:underline">{{ __('edit') }}</a>
+            <a href="{{ route('dashboard.categories.delete') }}/{{ $category->id }}" class="text-red-600 mx-2 font-bold hover:underline">{{ __('delete') }}</a>
         </div>        
     @endforeach
 
