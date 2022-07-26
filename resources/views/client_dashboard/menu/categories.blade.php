@@ -6,7 +6,7 @@
 
     @foreach($categories as $category)
         <div class="flex justify-between shadow-md rounded-md p-3 mt-4 border border-gray-300 text-black">
-            <a href="javascript:void()" class="w-full h-full">
+            <a href="{{ route('dashboard.items') }}/{{$category->id}}" class="w-full h-full">
                 <p class="font-bold">{{ $category->title_ar }}</p>
             </a>
             <a href="{{ route('dashboard.categories.edit') }}/{{ $category->id }}" class="text-orange-600 mx-2 font-bold hover:underline">{{ __('edit') }}</a>

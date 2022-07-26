@@ -49,6 +49,13 @@ class Menu extends Controller
         return view('client_dashboard.menu.add_category');
     }
 
+    public function edit_category(Request $request)
+    {
+        $category = MenuCategoriesModel::where(['id' => $request->id])->first();
+
+        return view('client_dashboard.menu.edit_category', compact('category'));
+
+    }
 
     public function add_category_submit(Request $request)
     {
@@ -86,6 +93,49 @@ class Menu extends Controller
             if ($category->save()) {
                 
                 return back()->with(['success' => __('added_successfuly')]);
+
+            } else {
+                
+                return back()->withErrors(['error' => __('unknown_error')]);
+
+            }
+        }
+    }
+
+    public function edit_category_submit(Request $request)
+    {
+        $category_id = $request->id;        
+        
+        $rules = array(
+            'name' => 'required'
+        );
+
+        $messages = [
+            'name.required' => __('category_name_required')
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails() == true) {
+
+            $error     = $validator->errors();
+            $allErrors = "";
+
+            foreach ($error->all() as $err) {
+                $allErrors .= $err . " <br/>";
+            }
+
+            return back()->withErrors(['error' => $allErrors]);
+
+        } else {
+
+            $category = MenuCategoriesModel::find( $category_id );
+            $category->title_ar = $request->name;            
+            $category->title_en = $request->name;            
+
+            if ($category->update()) {
+                
+                return back()->with(['success' => __('updated_successfuly')]);
 
             } else {
                 

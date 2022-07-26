@@ -64,7 +64,7 @@ class AuthClient extends Controller
                     'templete_id' => 1
                 ]);
 
-                if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $password] , true))
+                if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $password] , 1))
                 {
 
                     return redirect()->intended(route('dashboard.home'));

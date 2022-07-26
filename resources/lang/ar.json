@@ -36,6 +36,24 @@
     "add_category" : "إضافة تصنيف جديد",
     "edit_category" : "تعديل التصنيف",
     "category_name" : "اسم القسم او التصنيف",
-    "category_name_required" : "يرجى إدخال اسم التصنيف"
+    "category_name_required" : "يرجى إدخال اسم التصنيف",
+
+    "items" : "منتجات",
+    "add_item" : "اضافة صنف جديد",
+    "edit_item" : "تعديل الصنف",
+    "item_name" : "اسم الصنف",
+    "item_name_required" : "اسم الصنف مطلوب",  
+    "item_description" : "وصف الصنف",
+    "item_description_required" : "وصف الصنف مطلوب",
+    "item_price" : "سعر الصنف",
+    "item_price_required" : "سعر الصنف مطلوب",
+    "item_offer_price" : "سعر التخفيض الصنف",
+    "item_offer_price_required" : "سعر التخفيض الصنف مطلوب",
+    "item_img" : "صورة الصنف",
+    "item_img_required" : "صورة الصنف مطلوب",
+    "item_img_notvalid" : "صيغة الصورة غير صحيحة",
+    "item_img_size_notvalid" : "مساحة الصورة يجب أن لا تتجاوز :size ميجا",
+
+    "back" : "رجوع"
 
 }

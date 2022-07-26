@@ -53,12 +53,20 @@ Route::group([ 'middleware' => ['auth:user'] ] , function(){
     Route::get('/dashboard/shop', [\App\Http\Controllers\Client\Home::class, 'shop'])->name('dashboard.shop');
     Route::post('/dashboard/shop/update', [\App\Http\Controllers\Client\Home::class, 'updateShop'])->name('dashboard.update.shop');
     
+    // this for menue category
     Route::get('/dashboard/categories', [\App\Http\Controllers\Client\Menu::class, 'categories'])->name('dashboard.categories');
     Route::get('/dashboard/categories/add', [\App\Http\Controllers\Client\Menu::class, 'add_category'])->name('dashboard.categories.add');    
     Route::get('/dashboard/categories/edit/{id?}', [\App\Http\Controllers\Client\Menu::class, 'edit_category'])->name('dashboard.categories.edit');    
     Route::post('/dashboard/categories/add/submit', [\App\Http\Controllers\Client\Menu::class, 'add_category_submit'])->name('dashboard.categories.add.submit');    
     Route::post('/dashboard/categories/edit/submit', [\App\Http\Controllers\Client\Menu::class, 'edit_category_submit'])->name('dashboard.categories.edit.submit');    
     Route::get('/dashboard/categories/delete/{id?}', [\App\Http\Controllers\Client\Menu::class, 'delete_menu_category'])->name('dashboard.categories.delete');
+
+
+    // this for menue item
+    Route::get('/dashboard/items/{category_id?}', [\App\Http\Controllers\Client\MenuItem::class, 'items'])->name('dashboard.items');
+    Route::get('/dashboard/items/{category_id?}/add', [\App\Http\Controllers\Client\MenuItem::class, 'add_item'])->name('dashboard.items.add');    
+    Route::post('/dashboard/items/{category_id?}/add/submit', [\App\Http\Controllers\Client\MenuItem::class, 'add_item_submit'])->name('dashboard.items.add.submit');    
+
 
     Route::get('/dashboard/logout', [\App\Http\Controllers\AuthClient::class, 'logout'])->name('dashboard.logout');
 

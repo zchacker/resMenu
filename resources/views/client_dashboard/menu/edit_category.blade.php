@@ -18,10 +18,10 @@
     <div class="bg-gray-800 w-full rounded-xl min-h-fit p-4">
         <form action="{{ route('dashboard.categories.edit.submit') }}" method="post" class="w-full">
             @csrf
-
+            <input type="hidden" name="id" value="{{ $category->id }}" />
             <div class="mb-4">
                 <label for="name" class="lable_form !text-gray-300">{{ __('category_name') }}</label>
-                <input type="text" name="name" class="form_dash_input" placeholder="{{ __('category_name') }}" value="{{ $category->name }}" />
+                <input type="text" name="name" class="form_dash_input" placeholder="{{ __('category_name') }}" value="{{ $category->title_ar }}" />
             </div>
 
             <div class="mb-4">
