@@ -26,7 +26,7 @@ Route::get('/register' , [\App\Http\Controllers\AuthClient::class , 'register'])
 Route::post('/register_submit' , [\App\Http\Controllers\AuthClient::class , 'requestRegister'])->name('submit.register');
 Route::get('/login' , [\App\Http\Controllers\AuthClient::class , 'loginView'])->name('login');
 Route::post('/login_submit' , [\App\Http\Controllers\AuthClient::class , 'login'])->name('submit.login');
-
+Route::get('image/{filename}' , [\App\Http\Controllers\Files::class , 'displayImage'])->name('image.displayImage');
 
 Route::group(['prefix' => '{language?}'], function($language){
 
@@ -64,9 +64,11 @@ Route::group([ 'middleware' => ['auth:user'] ] , function(){
 
     // this for menue item
     Route::get('/dashboard/items/{category_id?}', [\App\Http\Controllers\Client\MenuItem::class, 'items'])->name('dashboard.items');
-    Route::get('/dashboard/items/{category_id?}/add', [\App\Http\Controllers\Client\MenuItem::class, 'add_item'])->name('dashboard.items.add');    
+    Route::get('/dashboard/items/{category_id?}/add', [\App\Http\Controllers\Client\MenuItem::class, 'add_item'])->name('dashboard.items.add');        
     Route::post('/dashboard/items/{category_id?}/add/submit', [\App\Http\Controllers\Client\MenuItem::class, 'add_item_submit'])->name('dashboard.items.add.submit');    
 
+    Route::get('/dashboard/items/{category_id?}/edit', [\App\Http\Controllers\Client\MenuItem::class, 'edit_item'])->name('dashboard.items.edit');
+    Route::get('/dashboard/items/{category_id?}/edit/submit', [\App\Http\Controllers\Client\MenuItem::class, 'edit_item_submit'])->name('dashboard.items.edit.submit');
 
     Route::get('/dashboard/logout', [\App\Http\Controllers\AuthClient::class, 'logout'])->name('dashboard.logout');
 

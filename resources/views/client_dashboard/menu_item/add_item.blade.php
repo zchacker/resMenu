@@ -22,27 +22,27 @@
 
             <div class="mb-4">
                 <label for="name" class="lable_form !text-gray-300">{{ __('item_name') }}</label>
-                <input type="text" name="name" class="form_dash_input" placeholder="{{ __('category_name') }}" value="" />
+                <input type="text" name="name" class="form_dash_input" placeholder="{{ __('category_name') }}" value="{{old('name')}}" />
             </div>
 
             <div class="mb-4">
                 <label for="name" class="lable_form !text-gray-300">{{ __('item_description') }}</label>
-                <textarea name="description" id="" cols="30" rows="10" class="form_dash_input" placeholder="{{__('item_description')}}"></textarea>                
+                <textarea name="description" id="" cols="30" rows="10" class="form_dash_input" placeholder="{{__('item_description')}}">{{old('description')}}</textarea>                
             </div>
 
             <div class="mb-4">
                 <label for="name" class="lable_form !text-gray-300">{{ __('item_price') }}</label>
-                <input type="text" name="price" class="form_dash_input" placeholder="{{ __('item_price') }}" value="" />
+                <input type="text" name="price" class="form_dash_input" placeholder="{{ __('item_price') }}" value="{{old('price')}}" />
             </div>
 
             <div class="mb-4">
                 <label for="name" class="lable_form !text-gray-300">{{ __('item_offer_price') }}</label>
-                <input type="text" name="offer_price" class="form_dash_input" placeholder="{{ __('item_offer_price') }}" value="" />
+                <input type="text" name="offer_price" class="form_dash_input" placeholder="{{ __('item_offer_price') }}" value="{{old('offer_price')}}" />
             </div>
 
             <div class="mb-4">
                 <label for="name" class="lable_form !text-gray-300">{{ __('item_img') }}</label>
-                <input type="file" name="item_img" class="form_dash_input" placeholder="{{ __('item_img') }}" value="" />
+                <input type="file" name="item_img" class="form_dash_input" placeholder="{{ __('item_img') }}" value="{{old('item_img')}}" />
             </div>
 
             <div class="mb-4">

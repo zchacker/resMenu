@@ -551,6 +551,21 @@ video {
 .top-6{
   top: 1.5rem;
 }
+.left-5{
+  left: 1.25rem;
+}
+.bottom-2{
+  bottom: 0.5rem;
+}
+.left-1{
+  left: 0.25rem;
+}
+.left-\[-10px\]{
+  left: -10px;
+}
+.bottom-8{
+  bottom: 2rem;
+}
 .z-50{
   z-index: 50;
 }
@@ -653,6 +668,9 @@ video {
 .mb-6{
   margin-bottom: 1.5rem;
 }
+.mb-2{
+  margin-bottom: 0.5rem;
+}
 .block{
   display: block;
 }
@@ -695,6 +713,9 @@ video {
 .h-\[600px\]{
   height: 600px;
 }
+.h-\[250px\]{
+  height: 250px;
+}
 .min-h-screen{
   min-height: 100vh;
 }
@@ -735,6 +756,12 @@ video {
 }
 .w-2\/4{
   width: 50%;
+}
+.w-2\/3{
+  width: 66.666667%;
+}
+.w-3\/12{
+  width: 25%;
 }
 .max-w-6xl{
   max-width: 72rem;
@@ -922,9 +949,25 @@ video {
 .fill-red-600{
   fill: #dc2626;
 }
+.object-contain{
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .object-cover{
   -o-object-fit: cover;
      object-fit: cover;
+}
+.object-fill{
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+.object-none{
+  -o-object-fit: none;
+     object-fit: none;
+}
+.object-center{
+  -o-object-position: center;
+     object-position: center;
 }
 .p-6{
   padding: 1.5rem;
@@ -943,6 +986,9 @@ video {
 }
 .p-3{
   padding: 0.75rem;
+}
+.p-1{
+  padding: 0.25rem;
 }
 .py-4{
   padding-top: 1rem;
@@ -1116,6 +1162,10 @@ video {
 .underline{
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
+}
+.line-through{
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
 }
 .antialiased{
   -webkit-font-smoothing: antialiased;

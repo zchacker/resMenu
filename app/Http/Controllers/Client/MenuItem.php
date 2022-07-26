@@ -17,7 +17,9 @@ class MenuItem extends Controller
 
         $category_id = $request->category_id;
         $category = MenuCategoriesModel::where(['id' => $request->category_id])->first();
-        $items = MenueItemsModel::where(['menu_category_id' => $request->category_id])->get();
+        $items = MenueItemsModel::where(['menu_category_id' => $request->category_id])
+        ->join('files' , 'menueitems.image_file_id', '=' , 'files.id')
+        ->get(['menueitems.*' , 'files.file_name']);
 
         return view('client_dashboard.menu_item.items', compact('category' , 'items' , 'category_id'));
     }
@@ -49,7 +51,7 @@ class MenuItem extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'offer_price' => 'required',
+            //'offer_price' => 'required',
             'item_img' => 'required|mimes:jpeg,png,jpg,gif,svg|image|max:7000'
         );
 
@@ -74,7 +76,8 @@ class MenuItem extends Controller
                 $allErrors .= $err . " <br/>";
             }
 
-            return back()->withErrors(['error' => $allErrors]);
+            return back()->withErrors(['error' => $allErrors])
+                         ->withInput($request->all());
 
         } else {
 
@@ -119,7 +122,7 @@ class MenuItem extends Controller
     
                 } else {
                     
-                    return back()->withErrors(['error' => __('unknown_error')]);
+                    return back()->withErrors(['error' => __('unknown_error')])->withInput($request->all());
     
                 }
                 
@@ -142,7 +145,7 @@ class MenuItem extends Controller
     
                 } else {
                     
-                    return back()->withErrors(['error' => __('unknown_error')]);
+                    return back()->withErrors(['error' => __('unknown_error')])->withInput($request->all());
     
                 }
 
@@ -151,5 +154,12 @@ class MenuItem extends Controller
 
         }
     }
+
+    public function edit_item(Request $request)
+    {
+        $category_id = $request->category_id;
+        return view('client_dashboard.menu_item.add_item' , compact('category_id'));
+    }
+
 
 }

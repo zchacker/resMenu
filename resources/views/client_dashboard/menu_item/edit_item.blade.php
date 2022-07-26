@@ -2,7 +2,7 @@
 
 <div class="content">
     <a href="{{ route('dashboard.items' , $category_id) }}" class="text-blue-500 text-lg">{{__('back')}}</a>
-    <h2 class="text-2xl font-bold mb-4">{{__('add_item')}}</h2>
+    <h2 class="text-2xl font-bold mb-4">{{__('edit_item')}}</h2>
     
     @if(Session::has('errors'))
         <div class="my-3 w-full p-4 bg-orange-500 text-white rounded-md">
