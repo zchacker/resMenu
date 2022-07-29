@@ -63,7 +63,7 @@ class Home extends Controller
             $restrant->address = $request->address;
             $restrant->phone = $request->phone;
             $restrant->working_hours = $request->working_hours;
-            $restrant->slag = $request->slag;
+            $restrant->slug = $request->slug;
             $restrant->latitude = $request->latitude;
             $restrant->longitude = $request->longitude;
 

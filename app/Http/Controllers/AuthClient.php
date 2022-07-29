@@ -137,7 +137,7 @@ class AuthClient extends Controller
 
                 return back()
                 ->withErrors( ['login_error' => __('worng_password') ] )
-                ->withInput($request->email);
+                ->withInput($request->all());
 
             }
         
@@ -152,7 +152,7 @@ class AuthClient extends Controller
 
             return back()
             ->withErrors( ['login_error' => $allErrors ] )
-            ->withInput($request->email);
+            ->withInput($request->all());
 
         }
 

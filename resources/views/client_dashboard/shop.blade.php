@@ -27,8 +27,8 @@
             </div>
 
             <div class="mb-4">
-                <label for="name" class="lable_form !text-gray-300">{{ __('slag') }}</label>
-                <input type="text" name="slag" class="form_dash_input" placeholder="{{ __('slag') }}" value="{{ $restrant->slag }}" />
+                <label for="name" class="lable_form !text-gray-300">{{ __('slug') }}</label>
+                <input type="text" name="slug" class="form_dash_input" placeholder="{{ __('slug') }}" value="{{ $restrant->slug }}" />
             </div>
 
             <div class="mb-4">

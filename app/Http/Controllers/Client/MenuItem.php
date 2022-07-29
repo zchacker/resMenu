@@ -158,7 +158,7 @@ class MenuItem extends Controller
     public function edit_item(Request $request)
     {
         $category_id = $request->category_id;
-        return view('client_dashboard.menu_item.add_item' , compact('category_id'));
+        return view('client_dashboard.menu_item.edit_item' , compact('category_id'));
     }
 
 
