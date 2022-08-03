@@ -35,9 +35,11 @@ class Home extends Controller
             }else{
 
                 $menucategories = MenuCategoriesModel::where(['menu_id' => $menu->id])->get();
-                $menueitems     = MenueItemsModel::where(['menu_id' => $menu->id])->get();                                            
+                $menueitems     = MenueItemsModel::where(['menu_id' => $menu->id])
+                ->join('files' , 'menueitems.image_file_id', '=' , 'files.id')
+                ->get(['menueitems.*' , 'files.file_name']);                                           
 
-                return view('menu1');
+                return view('menu1' , compact('menucategories' , 'menueitems'));
 
             }
         }
