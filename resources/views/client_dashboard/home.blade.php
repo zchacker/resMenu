@@ -3,7 +3,7 @@
 <!-- start of body  -->
 <div class="content">
     <h2 class="text-2xl font-bold mb-4">{{__('statistics')}}</h2>
-    <div class="cards grid grid-cols-1 lg:grid-col-3 md:grid-cols-3 gap-4 place-items-center lg:place-items-stretch h-auto w-full lg:w-[90%] mx-auto my-6">
+    <div class="cards grid grid-cols-1 lg:grid-col-3 md:grid-cols-3 gap-4 place-items-center lg:place-items-stretch h-auto w-full lg:w-full mx-auto my-6">
 
         <div class="grid grid-cols-2 place-items-center self-stretch p-2 w-full bg-gray-700 rounded-2xl border border-gray-100">
             <div class="grid place-items-center text-center p-6 max-w-xs rounded-lg ">

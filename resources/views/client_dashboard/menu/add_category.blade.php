@@ -15,12 +15,12 @@
         </div>
     @endif
 
-    <div class="bg-gray-800 w-full rounded-xl min-h-fit p-4">
+    <div class="bg-yellow-200 w-full rounded-xl min-h-fit p-4">
         <form action="{{ route('dashboard.categories.add.submit') }}" method="post" class="w-full">
             @csrf
 
             <div class="mb-4">
-                <label for="name" class="lable_form !text-gray-300">{{ __('category_name') }}</label>
+                <label for="name" class="lable_form ">{{ __('category_name') }}</label>
                 <input type="text" name="name" class="form_dash_input" placeholder="{{ __('category_name') }}" value="{{ old('name') }}" />
             </div>
 

@@ -45,7 +45,7 @@
 }
 
 .form_dash_input{
-    @apply block w-full bg-gray-300 border-gray-900 focus:border-red-500 focus:outline-red-500 focus:outline-1 border shadow-sm rounded-md p-2
+    @apply block w-full bg-gray-50 border-gray-900 focus:border-red-500 focus:outline-red-500 focus:outline-1 border shadow-sm rounded-md p-2
 }
 
 .link{

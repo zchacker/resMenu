@@ -18,16 +18,16 @@
 
         </div>
 
-        <div class="absolute top-0 right-0 left-0 z-[11] opacity-60 bg-[#eeeeee] mx-auto w-full lg:w-3/4 h-[200px]">
+        <div class="absolute top-0 right-0 left-0 z-[11] opacity-60 bg-[#333333fb] mx-auto w-full lg:w-3/4 h-[200px]">
 
         </div>
 
-        <div class="lg:flex relative bg-transparent opacity-100 w-full h-auto z-[12]">
+        <div class="lg:flex relative bg-transparent opacity-100 w-full h-auto z-[12] text-white">
             <img src="{{asset('img/McDonald\'s_logo.png')}}" alt="" class="w-[75px] h-[75px] lg:w-[150px] lg:h-[150px] relative top-6 right-3" />
             <div>
                 <h1 class="relative lg:top-6 lg:right-8 mr-2 text-[2rem] font-bold">اسم المطعم</h1>
                 <h1 class="relative lg:top-6 lg:right-8 mr-2 text-[1.7rem] font-thin"> مثال تجريبي للمنيو الإلكتروني </h1>
-                <div class="relative lg:top-6 lg:right-8 mr-2 bg-black h-5 w-full" title="social medida">
+                <div class="relative lg:top-6 lg:right-8 mr-2 bg-transparent h-5 w-full" title="social medida">
 
                 </div>
             </div>
@@ -93,8 +93,23 @@
                     
                 
                 </div>    
-                <div class="">
+                <div class="block w-full mx-auto px-3 my-2 items-end text-center">
+                    <input type="text" placeholder="اسمك الكامل" id="customer_name" class="form_dash_input !bg-slate-50 my-3" />
 
+                    <input type="tel" placeholder="رقم الهاتف" id="customer_phone" class="form_dash_input !bg-slate-50 my-3" />
+
+                    <select name="" id="payment_type" class="form_dash_input !bg-slate-50 my-3">
+                        <option value="cash">الدفع عند الاستلام</option>
+                        <option value="credit">الدفع بالبطاقة</option>
+                    </select>
+                    <div class="border border-gray-500 p-2 my-5 rounded-md shadow-md">
+                        <p>
+                            <span>إجمالي المبلغ المطلوب:</span>
+                            <span id="subtotal" class="text-red-500 font-bold text-3xl">123</span>
+                            <span>SAR</span>
+                        </p>
+                    </div>
+                    <button class="bg-green-500 text-white rounded-full p-2 w-3/4">اطلب الآن</button>
                 </div>            
             </div>
         </div>
@@ -222,9 +237,7 @@
 
         function show_cart()
         {
-            // loop in cart
-            
-
+            // loop in cart            
             var local_count = 0;
             var local_sub_total = 0;
 

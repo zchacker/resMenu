@@ -157,9 +157,55 @@ class MenuItem extends Controller
 
     public function edit_item(Request $request)
     {
+
         $category_id = $request->category_id;
-        return view('client_dashboard.menu_item.edit_item' , compact('category_id'));
+
+        $item = MenueItemsModel::where(['menueitems.id' => $request->item_id])
+        ->join('files' , 'menueitems.image_file_id', '=' , 'files.id')
+        ->first(['menueitems.*' , 'files.file_name']);
+
+        return view('client_dashboard.menu_item.edit_item' , compact('category_id' , 'item'));
     }
 
+    public function edit_item_submit(Request $request)
+    {
+
+        $rules = array(
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',            
+            'item_img' => 'required|mimes:jpeg,png,jpg,gif,svg|image|max:7000'
+        );
+
+        $messages = [
+            'name.required' => __('item_name_required'),
+            'description.required' => __('item_description_required'),
+            'price.required' => __('item_price_required'),            
+            'item_img.required' => __('item_img_required'),
+            'item_img.mimes' => __('item_img_notvalid'),
+            'item_img.max' => __('item_img_size_notvalid' , ['size' => '7']),
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails() == true) {
+
+            $error     = $validator->errors();
+            $allErrors = "";
+
+            foreach ($error->all() as $err) {
+                $allErrors .= $err . " <br/>";
+            }
+
+            return back()->withErrors(['error' => $allErrors])
+                         ->withInput($request->all());
+
+        }else{
+
+            
+
+        }
+
+    }
 
 }

@@ -69,7 +69,7 @@ Route::group([ 'middleware' => ['auth:user'] ] , function(){
     Route::get('/dashboard/items/{category_id?}/add', [\App\Http\Controllers\Client\MenuItem::class, 'add_item'])->name('dashboard.items.add');        
     Route::post('/dashboard/items/{category_id?}/add/submit', [\App\Http\Controllers\Client\MenuItem::class, 'add_item_submit'])->name('dashboard.items.add.submit');    
 
-    Route::get('/dashboard/items/{item_id?}/edit', [\App\Http\Controllers\Client\MenuItem::class, 'edit_item'])->name('dashboard.items.edit');
+    Route::get('/dashboard/items/{category_id?}/edit/{item_id?}', [\App\Http\Controllers\Client\MenuItem::class, 'edit_item'])->name('dashboard.items.edit');
     Route::get('/dashboard/items/{item_id?}/edit/submit', [\App\Http\Controllers\Client\MenuItem::class, 'edit_item_submit'])->name('dashboard.items.edit.submit');
 
     Route::get('/dashboard/logout', [\App\Http\Controllers\AuthClient::class, 'logout'])->name('dashboard.logout');

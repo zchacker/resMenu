@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <div class="bg-gray-800 w-full rounded-xl min-h-fit p-4">
+    <div class="bg-yellow-200 w-full rounded-xl min-h-fit p-4">
         <form action="{{ route('dashboard.update.shop') }}" method="post" class="w-full">
             @csrf
             <div class="mb-4">
@@ -22,22 +22,22 @@
             </div>
 
             <div class="mb-4">
-                <label for="name" class="lable_form !text-gray-300">{{ __('shop_name') }}</label>
+                <label for="name" class="lable_form ">{{ __('shop_name') }}</label>
                 <input type="text" name="name" class="form_dash_input" placeholder="{{ __('shop_name') }}" value="{{ $restrant->name }}" />
             </div>
 
             <div class="mb-4">
-                <label for="name" class="lable_form !text-gray-300">{{ __('slug') }}</label>
+                <label for="name" class="lable_form ">{{ __('slug') }}</label>
                 <input type="text" name="slug" class="form_dash_input" placeholder="{{ __('slug') }}" value="{{ $restrant->slug }}" />
             </div>
 
             <div class="mb-4">
-                <label for="working_hours" class="lable_form !text-gray-300">{{ __('working_hours') }}</label>
+                <label for="working_hours" class="lable_form ">{{ __('working_hours') }}</label>
                 <input type="text" name="working_hours" class="form_dash_input" placeholder="{{ __('working_hours') }}" value="{{ $restrant->working_hours }}" />
             </div>
 
             <div class="mb-4">
-                <label for="message" class="lable_form !text-gray-300">{{ __('shop_message') }}</label>
+                <label for="message" class="lable_form ">{{ __('shop_message') }}</label>
                 <textarea name="message" id="" cols="30" rows="10" class="form_dash_input" placeholder="{{__('shop_message')}}">{{ $restrant->shop_message }}</textarea>
             </div>
 
@@ -62,12 +62,12 @@
 
             <div class="lg:flex">
                 <div class="mb-4 lg:mx-2 lg:w-1/2">
-                    <label for="address" class="lable_form !text-gray-300">{{ __('shop_address') }}</label>
+                    <label for="address" class="lable_form ">{{ __('shop_address') }}</label>
                     <input type="text" name="address" class="form_dash_input" placeholder="{{__('shop_address')}}" value="{{ $restrant->address }}" />
                 </div>
 
                 <div class="mb-4 lg:mx-2 lg:w-1/2">
-                    <label for="message" class="lable_form !text-gray-300">{{ __('phone') }}</label>
+                    <label for="message" class="lable_form ">{{ __('phone') }}</label>
                     <input type="tel" name="phone" class="form_dash_input" placeholder="{{__('phone')}}" value="{{ $restrant->phone }}" />
                 </div>
             </div>
@@ -75,7 +75,7 @@
             <input type="hidden" name="latitude" id="latitude" value="{{ $restrant->latitude }}" />
             <input type="hidden" name="longitude" id="longitude" value="{{ $restrant->longitude }}" />
 
-            <h2 class="font-bold my-5 text-gray-300">اختر الموقع على الخريطة</h2>
+            <h2 class="font-bold my-5 lable_form">اختر الموقع على الخريطة</h2>
 
             <span id="location_name" class="text-red-700 text-lg my-8"></span>
 
