@@ -17,7 +17,7 @@
     @endif
 
     <div class="bg-yellow-200 w-full rounded-xl min-h-fit p-4">
-        <form action="{{ route('dashboard.items.add.submit' , $category_id) }}" method="post" enctype="multipart/form-data" class="w-full">
+        <form action="{{ route( 'dashboard.items.edit.submit' , $item->id ) }}" method="post" enctype="multipart/form-data" class="w-full">
             @csrf
 
             <div class="mb-4">
@@ -50,7 +50,8 @@
             </div>
 
             <div class="mb-4">
-                <input type="submit" value="{{ __('save') }}" class="bg-red-600 text-white rounded-full py-2 px-4" />
+                <input type="submit" value="{{ __('save') }}" class="bg-blue-600 text-white rounded-full py-2 px-4" />
+                <a href="{{ route('dashboard.items.delete' , [$item->id , $category_id] ) }}" class="bg-red-600 text-white rounded-full py-2 px-4" >{{ __('delete') }}</a>
             </div>
 
         </form>

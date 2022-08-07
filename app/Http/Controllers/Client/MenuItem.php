@@ -174,14 +174,14 @@ class MenuItem extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',            
-            'item_img' => 'required|mimes:jpeg,png,jpg,gif,svg|image|max:7000'
+            'item_img' => 'mimes:jpeg,png,jpg,gif,svg|image|max:7000'
         );
 
         $messages = [
             'name.required' => __('item_name_required'),
             'description.required' => __('item_description_required'),
             'price.required' => __('item_price_required'),            
-            'item_img.required' => __('item_img_required'),
+            //'item_img.required' => __('item_img_required'),
             'item_img.mimes' => __('item_img_notvalid'),
             'item_img.max' => __('item_img_size_notvalid' , ['size' => '7']),
         ];
@@ -202,10 +202,74 @@ class MenuItem extends Controller
 
         }else{
 
+            $item = MenueItemsModel::find( $request->item_id );
+
+            // if the user upload image
+            if($request->has('item_img')){
+
+                $temp_hash  = hash_file('sha256', $request->item_img->getRealPath());
+                $fileDB     = FileModel::where(['hash' => $temp_hash])->first();        
+                
+                // look for file via hash                
+                if( $fileDB === NULL){
+    
+                    // TODO: this to change file name
+                    /*
+                        $file = Input::file('upfile')->getClientOriginalName();
+                        $filename = pathinfo($file, PATHINFO_FILENAME);
+                        $extension = pathinfo($file, PATHINFO_EXTENSION);
+                    */                    
+                    
+                    $fileName = time() . '.' . $request->item_img->extension();
+                    $request->item_img->storeAs('imgs', $fileName); // save in private path
+    
+                    $filepath = storage_path('app/imgs/' . $fileName);
+                    echo $hash =  hash_file('sha256', $filepath);
+    
+                    $fileAdded = FileModel::create([
+                        'file_name' => $fileName,
+                        'hash' => $hash,
+                    ]);                   
+
+                    $item->image_file_id = $fileAdded->id;
+
+                }else{
+                    
+                    $item->image_file_id = $fileDB->id;
+
+                }
+
+            }// end image upload
+
+
+            $item->name         = $request->name;
+            $item->description  = $request->description;
+            $item->price        = $request->price;
+            $item->offer_price  = $request->offer_price;
+
+            if ($item->update()) {
+
+                return back()->with(['success' => __('updated_successfuly')]);
+
+            } else {
+
+                return back()->withErrors(['error' => __('unknown_error')])->withInput($request->all());
             
+            }
 
         }
 
+    }
+
+
+    public function delete_item(Request $request)
+    {
+        $item_id = $request->item_id;
+        $category_id = $request->category_id;
+
+        MenueItemsModel::where(['id' => $item_id])->delete();
+        return redirect(route( 'dashboard.items' , $category_id ));
+        
     }
 
 }

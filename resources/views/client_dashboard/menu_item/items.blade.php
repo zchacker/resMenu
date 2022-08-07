@@ -15,7 +15,7 @@
                 <div class="p-1 bg-green-50 rounded-md">
                     <img src="{{ route('image.displayImage', $item->file_name ) }}" class="w-full h-[250px] object-cover" alt="">
                 </div>
-                <div class="relative left-[-10px] bottom-8 bg-white w-3/12 p-2 rounded-md">
+                <div class="relative left-[-10px] bottom-8 bg-white w-3/6 p-2 rounded-md">
                     @if ($item->offer_price != NULL || $item->offer_price > 0)
                         <p class="text-lg font-bold">{{$item->offer_price}} SAR</p>
                         <p class="text-sm text-red-600 font-bold line-through">{{$item->price}} SAR</p>
