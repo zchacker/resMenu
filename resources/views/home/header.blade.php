@@ -24,11 +24,11 @@
                     </div>
                     <!-- Primary Navbar items -->
                     <div class="hidden md:flex items-center space-x-1">
-                        <a href="" class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold ">الرئيسية</a>
-                        <a href="" class="py-4 px-2 text-gray-300 font-semibold hover:text-green-500 transition duration-300">المميزات</a>
-                        <a href="" class="py-4 px-2 text-gray-300 font-semibold hover:text-green-500 transition duration-300">القوالب</a>
-                        <a href="" class="py-4 px-2 text-gray-300 font-semibold hover:text-green-500 transition duration-300">الأسعار</a>
-                        <a href="" class="py-4 px-2 text-gray-300 font-semibold hover:text-green-500 transition duration-300">اتصل بنا</a>
+                        <a href="{{route('home')}}" class="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold ">الرئيسية</a>
+                        <a href="{{route('home')}}#features" class="py-4 px-2 text-gray-300 font-semibold hover:text-green-500 transition duration-300">المميزات</a>
+                        <a href="{{route('home')}}#menus" class="py-4 px-2 text-gray-300 font-semibold hover:text-green-500 transition duration-300">القوالب</a>
+                        <a href="{{route('home')}}#prices" class="py-4 px-2 text-gray-300 font-semibold hover:text-green-500 transition duration-300">الأسعار</a>
+                        <a href="{{route('home')}}#contact" class="py-4 px-2 text-gray-300 font-semibold hover:text-green-500 transition duration-300">اتصل بنا</a>
                     </div>
                 </div>
                 <!-- Secondary Navbar items -->
@@ -49,11 +49,11 @@
         <!-- mobile menu -->
         <div class="hidden mobile-menu">
             <ul class="">
-                <li class="active"><a href="index.html" class="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">الرئيسية</a></li>
-                <li><a href="#services" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">المميزات</a></li>
-                <li><a href="#about" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">القوالب</a></li>
-                <li><a href="#contact" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">الاسعار</a></li>
-                <li><a href="#contact" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">اتصل بنا</a></li>
+                <li class="active"><a href="{{route('home')}}" class="block text-sm px-2 py-4 text-white bg-green-500 font-semibold">الرئيسية</a></li>
+                <li><a href="{{route('home')}}#features" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">المميزات</a></li>
+                <li><a href="{{route('home')}}#menus" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">القوالب</a></li>
+                <li><a href="{{route('home')}}#prices" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">الاسعار</a></li>
+                <li><a href="{{route('home')}}#contact" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">اتصل بنا</a></li>
             </ul>
         </div>
         <script>

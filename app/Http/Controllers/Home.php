@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomersModel;
+use App\Models\CustomersPaymentsModel;
 use App\Models\MenuCategoriesModel;
 use App\Models\MenueItemsModel;
 use App\Models\MenusModel;
@@ -48,7 +49,7 @@ class Home extends Controller
                 ->join('files' , 'menueitems.image_file_id', '=' , 'files.id')
                 ->get(['menueitems.*' , 'files.file_name']);                                           
 
-                return view('menu1' , compact('menucategories' , 'menueitems' , 'restrant_id'));
+                return view('customers.menu1' , compact('menucategories' , 'menueitems' , 'restrant_id' , 'restrant'));
 
             }
         }
@@ -133,8 +134,7 @@ class Home extends Controller
         // get sub total amount 
         $sub_total = OrderItemsModel::where(['order_id' => $order_id])
         ->join('menueitems' , 'menueitems.id' , '=' , 'orderitems.item_id')
-        ->sum(DB::raw('orderitems.quantity * menueitems.price'));
-        
+        ->sum(DB::raw('orderitems.quantity * IF(menueitems.offer_price > 0, menueitems.offer_price , menueitems.price) '));                
 
         $time = microtime(true) - $start;
 
@@ -154,12 +154,188 @@ class Home extends Controller
 
         //print($sub_total.' time: '. $time. ' Secunds ');
 
-        return view('order_summary' , compact('SessionId' , 'CountryCode' , 'sub_total', 'order_id'));
+        return view('customers.order_summary' , compact('SessionId' , 'CountryCode' , 'sub_total', 'order_id'));
     }
 
     public function init_payment(Request $request)
     {
+        
+        $sessionId  = $request->sessionId;
+        $order_id   = $request->order_id;
+        $cardBrand  = $request->cardBrand;
+
+        $sub_total = OrderItemsModel::where(['order_id' => $order_id])
+        ->join('menueitems' , 'menueitems.id' , '=' , 'orderitems.item_id')
+        ->sum(DB::raw('orderitems.quantity * IF(menueitems.offer_price > 0, menueitems.offer_price , menueitems.price) '));
+
+        $customer_data = OrdersModel::where(['orders.id' => $order_id])
+        ->join('customers' , 'customers.id' , '=' , 'orders.customer_id')
+        ->first(['customers.name' , 'customers.email' , 'customers.phone']);
+
+        // print $sub_total;
+        // die;
+
+        // send request to server for payment
+        $response = Http::withToken('rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL')
+        ->withOptions(['verify' => false])
+        ->post('https://apitest.myfatoorah.com/v2/ExecutePayment',
+        [
+            'SessionId' => $sessionId,
+            'InvoiceValue' => $sub_total,
+            'CustomerName' => $customer_data->name,
+            'DisplayCurrencyIso' => 'SAR' ,
+            //'MobileCountryCode' => '966',
+            //'CustomerMobile' => $customer_data->phone ,
+            'CustomerEmail' => $customer_data->email ,
+            'CallBackUrl' => route('payment.success' , $order_id) ,
+            'ErrorUrl' => route('payment.error' , $order_id) ,
+            'Language' => 'ar',
+            'CustomerReference' => 'noshipping-nosupplier' ,            
+        ]);
+        
+
+        if($response->ok())
+        {
+            $url = $response->json(['Data' , 'PaymentURL']);
+            
+            $myObj = new \stdClass();
+            $myObj->success = TRUE;                
+            $myObj->error   = "";
+            $myObj->url     = $url;            
+
+            $json = json_encode($myObj, JSON_PRETTY_PRINT);
+            
+            return response($json , Response::HTTP_OK); 
+
+        } else {
+
+            //var_dump($response->json());
+
+            $error ='';// $response->json(['ValidationErrors']);
+            
+            $myObj = new \stdClass();
+            $myObj->success = FALSE;                
+            $myObj->error   = "عملية الدفع لم تتم بنجاح, حاول مرة أخرى ". $error ;
+            $myObj->url     = "";            
+
+            $json = json_encode($myObj, JSON_PRETTY_PRINT);
+            
+            return response($json , Response::HTTP_OK);
+
+        }
+
 
     }
+
+    public function success_pay(Request $request)
+    {
+        
+        $order_id = $request->order_id;
+
+        $response = Http::withToken(env('PAYTOKEN'))
+        ->withOptions(['verify' => false])
+        ->post('https://apitest.myfatoorah.com/v2/GetPaymentStatus',
+        [
+            'Key' => $request->paymentId ,
+            'KeyType' => "PaymentId",                       
+        ]);
+
+        $invoiceStatus = $response->json(['Data' , 'InvoiceStatus']);
+        $amount = $response->json(['Data' , 'InvoiceValue']);
+        $InvoiceTransactions = $response->json(['Data' , 'InvoiceTransactions']); 
+        $paymentGateway = $InvoiceTransactions[0]['PaymentGateway'];
+        $paymentId = $InvoiceTransactions[0]['PaymentId'];
+        $transactionStatus = $InvoiceTransactions[0]['TransactionStatus'];
+        $currency = $InvoiceTransactions[0]['PaidCurrency'];
+        $cardNumber = $InvoiceTransactions[0]['CardNumber'];
+
+        $savePayment = new CustomersPaymentsModel();
+
+        $savePayment->invoiceStatus = $invoiceStatus;
+        $savePayment->order_id = $order_id;
+        $savePayment->amount = $amount;
+        $savePayment->paymentGateway = $paymentGateway;
+        $savePayment->paymentId = $paymentId;
+        $savePayment->transactionStatus = $transactionStatus;
+        $savePayment->currency = $currency;
+        $savePayment->cardNumber = $cardNumber;
+        
+        if($savePayment->save())
+        {
+            return redirect(route('payment.result' , [$order_id]).'?result=success' , Response::HTTP_FOUND);
+
+        }else{
+            print "not saved";
+        }
+
+
+    }
+
+
+    public function error_pay(Request $request)
+    {
+
+        $order_id = $request->order_id;
+
+        $response = Http::withToken(env('PAYTOKEN'))
+        ->withOptions(['verify' => false])
+        ->post('https://apitest.myfatoorah.com/v2/GetPaymentStatus',
+        [
+            'Key' => $request->paymentId ,
+            'KeyType' => "PaymentId",                       
+        ]);
+
+        $invoiceStatus = $response->json(['Data' , 'InvoiceStatus']);
+        $amount = $response->json(['Data' , 'InvoiceValue']);
+        $InvoiceTransactions = $response->json(['Data' , 'InvoiceTransactions']); 
+        $paymentGateway = $InvoiceTransactions[0]['PaymentGateway'];
+        $paymentId = $InvoiceTransactions[0]['PaymentId'];
+        $transactionStatus = $InvoiceTransactions[0]['TransactionStatus'];
+        $currency = $InvoiceTransactions[0]['PaidCurrency'];
+        $cardNumber = $InvoiceTransactions[0]['CardNumber'];
+        $Error = $InvoiceTransactions[0]['Error'];
+
+        $savePayment = new CustomersPaymentsModel();
+
+        $savePayment->invoiceStatus = $invoiceStatus;
+        $savePayment->order_id = $order_id;
+        $savePayment->amount = $amount;
+        $savePayment->paymentGateway = $paymentGateway;
+        $savePayment->paymentId = $paymentId;
+        $savePayment->transactionStatus = $transactionStatus;
+        $savePayment->currency = $currency;
+        $savePayment->cardNumber = $cardNumber;
+        $savePayment->error = $Error;
+        
+        if($savePayment->save())
+        {
+            
+            return redirect(route('payment.result' , [$order_id]).'?result=error' , Response::HTTP_FOUND);
+
+        }else{
+
+            print "Error";
+
+        }
+
+    }
+
+
+    public function payment_result(Request $request)
+    {
+
+        $order_id = $request->order_id;
+        $order = OrdersModel::where(['id' => $order_id])->first();
+        $restrant_id = $order->restrant_id;
+
+        $restrant = RestrantsModel::where(['id' => $restrant_id])->first();        
+        $slug = $restrant->slug;
+        $result = $request->result;
+
+        return view('customers.payment_result' , compact('slug' ,'result'));
+
+    }
+
+
 
 }

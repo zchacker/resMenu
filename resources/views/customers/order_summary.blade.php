@@ -20,7 +20,8 @@
         </div>
     </div>
 
-    // Test Environment
+    <!-- Test Environment -->
+    <script src="{{asset('js/app.js')}}"></script>
     <script src="https://demo.myfatoorah.com/cardview/v1/session.js"></script>
 
     <script>
@@ -81,7 +82,7 @@
                     
                     send_payment(sessionId , cardBrand);
 
-                    alert('sessionId: ' + sessionId + ' cardBrand: ' + cardBrand);
+                    //alert('sessionId: ' + sessionId + ' cardBrand: ' + cardBrand);
 
                 })
                 // In case of errors
@@ -108,11 +109,17 @@
                 }, // data to submit
                 success: function(data, status, xhr) {
                     
+                    console.log(data);
+                    
                     if( data.success ) {                        
+                        
                         location.replace(data.url);
+
                     }else{
+
                         alert(data.error);
-                    }                    
+                    
+                    }
 
                 },
                 error: function(jqXhr, textStatus, errorMessage) {

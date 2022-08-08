@@ -31,6 +31,9 @@ Route::get('/m/{slug}' , [\App\Http\Controllers\Home::class , 'menu'])->name('me
 Route::post('/addOrder' , [\App\Http\Controllers\Home::class , 'add_order'])->name('addOrder');
 Route::get('/order/{order_id?}' , [\App\Http\Controllers\Home::class , 'order_details'])->name('order.details');
 Route::post('/init_payment' , [\App\Http\Controllers\Home::class , 'init_payment'])->name('order.pay');
+Route::get('/success_pay/{order_id?}' , [\App\Http\Controllers\Home::class , 'success_pay'])->name('payment.success');
+Route::get('/error_pay/{order_id?}' , [\App\Http\Controllers\Home::class , 'error_pay'])->name('payment.error');
+Route::get('/payment_result/{order_id?}' , [\App\Http\Controllers\Home::class , 'payment_result'])->name('payment.result');
 
 
 Route::group(['prefix' => '{language?}'], function($language){

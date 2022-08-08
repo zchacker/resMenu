@@ -49,15 +49,15 @@
                 </div>
                 <div class="navbar_item">
                     <i class="las la-shipping-fast la-2x"></i>
-                    <a href="{{ route('home') }}" class="navbar_item_text">الطلبات</a>
+                    <span class="navbar_item_text">الطلبات</span>
                 </div>
                 <div class="navbar_item">
                     <i class="las la-qrcode la-2x"></i>
-                    <a href="{{ route('home') }}" class="navbar_item_text">باركود</a>
+                    <span class="navbar_item_text">باركود</span>
                 </div>
                 <div class="navbar_item">
                     <i class="lab la-whatsapp la-2x"></i>
-                    <a href="{{ route('home') }}" class="navbar_item_text">ربط مع whatsApp</a>
+                    <span class="navbar_item_text">ربط مع whatsApp</span>
                 </div>
                 <div class="navbar_item">
                     <i class="las la-poll la-2x"></i>

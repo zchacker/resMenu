@@ -25,10 +25,10 @@
         <div class="lg:flex relative bg-transparent opacity-100 w-full h-auto z-[12] text-white">
             <img src="{{asset('img/McDonald\'s_logo.png')}}" alt="" class="w-[75px] h-[75px] lg:w-[150px] lg:h-[150px] mb-3 md:mb-0 relative top-2 md:top-6 right-3" />
             <div>
-                <h1 class="relative lg:top-6 lg:right-8 mr-2 text-[2rem] font-bold">اسم المطعم</h1>
-                <h1 class="relative lg:top-6 lg:right-8 mr-2 text-[1.7rem] font-thin"> مثال تجريبي للمنيو الإلكتروني </h1>
+                <h1 class="relative lg:top-6 lg:right-8 mr-2 text-[2rem] font-bold"> {{$restrant->name}} </h1>
+                <h1 class="relative lg:top-6 lg:right-8 mr-2 text-[1.7rem] font-thin"> {{$restrant->message}} </h1>
                 <div class="relative lg:top-6 lg:right-8 mr-2 bg-transparent h-5 w-full" title="social medida">
-
+                    <p>{{$restrant->address}}</p>
                 </div>
             </div>
         </div>
