@@ -54,6 +54,8 @@
                 <li><a href="{{route('home')}}#menus" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">القوالب</a></li>
                 <li><a href="{{route('home')}}#prices" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">الاسعار</a></li>
                 <li><a href="{{route('home')}}#contact" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300">اتصل بنا</a></li>
+                <li><a href="{{ route('login' , app()->getLocale() ) }}" class="block text-sm px-2 py-4 text-gray-300 hover:bg-green-500 transition duration-300"> دخول </a></li>
+                <li><a href="{{ route('register' , app()->getLocale() ) }}" class="block text-sm px-2 py-4 text-gray-800 font-bold bg-yellow-500 transition duration-300"> انضم الان </a></li>
             </ul>
         </div>
         <script>

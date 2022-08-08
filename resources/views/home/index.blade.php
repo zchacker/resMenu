@@ -1,13 +1,14 @@
 @include('home.header')
 
 <section class="h-[600px] bg-black dark:bg-black mt-[0px] opacity-[0.95] p-0 w-full mb-[0px] relative justify-center">
-    <video autoplay loop muted plays-inline class="absolute object-cover opacity-50 right-0 left-0 top-auto -z-10 w-full h-full">
-        <source src="{{asset('video/intro.mp4')}}" type="video/mp4" />
+    <video autoplay loop muted plays-inline poster="{{asset('img/header.jpeg')}}" class="absolute object-cover opacity-50 right-0 left-0 top-auto -z-10 w-full h-full">
+        <source src="{{asset('video/intro1.mp4')}}" type="video/mp4" />
+        <img src="{{asset('img/header.jpeg')}}" alt="" class="absolute object-cover opacity-0 right-0 left-0 top-auto -z-10 w-full h-full">
     </video>
-    <img src="{{asset('img/header.jpeg')}}" alt="" class="absolute object-cover opacity-0 right-0 left-0 top-auto -z-10 w-full h-full">
+    <!-- <img src="{{asset('img/header.jpeg')}}" alt="" class="absolute object-cover opacity-0 right-0 left-0 top-auto -z-10 w-full h-full"> -->
     <div class="absolute mx-4 lg:mx-0 top-[10%] lg:top-[40%] right-[0%] lg:right-[50%]">
         <h1 class="relative self-start align-bottom  text-white p-0 text-right text-[45px]">أسهل وأوفر طريقة لعمل منيو الكتروني مع باركود</h1>
-        <a href="" class="relative top-6 mt-4 py-2 px-5 font-medium text-black bg-yellow-500 rounded-full hover:bg-yellow-400 transition duration-300">انضم الان</a>
+        <a href="{{ route('register' , app()->getLocale() ) }}" class="relative top-6 mt-4 py-2 px-5 font-medium text-black bg-yellow-500 rounded-full hover:bg-yellow-400 transition duration-300">انضم الان</a>
     </div>
 </section>
 

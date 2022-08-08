@@ -1,13 +1,13 @@
 @include('home.header')
 
-    <section title="page header" class="grid w-full min-h-[400px] px-[10%] py-[5%] bg-white">
+    <section title="page header" class="grid w-full min-h-[400px] px-[10%] py-[2%] bg-white">
         <h2 class="text-3xl font-bold text-black text-right">{{ __('register') }}</h2>
         @if(Session::has('errors'))
             <div class="my-3 w-2/4 p-4 bg-orange-500 text-white rounded-md">
                 {!! session('errors')->first('register_error') !!}
             </div>
         @endif
-        <div class="block lg:flex m-2 overflow-x-auto my-5">
+        <div class="block lg:flex m-2 overflow-x-auto my-2 md:my-5">
             
             <form action="{{ route('submit.register') }}" method="post" class="w-full">
                 @csrf
