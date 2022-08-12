@@ -46,7 +46,8 @@ class AuthClient extends Controller
             // update password set it as hashed one
             $request['password'] = Hash::make($request->password);
 
-            $user = UsersModel::create($request->all());
+            $user = UsersModel::create($request->all());            
+
             $restrants = RestrantsModel::create([
                 'name' => '',
                 'message' => '',
@@ -64,7 +65,8 @@ class AuthClient extends Controller
                     'templete_id' => 1
                 ]);
 
-                if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $password] , 1))
+                //if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $password] , 1))
+                if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $password] , TRUE))
                 {
 
                     return redirect()->intended(route('dashboard.home'));

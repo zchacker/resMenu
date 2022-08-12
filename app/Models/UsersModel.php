@@ -28,6 +28,6 @@ class UsersModel extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email' , 'phone', 'password', 'is_active', 'balance'
+        'name', 'email' , 'phone', 'password', 'is_active', 'balance' , 'remember_token'
     ];
 }
