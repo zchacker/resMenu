@@ -11,7 +11,7 @@ class PaymentTransactionsModel extends Model
 {
     use HasFactory, SoftDeletes, Notifiable;
 
-    protected $table = 'paymenttransactions';
+    protected $table = 'payment_transactions';
     
     /**
      * The primary key associated with the table.

@@ -11,7 +11,7 @@ class MenuCategoriesModel extends Model
 {
     use HasFactory, SoftDeletes, Notifiable;
 
-    protected $table = 'menucategories';
+    protected $table = 'menu_categories';
     
     /**
      * The primary key associated with the table.

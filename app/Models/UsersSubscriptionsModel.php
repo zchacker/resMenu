@@ -11,7 +11,7 @@ class UsersSubscriptionsModel extends Model
 {
     use HasFactory, SoftDeletes, Notifiable;
 
-    protected $table = 'userssubscriptions';
+    protected $table = 'users_subscriptions';
     
     /**
      * The primary key associated with the table.

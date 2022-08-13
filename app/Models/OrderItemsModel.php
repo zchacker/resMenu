@@ -11,7 +11,7 @@ class OrderItemsModel extends Model
 {
     use HasFactory, SoftDeletes, Notifiable;
 
-    protected $table = 'orderitems';
+    protected $table = 'order_items';
     
     /**
      * The primary key associated with the table.

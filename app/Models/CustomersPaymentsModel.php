@@ -11,7 +11,7 @@ class CustomersPaymentsModel extends Model
     
     use HasFactory , SoftDeletes;
 
-    protected $table = 'customerspayments';
+    protected $table = 'customers_payments';
     
     /**
      * The primary key associated with the table.
