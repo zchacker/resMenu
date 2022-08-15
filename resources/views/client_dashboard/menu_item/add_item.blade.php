@@ -3,24 +3,24 @@
 <div class="content">
 
     <a href="{{ route('dashboard.items' , $category_id) }}" class="text-white my-4 text-lg items-center px-5 py-1 bg-green-500 rounded-full"><i class="las la-arrow-right"> {{__('back')}} </i></a>
-    
+
     <h2 class="text-2xl font-bold mb-4">{{__('add_item')}}</h2>
-    
+
     @if(Session::has('errors'))
-        <div class="my-3 w-full p-4 bg-orange-500 text-white rounded-md">
-            {!! session('errors')->first('error') !!}
-        </div>
+    <div class="my-3 w-full p-4 bg-orange-500 text-white rounded-md">
+        {!! session('errors')->first('error') !!}
+    </div>
     @endif
 
     @if(Session::has('success'))
-        <div class="my-3 w-full p-4 bg-green-700 text-white rounded-md">
-            {!! session('success') !!}
-        </div>
+    <div class="my-3 w-full p-4 bg-green-700 text-white rounded-md">
+        {!! session('success') !!}
+    </div>
     @endif
 
     <div class="bg-yellow-200 w-full rounded-xl min-h-fit p-4">
-        <form action="{{ route('dashboard.items.add.submit' , $category_id) }}" method="post"  enctype="multipart/form-data" class="w-full">
-            @csrf            
+        <form action="{{ route('dashboard.items.add.submit' , $category_id) }}" method="post" enctype="multipart/form-data" class="w-full">
+            @csrf
 
             <div class="mb-4">
                 <label for="name" class="lable_form ">{{ __('item_name') }}</label>
@@ -29,7 +29,7 @@
 
             <div class="mb-4">
                 <label for="name" class="lable_form ">{{ __('item_description') }}</label>
-                <textarea name="description" id="" cols="30" rows="10" class="form_dash_input" placeholder="{{__('item_description')}}">{{old('description')}}</textarea>                
+                <textarea name="description" id="" cols="30" rows="10" class="form_dash_input" placeholder="{{__('item_description')}}">{{old('description')}}</textarea>
             </div>
 
             <div class="mb-4">
@@ -57,17 +57,17 @@
 
         </form>
     </div>
-    
+
 </div>
 
 <script type="text/javascript">
-    $('#image').change(function(){
-            
-    let reader = new FileReader();
-    reader.onload = (e) => { 
-        $('#preview-image').attr('src', e.target.result); 
-    }
-    reader.readAsDataURL(this.files[0]); 
+    $('#image').change(function() {
+
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#preview-image').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
 
     });
 </script>

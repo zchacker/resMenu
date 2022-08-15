@@ -18,8 +18,8 @@ class MenuItem extends Controller
         $category_id = $request->category_id;
         $category = MenuCategoriesModel::where(['id' => $request->category_id])->first();
         $items = MenueItemsModel::where(['menu_category_id' => $request->category_id])
-        ->join('files' , 'menueitems.image_file_id', '=' , 'files.id')
-        ->get(['menueitems.*' , 'files.file_name']);
+        ->join('files' , 'menue_items.image_file_id', '=' , 'files.id')
+        ->get(['menue_items.*' , 'files.file_name']);
 
         return view('client_dashboard.menu_item.items', compact('category' , 'items' , 'category_id'));
     }
@@ -94,7 +94,8 @@ class MenuItem extends Controller
                     $extension = pathinfo($file, PATHINFO_EXTENSION);
                 */
                 
-                $fileName = time() . '.' . $request->item_img->extension();
+                $original_file_name = $request->item_img->getClientOriginalName();
+                $fileName = time() . '_' . $original_file_name. '.' . $request->item_img->extension();
                 $request->item_img->storeAs('imgs', $fileName); // save in private path
 
                 $filepath = storage_path('app/imgs/' . $fileName);
@@ -160,9 +161,9 @@ class MenuItem extends Controller
 
         $category_id = $request->category_id;
 
-        $item = MenueItemsModel::where(['menueitems.id' => $request->item_id])
-        ->join('files' , 'menueitems.image_file_id', '=' , 'files.id')
-        ->first(['menueitems.*' , 'files.file_name']);
+        $item = MenueItemsModel::where(['menue_items.id' => $request->item_id])
+        ->join('files' , 'menue_items.image_file_id', '=' , 'files.id')
+        ->first(['menue_items.*' , 'files.file_name']);
 
         return view('client_dashboard.menu_item.edit_item' , compact('category_id' , 'item'));
     }
@@ -215,12 +216,17 @@ class MenuItem extends Controller
     
                     // TODO: this to change file name
                     /*
+                        $file_extension = $request->file->extension();
+                        $file_mime_type = $request->file->getClientMimeType();
+                        $original_file_name = $request->file->getClientOriginalName();
+                        
                         $file = Input::file('upfile')->getClientOriginalName();
                         $filename = pathinfo($file, PATHINFO_FILENAME);
                         $extension = pathinfo($file, PATHINFO_EXTENSION);
                     */                    
                     
-                    $fileName = time() . '.' . $request->item_img->extension();
+                    $original_file_name = $request->item_img->getClientOriginalName();
+                    $fileName = time() . '_' . $original_file_name. '.' . $request->item_img->extension();
                     $request->item_img->storeAs('imgs', $fileName); // save in private path
     
                     $filepath = storage_path('app/imgs/' . $fileName);

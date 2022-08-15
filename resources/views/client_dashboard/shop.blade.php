@@ -3,19 +3,19 @@
 <div class="content">
     <h2 class="text-2xl font-bold mb-4">{{__('manage_shop')}}</h2>
     @if(Session::has('errors'))
-        <div class="my-3 w-full p-4 bg-orange-500 text-white rounded-md">
-            {!! session('errors')->first('error') !!}
-        </div>
+    <div class="my-3 w-full p-4 bg-orange-500 text-white rounded-md">
+        {!! session('errors')->first('error') !!}
+    </div>
     @endif
 
     @if(Session::has('success'))
-        <div class="my-3 w-full p-4 bg-green-700 text-white rounded-md">
-            {!! session('success') !!}
-        </div>
+    <div class="my-3 w-full p-4 bg-green-700 text-white rounded-md">
+        {!! session('success') !!}
+    </div>
     @endif
 
     <div class="bg-yellow-200 w-full rounded-xl min-h-fit p-4">
-        <form action="{{ route('dashboard.update.shop') }}" method="post" class="w-full">
+        <form action="{{ route('dashboard.update.shop') }}" method="post" class="w-full" enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <input type="submit" value="{{ __('save') }}" class="bg-red-600 text-white rounded-full py-2 px-4" />
@@ -69,8 +69,30 @@
                 </div>
 
                 <div class="mb-4 lg:mx-2 lg:w-1/2">
-                    <label for="message" class="lable_form ">{{ __('phone') }}</label>
+                    <label for="message" class="lable_form">{{ __('phone') }}</label>
                     <input type="tel" name="phone" class="form_dash_input" placeholder="{{__('phone')}}" value="{{ $restrant->phone }}" />
+                </div>
+            </div>
+
+            <div class="md:flex mb-4">
+                <div class="mb-4 lg:mx-2 lg:w-1/2">
+                    <label for="" class="lable_form">شعار المتجر</label>
+                    @if(strlen($restrant->avatar) == 0 )
+                    <img src="{{ asset('img/shop.jpg') }}" alt="" id="avatar-preview-image" class="md:w-[150px] h-[150px] border-2 border-double border-gray-200 p-1 bg-white object-cover rounded-md" />
+                    @else
+                    <img src="{{ route('image.displayImage', $avatar_img) }}" alt="" id="avatar-preview-image" class="md:w-[150px] h-[150px] border-2 border-double border-gray-200 p-1 bg-white object-cover rounded-md" />
+                    @endif
+                    <input type="file" name="avatar" id="avatar" class="my-4" />
+                </div>
+
+                <div class="mb-4 lg:mx-2 lg:w-1/2">
+                    <label for="" class="lable_form"> صورة غلاف المتجر (هيدر المتجر) </label>
+                    @if(strlen($restrant->cover) == 0 )
+                    <img src="{{ asset('img/cover.jpg') }}" alt="" id="cover-preview-image" class="md:w-[500px] h-[150px] border-2 border-double border-gray-200 p-1 bg-white object-cover rounded-md" />
+                    @else
+                    <img src="{{ route('image.displayImage', $cover_img ) }}" alt="" id="cover-preview-image" class="md:w-[500px] h-[150px] border-2 border-double border-gray-200 p-1 bg-white object-cover rounded-md" />
+                    @endif
+                    <input type="file" name="cover" id="cover" class="my-4" />
                 </div>
             </div>
 
@@ -82,11 +104,32 @@
             <span id="location_name" class="text-red-700 text-lg my-8"></span>
 
             <a href="javascript:getLocation();" class="normal_button">
-                <span class="mt-5 mb-10">حدد موقعي</span>                
+                <span class="mt-5 mb-10">حدد موقعي</span>
             </a>
 
             <div id="map" class="my-3 lg:h-[400px] h-[400px] lg:mx-10 lg:my-4 mx-3 bg-slate-700 ">
 
+            </div>
+
+            <div class="mb-4">
+                <label for="" class="lable_form">السماح بالطلبات</label>
+                <select name="orders_allow" id="" class="form_dash_input">
+                    <option value="on"  {{ ($restrant->orders_allow === "on")  ? "selected" : "" }} >نعم</option>
+                    <option value="off" {{ ($restrant->orders_allow === "off") ? "selected" : "" }} >لا</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="" class="lable_form">السماح بالدفع</label>
+                <select name="payment_allow" id="" class="form_dash_input">
+                    <option value="on"  {{ ($restrant->payment_allow === "on")  ? "selected" : "" }} >نعم</option>
+                    <option value="off" {{ ($restrant->payment_allow === "off")  ? "selected" : "" }}>لا</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="" class="lable_form">رجاء أدخل المفتاح السري لحسابك في <a href="https://myfatoorah.com/" class="link" target="_blank">myfatoorah.com</a> </label>
+                <input type="text" name="payment_token" id="" class="form_dash_input" value="{{ $restrant->payment_token }}" placeholder="tt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7 ...." />
             </div>
 
             <div class="mb-4">
@@ -107,19 +150,18 @@
      and consistent behavior across browsers, consider loading using Promises
      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
     -->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap&v=weekly" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap&v=weekly" defer></script>
 
 <script>
-
     var map, marker;
 
     // Initialize and add the map
     function initMap() {
-
+        
         // The location of Medina
         const medinaCoordinator = {
-            lat: {{ $restrant->latitude }},
-            lng: {{ $restrant->longitude }}
+            lat: {{$restrant -> latitude}},
+            lng: {{$restrant -> longitude}}
         };
 
         // The map, centered at medinaCoordinator
@@ -181,14 +223,14 @@
     }
 
     function showPosition(position) {
-        
+
         const pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
         };
-        
+
         map.setCenter(pos);
-        
+
         marker.setPosition(pos);
 
         $('#latitude').val(position.coords.latitude);
@@ -220,6 +262,27 @@
     //getLocation();
 
     window.initMap = initMap;
+
+
+    $('#avatar').change(function() {
+
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#avatar-preview-image').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+
+    });
+
+    $('#cover').change(function() {
+
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#cover-preview-image').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+
+    });
 </script>
 
 
