@@ -54,6 +54,19 @@
     "item_img_notvalid" : "صيغة الصورة غير صحيحة",
     "item_img_size_notvalid" : "مساحة الصورة يجب أن لا تتجاوز :size ميجا",
 
-    "back" : "رجوع"
+    "back" : "رجوع",
+
+    "whatsapp_nofication" : "الربط مع الواتساب",
+    "whats_on_off" : "تفعيل/تعطيل طلبات الواتساب",
+    "whatsapp_number" : "رقم الواتساب",
+    "whatspp_msg" : "رسالة واتساب",
+    "shortcode" : "رموز قصيرة" ,
+    "order_id" : "رقم تعريف الطلب" ,
+    "order_details" : "تفاصيل الطلب" ,
+    "client_details" : "تفاصيل العميل" ,
+    "order_subtotal" : "السعر الاجمالي للطلب",
+    "allow_whatsapp_orders_required" : "رجاء اختر حالة تفعيل الطلبات عبر الواتساب",
+    "whatsapp_number_required" : "رقم الواتساب مطلوب",
+    "wahtsapp_message_body_required" : "نص رسالة الواتساب مطلوب"
 
 }

@@ -57,7 +57,7 @@
                 </div>
                 <div class="navbar_item">
                     <i class="lab la-whatsapp la-2x"></i>
-                    <span class="navbar_item_text">ربط مع whatsApp</span>
+                    <a href="{{route('dashboard.whatsapp')}}" class="navbar_item_text">ربط مع whatsApp</a>
                 </div>
                 <div class="navbar_item">
                     <i class="las la-poll la-2x"></i>

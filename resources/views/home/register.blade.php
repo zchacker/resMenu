@@ -1,6 +1,7 @@
 @include('home.header')
+<link rel="stylesheet" itemprop="url" href="{{asset('css/intlTelInput.min.css')}}"/>
 
-    <section title="page header" class="grid w-full min-h-[400px] px-[10%] py-[2%] bg-white">
+    <section title="page header" class="w-full min-h-[800px] px-[10%] py-[2%] bg-white">
         <h2 class="text-3xl font-bold text-black text-right">{{ __('register') }}</h2>
         @if(Session::has('errors'))
             <div class="my-3 w-2/4 p-4 bg-orange-500 text-white rounded-md">
@@ -23,7 +24,7 @@
 
                 <div class="mb-4">
                     <label for="phone" class="lable_form">{{ __('phone') }}</label>
-                    <input type="text" name="phone" class="form_input" value="{{ old('phone') }}"/>
+                    <input type="text" name="phone" id="phone" class="form_dash_input !border-blue-500 text-left" dir="ltr" value="{{ old('phone') }}"/>
                 </div>
 
                 <div class="mb-4">
@@ -44,4 +45,34 @@
         </div>
     </section>
 
+
+<!-- https://github.com/jackocnr/intl-tel-input  -->
+<script src="{{asset('js/intlTelInput-jquery.min.js')}}"></script>
+<script src="{{asset('js/intlTelInput.min.js')}}"></script>
+<script>
+
+    $('#phone').intlTelInput({
+        
+        initialCountry: 'sa',
+        separateDialCode: true,
+        preferredCountries: ["sa", "ae" , 'uk', 'us'],
+        utilsScript : "{{asset('js/utils.js')}}",
+        
+    });    
+
+    function form_submit(e) {
+        
+
+        if($('#phone').intlTelInput("getNumber")) {
+            $('#phone').val($('#phone').intlTelInput("getNumber"));
+            return true;
+        }else{
+            e.preventDefault();
+            alert('الرجاء ادخال رقم هاتف صحيح');
+            return false;
+        }
+        
+    }
+
+</script>
 @include('home.footer')

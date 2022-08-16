@@ -27,6 +27,8 @@ class RestrantsModel extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'message' , 'address', 'phone', 'latitude', 'longitude', 'user_id'
+        'name', 'message' , 'address', 'phone', 'latitude', 'longitude', 'user_id',
+        'orders_allow', 'payment_allow', 'payment_token', 'whatsapp_number',
+        'allow_whatsapp_orders', 'wahtsapp_message_body'
     ];
 }

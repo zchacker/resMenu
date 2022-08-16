@@ -46,8 +46,8 @@ class Home extends Controller
 
                 $menucategories = MenuCategoriesModel::where(['menu_id' => $menu->id])->get();
                 $menueitems     = MenueItemsModel::where(['menu_id' => $menu->id])
-                ->join('files' , 'menueitems.image_file_id', '=' , 'files.id')
-                ->get(['menueitems.*' , 'files.file_name']);                                           
+                ->join('files' , 'menue_items.image_file_id', '=' , 'files.id')
+                ->get(['menue_items.*' , 'files.file_name']);                                           
 
                 return view('customers.menu1' , compact('menucategories' , 'menueitems' , 'restrant_id' , 'restrant'));
 
@@ -133,8 +133,8 @@ class Home extends Controller
 
         // get sub total amount 
         $sub_total = OrderItemsModel::where(['order_id' => $order_id])
-        ->join('menueitems' , 'menueitems.id' , '=' , 'orderitems.item_id')
-        ->sum(DB::raw('orderitems.quantity * IF(menueitems.offer_price > 0, menueitems.offer_price , menueitems.price) '));                
+        ->join('menue_items' , 'menue_items.id' , '=' , 'orderitems.item_id')
+        ->sum(DB::raw('orderitems.quantity * IF(menue_items.offer_price > 0, menue_items.offer_price , menue_items.price) '));                
 
         $time = microtime(true) - $start;
 
@@ -165,8 +165,8 @@ class Home extends Controller
         $cardBrand  = $request->cardBrand;
 
         $sub_total = OrderItemsModel::where(['order_id' => $order_id])
-        ->join('menueitems' , 'menueitems.id' , '=' , 'orderitems.item_id')
-        ->sum(DB::raw('orderitems.quantity * IF(menueitems.offer_price > 0, menueitems.offer_price , menueitems.price) '));
+        ->join('menue_items' , 'menue_items.id' , '=' , 'orderitems.item_id')
+        ->sum(DB::raw('orderitems.quantity * IF(menue_items.offer_price > 0, menue_items.offer_price , menue_items.price) '));
 
         $customer_data = OrdersModel::where(['orders.id' => $order_id])
         ->join('customers' , 'customers.id' , '=' , 'orders.customer_id')

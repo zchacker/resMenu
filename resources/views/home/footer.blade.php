@@ -1,4 +1,4 @@
-<footer class="text-center lg:text-right bg-gray-100 text-gray-600">
+<footer class="text-center lg:text-right bg-gray-800 text-gray-100">
   <div class="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
     <div class="mr-12 hidden lg:block">
       <span>ابق على تواصل معنا:</span>
@@ -141,9 +141,9 @@
       </div>
     </div>
   </div>
-  <div class="text-center p-6 bg-gray-200">
-    <span>© 2021 جميع الحقوق محفوظة:</span>
-    <a class="text-gray-600 font-semibold" href="https://browndiamondstech.com/">Brown Diamond Tech Ltd</a>
+  <div class="text-center p-6 bg-gray-900 text-gray-500">
+    <span>© 2021 جميع الحقوق محفوظة | </span> 
+    <span>برمجة وتصميم <a class="text-gray-600 hover:text-yellow-300 font-semibold" href="https://browndiamondstech.com/">Brown Diamond Tech Ltd</a></span>
   </div>
 </footer>
 

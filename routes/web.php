@@ -79,6 +79,10 @@ Route::group([ 'middleware' => ['auth:user'] ] , function(){
     Route::post('/dashboard/items/{item_id?}/edit/submit', [\App\Http\Controllers\Client\MenuItem::class, 'edit_item_submit'])->name('dashboard.items.edit.submit');
     Route::get('/dashboard/items/delete/{item_id?}/{category_id?}', [\App\Http\Controllers\Client\MenuItem::class, 'delete_item'])->name('dashboard.items.delete');
 
+    // to update whatsapp    
+    Route::get('/dashboard/whatsapp', [\App\Http\Controllers\Client\Whatsapp::class, 'whatsapp_info'])->name('dashboard.whatsapp');
+    Route::post('/dashboard/whatsapp/update', [\App\Http\Controllers\Client\Whatsapp::class, 'updateWhatsappData'])->name('dashboard.whatsapp.update');
+
     Route::get('/dashboard/logout', [\App\Http\Controllers\AuthClient::class, 'logout'])->name('dashboard.logout');
 
 });

@@ -30,7 +30,9 @@
                 <label for="name" class="lable_form ">{{ __('slug') }}</label>
                 <input type="text" name="slug" class="form_dash_input" placeholder="{{ __('slug') }}" value="{{ $restrant->slug }}" />
                 <p class="text-red-700 font-bold my-2">رابط المنيو الخاص بك</p>
+                @if($restrant->slug != NULL)
                 <a href="{{route('menu' , $restrant->slug)}}" target="_blank" class="text-blue-700 underline">{{route('menu' , $restrant->slug)}}</a>
+                @endif
             </div>
 
             <div class="mb-4">

@@ -112,6 +112,10 @@
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-white ">باقات تناسب جميع الانشطة</h2>
             <p class="mb-5 font-light text-gray-100 sm:text-xl ">مطاعم، مقاهي، فنادق، فود ترك، مراكز صحية، الصالونات، المعارض، المستشفيات، الشركات والمؤسسات</p>
         </div>
+        <div class="grid grid-cols-2 text-center items-center bg-transparent h-14 md:w-1/3 mx-auto my-14 rounded-md">
+            <span onclick="select_mounth()" id="mounth" class="monthly transition-all duration-500 hover:opacity-80 rounded-tr-md rounded-br-md">شهري</span>
+            <span onclick="select_year()" id="year" class="yearly transition-all duration-500 hover:opacity-80 rounded-tl-md rounded-bl-md">سنوي</span>
+        </div>
         <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             <!-- Pricing Card -->
             <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-100 bg-slate-900 rounded-lg border border-gray-700 shadow xl:p-8">
@@ -166,8 +170,8 @@
                 <h3 class="mb-4 text-2xl font-semibold">أساسي</h3>
                 <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">مناسب لأغلب الانشطة والمحلات بإمكانيات منافسة</p>
                 <div class="flex justify-center items-baseline my-8">
-                    <span class="mr-2 text-5xl font-extrabold">29 ريال</span>
-                    <span class="text-gray-500">/شهريا</span>
+                    <span class="mr-2 text-5xl font-extrabold" id="pk-1" >29 ريال</span>
+                    <span class="text-gray-500" id="pk-1-time">/شهريا</span>
                 </div>
                 <!-- List -->
                 <ul role="list" class="mb-8 space-y-4 text-left">
@@ -207,8 +211,8 @@
                 <h3 class="mb-4 text-2xl font-semibold">أعمال</h3>
                 <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">باقة الأعمال للشركات والمؤسسات الاحترافية</p>
                 <div class="flex justify-center items-baseline my-8">
-                    <span class="mr-2 text-5xl font-extrabold">39 ريال</span>
-                    <span class="text-gray-500">/شهريا</span>
+                    <span class="mr-2 text-5xl font-extrabold" id="pk-2" >39 ريال</span>
+                    <span class="text-gray-500" id="pk-2-time" >/شهريا</span>
                 </div>
                 <!-- List -->
                 <ul role="list" class="mb-8 space-y-4 text-left">
@@ -260,5 +264,35 @@
         </div>
     </div>
 </section>
+
+<script>
+
+    function select_mounth(){
+
+        $('#mounth').removeClass('yearly').addClass('monthly');
+        $('#year').removeClass('monthly').addClass('yearly');
+
+        $('#pk-1').text('29 ريال');
+        $('#pk-2').text('39 ريال');
+
+        $('#pk-1-time').text(' / شهريا');
+        $('#pk-2-time').text(' / شهريا');
+
+    }
+
+    function select_year(){
+
+        $('#year').removeClass('yearly').addClass('monthly');
+        $('#mounth').removeClass('monthly').addClass('yearly');
+
+        $('#pk-1').text('319 ريال');
+        $('#pk-2').text('429 ريال');
+
+        $('#pk-1-time').text(' / سنويا ');
+        $('#pk-2-time').text(' / سنويا ');
+
+    }
+
+</script>
 
 @include('home.footer')
