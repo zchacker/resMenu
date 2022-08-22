@@ -67,6 +67,16 @@
     "order_subtotal" : "السعر الاجمالي للطلب",
     "allow_whatsapp_orders_required" : "رجاء اختر حالة تفعيل الطلبات عبر الواتساب",
     "whatsapp_number_required" : "رقم الواتساب مطلوب",
-    "wahtsapp_message_body_required" : "نص رسالة الواتساب مطلوب"
+    "wahtsapp_message_body_required" : "نص رسالة الواتساب مطلوب",
+
+    "qr" : " تحميل  رمز الاستجابة السريع QR ",
+    "download" : "تحميل",
+    "no_qr" : " لا يوجد رمز للاستجابة السريع, رجاء إضافة رابط للمتجر " ,
+
+    "qr_size_required" : "ضبط الحجم مطلوب" ,
+    "qr_with_logo_required" : "عرض الشعار مطلوب",
+
+    "on" : "تشغيل",
+    "off" : "إيقاف"
 
 }

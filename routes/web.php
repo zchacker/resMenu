@@ -83,6 +83,12 @@ Route::group([ 'middleware' => ['auth:user'] ] , function(){
     Route::get('/dashboard/whatsapp', [\App\Http\Controllers\Client\Whatsapp::class, 'whatsapp_info'])->name('dashboard.whatsapp');
     Route::post('/dashboard/whatsapp/update', [\App\Http\Controllers\Client\Whatsapp::class, 'updateWhatsappData'])->name('dashboard.whatsapp.update');
 
+    Route::get('/dashboard/qr', [\App\Http\Controllers\Client\Qr::class, 'showQr'])->name('dashboard.qr');
+    
+    Route::post('/dashboard/qr/submit', [\App\Http\Controllers\Client\Qr::class, 'updateQr'])->name('dashboard.qr.submit');
+
+    Route::get('/dashboard/ram', [\App\Http\Controllers\Client\Qr::class, 'total_ram_cpu_usage'])->name('dashboard.ram');
+
     Route::get('/dashboard/logout', [\App\Http\Controllers\AuthClient::class, 'logout'])->name('dashboard.logout');
 
 });

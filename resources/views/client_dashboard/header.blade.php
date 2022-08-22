@@ -53,7 +53,7 @@
                 </div>
                 <div class="navbar_item">
                     <i class="las la-qrcode la-2x"></i>
-                    <span class="navbar_item_text">باركود</span>
+                    <a href="{{route('dashboard.qr')}}" class="navbar_item_text">باركود</a>
                 </div>
                 <div class="navbar_item">
                     <i class="lab la-whatsapp la-2x"></i>
