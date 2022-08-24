@@ -1,3 +1,4 @@
+
 <footer class="text-center lg:text-right bg-[#121b32] text-gray-100">
   <div class="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
     <div class="mr-12 hidden lg:block">

@@ -25,11 +25,11 @@
                     </div>
                     <!-- Primary Navbar items -->
                     <div class="hidden md:flex items-center space-x-1">
-                        <a href="{{route('home')}}" class="py-4 px-2 text-black hover:text-red-500 font-semibold ">الرئيسية</a>
-                        <a href="{{route('home')}}#features" class="py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">المميزات</a>
-                        <a href="{{route('home')}}#menus" class="py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">القوالب</a>
-                        <a href="{{route('home')}}#prices" class="py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">الأسعار</a>
-                        <a href="{{route('home')}}#contact" class="py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">اتصل بنا</a>
+                        <a href="{{route('home')}}/#head" class="scrollTo py-4 px-2 text-black hover:text-red-500 font-semibold ">الرئيسية</a>
+                        <a href="{{route('home')}}/#features" class="scrollTo py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">المميزات</a>
+                        <a href="{{route('home')}}/#menus" class="scrollTo py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">القوالب</a>
+                        <a href="{{route('home')}}/#prices" class="scrollTo py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">الأسعار</a>
+                        <a href="{{route('home')}}/#contact" class="scrollTo py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">اتصل بنا</a>
                     </div>
                 </div>
                 <!-- Secondary Navbar items -->
@@ -50,11 +50,11 @@
         <!-- mobile menu -->
         <div class="hidden mobile-menu">
             <ul class="px-5">
-                <li class="active"><a href="{{route('home')}}" class="block text-md px-2 py-4 text-black hover:bg-yellow-300 font-semibold">الرئيسية</a></li>
-                <li><a href="{{route('home')}}#features" class="block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">المميزات</a></li>
-                <li><a href="{{route('home')}}#menus" class="block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">القوالب</a></li>
-                <li><a href="{{route('home')}}#prices" class="block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">الاسعار</a></li>
-                <li><a href="{{route('home')}}#contact" class="block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">اتصل بنا</a></li>
+                <li class="active"><a href="{{route('home')}}/#head" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 font-semibold">الرئيسية</a></li>
+                <li><a href="{{route('home')}}/#features" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">المميزات</a></li>
+                <li><a href="{{route('home')}}/#menus" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">القوالب</a></li>
+                <li><a href="{{route('home')}}/#prices" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">الاسعار</a></li>
+                <li><a href="{{route('home')}}/#contact" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">اتصل بنا</a></li>
                 <li><a href="{{ route('login' , app()->getLocale() ) }}" class="block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300"> دخول </a></li>
                 <li><a href="{{ route('register' , app()->getLocale() ) }}" class="block call_to_action my-5  mb-8"> انضم الان </a></li>
             </ul>
@@ -87,9 +87,7 @@
 
             $(document).ready(function(){
                 $(window).bind('scroll', function() {
-                    var navHeight = $( window ).height() - 500;
-                    console.log('navHeight:' , navHeight);
-                    console.log('scrollTop'  , $(window).scrollTop() );
+                    var navHeight = $( window ).height() - 500;                    
                     if ($(window).scrollTop() > navHeight) {
                         $('nav').addClass('fix_menue');
                         $('nav').removeClass('-top-[10%]');
@@ -102,3 +100,5 @@
             });
         </script>
     </nav>
+
+    

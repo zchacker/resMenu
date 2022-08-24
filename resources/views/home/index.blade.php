@@ -1,6 +1,20 @@
 @include('home.header')
 
-<section class="h-[600px] bg-[#000000] opacity-90 md:opacity-100 md:bg-transparent mt-[0px]  p-0 w-full mb-[0px] relative justify-center">
+<script>
+  $(".scrollTo").on('click', function(e) {    
+     e.preventDefault();
+     var target = $(this).attr('href');
+     var targetArr = target.split("#");
+     var id = "#"+targetArr[1];
+     console.log(id)
+
+     $('html, body').animate({
+       scrollTop: ($(id).offset().top)
+     }, 800);
+  });
+</script>
+
+<section id="head" class="h-[600px] bg-[#000000] opacity-90 md:opacity-100 md:bg-transparent mt-[0px]  p-0 w-full mb-[0px] relative justify-center">
     <!-- <video autoplay loop muted plays-inline poster="{{asset('img/menu-header.png')}}" class="absolute object-cover opacity-50 right-0 left-0 top-auto -z-10 w-full h-full">
         <source src="{{asset('video/intro1.mp4')}}" type="video/mp4" />
         <img src="{{asset('img/menu-header.png')}}" alt="" class="absolute object-cover opacity-0 right-0 left-0 top-auto -z-10 w-full h-full">
