@@ -74,6 +74,8 @@
     @apply py-4 cursor-pointer  font-bold text-2xl text-white  bg-transparent bg-gradient-to-b from-orange-300 to-red-500
 }
 
+
+
 .yearly{
     @apply py-[0.95rem] cursor-pointer border border-purple-300  font-bold text-2xl text-black  /*bg-gradient-to-r from-purple-400 to-red-400*/
 }
