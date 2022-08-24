@@ -25,13 +25,13 @@
                             // https://www.simplesoftware.io/#/docs/simple-qrcode                            
                             $img = route('image.displayImage', $avatar_img);
                             $qr = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(300)->generate( route('menu' , $restrant->slug) ) );
-                            $qr_download = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(1024)->generate( route('menu' , $restrant->slug) ) );
+                            //$qr_download = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(1024)->generate( route('menu' , $restrant->slug) ) );
                         @endphp
 
                         <!-- {{QrCode::errorCorrection('H')->encoding('UTF-8')->color(88 ,77, 179,  100)->size(300)->generate('https://www.google.com/')}} -->
                         <img src="data:image/png;base64,{{ $qr }}" id="img" class="w-[300px] h-[300px] my-4 border border-gray-500 rounded-md p-2 bg-white">
 
-                        <a href="data:image/png;base64, {{ $qr_download }}" id="download" download="qr_code.png" class="send_btn"><i class="las la-download "></i>{{__('download')}}</a>
+                        <a href="data:image/png;base64, {{ $qr }}" id="download" download="qr_code.png" class="send_btn"><i class="las la-download "></i>{{__('download')}}</a>
 
                     @else
 
@@ -39,19 +39,19 @@
                             // https://www.simplesoftware.io/#/docs/simple-qrcode
                             $size = $restrant->qr_size / 100;
                             $img = route('image.displayImage', $avatar_img);
-                            $qr = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->merge("$img" , $size , true)->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(300)->generate( route('menu' , $restrant->slug) ) );
-                            $qr_download = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->merge("$img" , $size , true)->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(1024)->generate( route('menu' , $restrant->slug) ) );
+                            $qr = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->merge("$img" , $size , true)->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(512)->generate( route('menu' , $restrant->slug) ) );
+                            //$qr_download = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->merge("$img" , $size , true)->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(1024)->generate( route('menu' , $restrant->slug) ) );
 
                             if( $restrant->qr_with_logo == 'off'){
                                 $qr = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(300)->generate( route('menu' , $restrant->slug) ) );
-                                $qr_download = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(1024)->generate( route('menu' , $restrant->slug) ) );
+                                //$qr_download = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(1024)->generate( route('menu' , $restrant->slug) ) );
                             }
                         @endphp
 
                         <!-- {{QrCode::errorCorrection('H')->encoding('UTF-8')->color(88 ,77, 179,  100)->size(300)->generate('https://www.google.com/')}} -->
                         <img src="data:image/png;base64,{{ $qr }}" id="img" class="w-[300px] h-[300px] my-4 border border-gray-500 rounded-md p-2 bg-white">
 
-                        <a href="data:image/png;base64, {{ $qr_download }}" id="download" download="qr_code.png" class="send_btn"><i class="las la-download "></i>{{__('download')}}</a>
+                        <a href="data:image/png;base64, {{ $qr }}" id="download" download="qr_code.png" class="send_btn"><i class="las la-download "></i>{{__('download')}}</a>
 
                     @endif
 

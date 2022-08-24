@@ -1,14 +1,14 @@
 @include('home.header')
 
-<section class="h-[600px] bg-black dark:bg-black mt-[0px] opacity-[0.95] p-0 w-full mb-[0px] relative justify-center">
-    <video autoplay loop muted plays-inline poster="{{asset('img/header.jpeg')}}" class="absolute object-cover opacity-50 right-0 left-0 top-auto -z-10 w-full h-full">
+<section class="h-[600px] bg-[#000000] opacity-90 md:opacity-100 md:bg-transparent mt-[0px]  p-0 w-full mb-[0px] relative justify-center">
+    <!-- <video autoplay loop muted plays-inline poster="{{asset('img/menu-header.png')}}" class="absolute object-cover opacity-50 right-0 left-0 top-auto -z-10 w-full h-full">
         <source src="{{asset('video/intro1.mp4')}}" type="video/mp4" />
-        <img src="{{asset('img/header.jpeg')}}" alt="" class="absolute object-cover opacity-0 right-0 left-0 top-auto -z-10 w-full h-full">
-    </video>
-    <!-- <img src="{{asset('img/header.jpeg')}}" alt="" class="absolute object-cover opacity-0 right-0 left-0 top-auto -z-10 w-full h-full"> -->
-    <div class="absolute mx-4 lg:mx-0 top-[10%] lg:top-[40%] right-[0%] lg:right-[50%]">
-        <h1 class="relative self-start align-bottom  text-white p-0 text-right text-[45px]">أسهل وأوفر طريقة لعمل منيو الكتروني مع باركود</h1>
-        <a href="{{ route('register' , app()->getLocale() ) }}" class="relative top-6 mt-4 py-2 px-5 font-medium text-black bg-yellow-500 rounded-full hover:bg-yellow-400 transition duration-300">انضم الان</a>
+        <img src="{{asset('img/menu-header.png')}}" alt="" class="absolute object-cover opacity-0 right-0 left-0 top-auto -z-10 w-full h-full">
+    </video> -->
+    <img src="{{asset('img/menu-header.png')}}" alt="" class="absolute object-cover object-right-bottom md:object-left  opacity-50 md:opacity-100 right-0 left-0 top-auto -z-10 w-full h-full">
+    <div class="absolute mx-4 lg:mx-0 top-[25%] lg:top-[40%] right-[0%] lg:right-[50%]">
+        <h1 class="relative self-start align-bottom  text-white md:text-black p-0 text-right font-bold text-[45px]">أسهل وأوفر طريقة لعمل منيو الكتروني مع باركود</h1>
+        <a href="{{ route('register' , app()->getLocale() ) }}" class="relative top-6 mt-4 call_to_action text-3xl">انضم الان</a>
     </div>
 </section>
 
@@ -67,8 +67,8 @@
     </div>
 </section>
 
-<section title="page header" id="menus" class="grid w-full min-h-[400px] px-[10%] py-[5%] bg-black">
-    <h2 class="text-3xl font-bold text-white text-center">نماذج المنيو</h2>
+<section title="page header" id="menus" class="grid w-full min-h-[400px] px-[10%] py-[5%] bg-white">
+    <h2 class="text-3xl font-bold text-red-600 text-center">نماذج المنيو</h2>
     <div class="block lg:flex m-auto overflow-x-auto my-5">
 
         <div class="menue_sample_wraper">
@@ -84,11 +84,11 @@
     </div>
 </section>
 
-<section title="page header" class="w-full mx-auto min-h-[400px] px-[0%] lg:px-[10%] py-[5%] bg-white">
+<section title="page header" class="w-full mx-auto min-h-[300px] px-[0%] lg:px-[10%] py-[7%] bg-blue-200">
 
-    <h2 class="text-3xl font-bold text-black text-center">الربط مع شبكات التواصل</h2>
+    <h2 class="text-3xl font-bold text-white text-center">الربط مع شبكات التواصل</h2>
 
-    <div class="block lg:flex lg:w-[400px] w-full m-auto my-5">
+    <div class="md:block  grid grid-cols-2 lg:flex lg:w-[400px] w-full m-auto my-5">
         <div class="menue_sample_wraper">
             <img src="{{ asset('img/whatsapp.png') }}" class="w-14">
         </div>
@@ -106,19 +106,19 @@
 </section>
 
 
-<section class="bg-black dark:bg-gray-900" id="prices">
+<section class="bg-white " id="prices">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-white ">باقات تناسب جميع الانشطة</h2>
-            <p class="mb-5 font-light text-gray-100 sm:text-xl ">مطاعم، مقاهي، فنادق، فود ترك، مراكز صحية، الصالونات، المعارض، المستشفيات، الشركات والمؤسسات</p>
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-black ">باقات تناسب جميع الانشطة</h2>
+            <p class="mb-5 font-light text-black sm:text-xl ">مطاعم، مقاهي، فنادق، فود ترك، مراكز صحية، الصالونات، المعارض، المستشفيات، الشركات والمؤسسات</p>
         </div>
         <div class="grid grid-cols-2 text-center items-center bg-transparent h-14 md:w-1/3 mx-auto my-14 rounded-md">
-            <span onclick="select_mounth()" id="mounth" class="monthly transition-all duration-500 hover:opacity-80 rounded-tr-md rounded-br-md">شهري</span>
-            <span onclick="select_year()" id="year" class="yearly transition-all duration-500 hover:opacity-80 rounded-tl-md rounded-bl-md">سنوي</span>
+            <span onclick="select_mounth()" id="mounth" class="monthly transition-all duration-200 hover:opacity-90 rounded-tr-md rounded-br-md">شهري</span>
+            <span onclick="select_year()" id="year" class="yearly transition-all duration-200 hover:opacity-90 rounded-tl-md rounded-bl-md">سنوي</span>
         </div>
         <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             <!-- Pricing Card -->
-            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-100 bg-slate-900 rounded-lg border border-gray-700 shadow xl:p-8">
+            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-black bg-white rounded-lg border border-gray-700 shadow xl:p-8">
                 <h3 class="mb-4 text-2xl font-semibold">مبتدئ</h3>
                 <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">إذا كنت صاحب عمل متناهي الصغر وما زلت في البدايات, نحن نرحب بك</p>
                 <div class="flex justify-center items-baseline my-8">
@@ -166,7 +166,7 @@
                 <a href="{{ route('login' , app()->getLocale() ) }}" class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">اشترك الان</a>
             </div>
             <!-- Pricing Card -->
-            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-100 bg-slate-900 rounded-lg border border-gray-700 shadow xl:p-8">
+            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-black bg-white rounded-lg border border-gray-700 shadow xl:p-8">
                 <h3 class="mb-4 text-2xl font-semibold">أساسي</h3>
                 <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">مناسب لأغلب الانشطة والمحلات بإمكانيات منافسة</p>
                 <div class="flex justify-center items-baseline my-8">
@@ -207,7 +207,7 @@
                 <a href="{{ route('login' , app()->getLocale() ) }}" class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">اشترك الان</a>
             </div>
             <!-- Pricing Card -->
-            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-100 bg-slate-900 rounded-lg border border-gray-700 shadow xl:p-8">
+            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-black bg-white rounded-lg border border-gray-700 shadow xl:p-8">
                 <h3 class="mb-4 text-2xl font-semibold">أعمال</h3>
                 <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">باقة الأعمال للشركات والمؤسسات الاحترافية</p>
                 <div class="flex justify-center items-baseline my-8">

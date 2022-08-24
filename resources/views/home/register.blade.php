@@ -1,7 +1,7 @@
 @include('home.header')
 <link rel="stylesheet" itemprop="url" href="{{asset('css/intlTelInput.min.css')}}"/>
 
-    <section title="page header" class="w-full min-h-[800px] px-[10%] py-[2%] bg-white">
+    <section title="page header" class="w-full min-h-[800px] mt-[20px] px-[10%] py-[2%] bg-white">
         <h2 class="text-3xl font-bold text-black text-right">{{ __('register') }}</h2>
         @if(Session::has('errors'))
             <div class="my-3 w-2/4 p-4 bg-orange-500 text-white rounded-md">

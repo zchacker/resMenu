@@ -1,4 +1,4 @@
-<footer class="text-center lg:text-right bg-gray-800 text-gray-100">
+<footer class="text-center lg:text-right bg-[#121b32] text-gray-100">
   <div class="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
     <div class="mr-12 hidden lg:block">
       <span>ابق على تواصل معنا:</span>
@@ -40,8 +40,8 @@
     </div>
   </div>
   <div class="mx-6 py-10 text-center md:text-right">
-    <div class="grid grid-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="">
+    <div class="grid grid-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto w-[80%]">
+      <!-- <div class="">
         <h6 class="
             uppercase
             font-semibold
@@ -63,7 +63,7 @@
         <p>
           طور من أعمالك عبر الانترنت بطريقة مرنة ومريحة
         </p>
-      </div>
+      </div> -->
       <div class="">
         <h6 class="uppercase font-semibold mb-4 flex justify-center md:justify-start">
           الميزات

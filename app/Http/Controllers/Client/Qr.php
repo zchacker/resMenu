@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class Qr extends Controller
 {
+    // https://github.com/SimpleSoftwareIO/simple-qrcode
     public function showQr(Request $request)
     {
         $user_id = $request->user()->id;
