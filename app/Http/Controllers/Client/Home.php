@@ -65,13 +65,21 @@ class Home extends Controller
             'address' => 'required',
             'working_hours' => 'required',
             'phone' => 'required',
+            'avatar' => 'mimes:jpeg,png,jpg|image|max:7000',
+            'cover' => 'mimes:jpeg,png,jpg|image|max:7000',
         );
 
         $messages = [
             'name.required' => __('shop_name_required'),
             'address.required' => __('shop_address_required'),
             'working_hours.required' => __('working_hours_required'),
-            'phone.required' => __('phone_required'),
+            'phone.required' => __('phone_required'),            
+            'avatar.mimes' => __('item_img_notvalid'),
+            'avatar.max' => __('item_img_size_notvalid' , ['size' => '7']),
+            'avatar.image' => __('item_img_notvalid'),
+            'cover.mimes' => __('item_img_notvalid'),
+            'cover.max' => __('item_img_size_notvalid' , ['size' => '7']),
+            'cover.image' => __('item_img_notvalid'),
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);

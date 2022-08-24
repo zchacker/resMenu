@@ -24,7 +24,7 @@
                         @php
                             // https://www.simplesoftware.io/#/docs/simple-qrcode                            
                             $img = route('image.displayImage', $avatar_img);
-                            $qr = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(300)->generate( route('menu' , $restrant->slug) ) );
+                            $qr = base64_encode( QrCode::style('round')->errorCorrection('M')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(300)->generate( route('menu' , $restrant->slug) ) );
                             //$qr_download = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(1024)->generate( route('menu' , $restrant->slug) ) );
                         @endphp
 
@@ -39,11 +39,11 @@
                             // https://www.simplesoftware.io/#/docs/simple-qrcode
                             $size = $restrant->qr_size / 100;
                             $img = route('image.displayImage', $avatar_img);
-                            $qr = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->merge("$img" , $size , true)->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(512)->generate( route('menu' , $restrant->slug) ) );
+                            $qr = base64_encode( QrCode::style('round')->errorCorrection('M')->format('png')->merge("$img" , $size , true)->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(512)->generate( route('menu' , $restrant->slug) ) );
                             //$qr_download = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->merge("$img" , $size , true)->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(1024)->generate( route('menu' , $restrant->slug) ) );
 
                             if( $restrant->qr_with_logo == 'off'){
-                                $qr = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(300)->generate( route('menu' , $restrant->slug) ) );
+                                $qr = base64_encode( QrCode::style('round')->errorCorrection('M')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(300)->generate( route('menu' , $restrant->slug) ) );
                                 //$qr_download = base64_encode( QrCode::style('round')->errorCorrection('H')->format('png')->encoding('UTF-8')->backgroundColor( 255, 255, 255 )->color( 191, 2, 39 , 90)->size(1024)->generate( route('menu' , $restrant->slug) ) );
                             }
                         @endphp
