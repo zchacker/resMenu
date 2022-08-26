@@ -91,8 +91,8 @@ Route::group([ 'middleware' => ['auth:user'] ] , function(){
     Route::post('/dashboard/settings/update', [\App\Http\Controllers\Client\Settings::class, 'update_profile'])->name('dashboard.settings.update');
     
     // update password
-    Route::get('/dashboard/settings', [\App\Http\Controllers\Client\Settings::class, 'show_settings'])->name('dashboard.settings');
-    Route::post('/dashboard/settings/update', [\App\Http\Controllers\Client\Settings::class, 'update_profile'])->name('dashboard.settings.update');
+    Route::get('/dashboard/password', [\App\Http\Controllers\Client\Settings::class, 'password_form'])->name('dashboard.password');
+    Route::post('/dashboard/password/update', [\App\Http\Controllers\Client\Settings::class, 'update_password'])->name('dashboard.password.update');
 
     Route::get('/dashboard/ram', [\App\Http\Controllers\Client\Qr::class, 'total_ram_cpu_usage'])->name('dashboard.ram');
 

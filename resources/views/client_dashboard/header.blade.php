@@ -83,7 +83,7 @@
                 </div>
                 <div class="text-right text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold hidden" id="submenu">
                     <a href="{{ route('dashboard.settings') }}" class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1"> المعلومات الشخصية </a>
-                    <a href="{{ route('dashboard.settings') }}" class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1"> كلمة السر </a>
+                    <a href="{{ route('dashboard.password') }}" class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1"> كلمة السر </a>
                     
                 </div>
                 <!-- <div class="navbar_item" onclick="dropdown()">

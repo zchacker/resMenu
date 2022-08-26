@@ -45,7 +45,7 @@ class AuthClient extends Controller
 
             // update password set it as hashed one
             $request['password'] = Hash::make($request->password);
-
+            
             $user = UsersModel::create($request->all());            
 
             $restrants = RestrantsModel::create([

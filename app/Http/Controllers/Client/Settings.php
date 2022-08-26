@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\UsersModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use PhpParser\Node\Expr\FuncCall;
 
 class Settings extends Controller
 {
@@ -20,6 +23,11 @@ class Settings extends Controller
         
         return view( 'client_dashboard.settings.information' , compact('user_info') );
 
+    }
+
+    public function password_form(Request $request)
+    {
+        return view( 'client_dashboard.settings.password'  ); 
     }
 
     public function update_profile(Request $request)
@@ -72,6 +80,28 @@ class Settings extends Controller
         }
     }
 
+    public function update_password(Request $request)
+    {
+
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Your current password does not matches with the password.");
+        }
+
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            // Current password and new password same
+            return redirect()->back()->with("error","New Password cannot be same as your current password.");
+        }
+       
+
+        //Change Password
+        $user = Auth::user();
+        $user->password = bcrypt($request->get('new-password'));
+        $user->update();
+
+        return back()->with(['success' => __('updated_successfuly')]);        
+        
+    }
 
 
 }
