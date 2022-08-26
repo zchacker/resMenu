@@ -84,8 +84,15 @@ Route::group([ 'middleware' => ['auth:user'] ] , function(){
     Route::post('/dashboard/whatsapp/update', [\App\Http\Controllers\Client\Whatsapp::class, 'updateWhatsappData'])->name('dashboard.whatsapp.update');
 
     Route::get('/dashboard/qr', [\App\Http\Controllers\Client\Qr::class, 'showQr'])->name('dashboard.qr');
-    
     Route::post('/dashboard/qr/submit', [\App\Http\Controllers\Client\Qr::class, 'updateQr'])->name('dashboard.qr.submit');
+
+    // update settings
+    Route::get('/dashboard/settings', [\App\Http\Controllers\Client\Settings::class, 'show_settings'])->name('dashboard.settings');    
+    Route::post('/dashboard/settings/update', [\App\Http\Controllers\Client\Settings::class, 'update_profile'])->name('dashboard.settings.update');
+    
+    // update password
+    Route::get('/dashboard/settings', [\App\Http\Controllers\Client\Settings::class, 'show_settings'])->name('dashboard.settings');
+    Route::post('/dashboard/settings/update', [\App\Http\Controllers\Client\Settings::class, 'update_profile'])->name('dashboard.settings.update');
 
     Route::get('/dashboard/ram', [\App\Http\Controllers\Client\Qr::class, 'total_ram_cpu_usage'])->name('dashboard.ram');
 

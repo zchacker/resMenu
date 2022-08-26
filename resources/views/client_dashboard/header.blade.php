@@ -67,11 +67,26 @@
                     <i class="las la-file-invoice la-2x"></i>
                     <span class="navbar_item_text">المدفوعات</span>
                 </div>
-                <div class="navbar_item">
+                <!-- <div class="navbar_item">
                     <i class="las la-cog la-2x"></i>
-                    <span class="navbar_item_text">الاعدادات</span>
+                    <a href="{{ route('dashboard.settings') }}" class="navbar_item_text">الاعدادات</a>
+                </div> -->
+                <div class="navbar_item" onclick="dropdown()">
+                    <i class="bi bi-chat-left-text-fill"></i>
+                    <div class="flex justify-between w-full items-center">
+                        <i class="las la-cog la-2x"></i>
+                        <span class="navbar_item_text"> الاعدادات </span>
+                        <span class="text-sm rotate-180" id="arrow">
+                            <i class="bi bi-chevron-down"></i>
+                        </span>
+                    </div>
                 </div>
-                <!--<div class="navbar_item" onclick="dropdown()">
+                <div class="text-right text-sm mt-2 w-4/5 mx-auto text-gray-200 font-bold hidden" id="submenu">
+                    <a href="{{ route('dashboard.settings') }}" class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1"> المعلومات الشخصية </a>
+                    <a href="{{ route('dashboard.settings') }}" class="block cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1"> كلمة السر </a>
+                    
+                </div>
+                <!-- <div class="navbar_item" onclick="dropdown()">
                     <i class="bi bi-chat-left-text-fill"></i>
                     <div class="flex justify-between w-full items-center">
                         <span class="navbar_item_text">Chatbox</span>
@@ -90,7 +105,7 @@
                     <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
                         Friends
                     </h1>
-                </div>-->
+                </div> -->
                 <div class="navbar_item">
                     <i class="las la-power-off la-2x"></i>
                     <a href="{{ route('dashboard.logout') }}" class="navbar_item_text">تسجيل الخروج</a>
