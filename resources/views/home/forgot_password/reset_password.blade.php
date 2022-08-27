@@ -10,14 +10,14 @@
         @endif
 
         @if(Session::has('errors'))
-            <div class="my-3 w-2/4 p-1 h-1/2 items-center bg-green-600 text-green-200 rounded-md">
-                {{ __('forgot_pass_sent') }}
+            <div class="my-3 w-2/4 p-1 h-1/2 items-center bg-orange-600 text-orange-200 rounded-md">
+                {!! session('errors')->first('error') !!}
             </div>
         @endif
 
         <div class="block lg:flex m-2 overflow-x-auto my-5">
             
-            <form action="{{ route('forgotPassword.submit' , app()->getLocale()) }}" method="post" class="w-full">
+            <form action="{{ route('resetPassword.submit' , app()->getLocale()) }}" method="post" class="w-full">
                 @csrf
 
                 <input type="hidden" name="id" value="{{ $id }}">
@@ -30,8 +30,8 @@
                 </div>
                 
                 <div class="mb-4">
-                    <label for="password" class="lable_form">{{ __('re-password') }}</label>
-                    <input type="password" name="password" class="form_input" required/>
+                    <label for="re-password" class="lable_form">{{ __('re-password') }}</label>
+                    <input type="password" name="re-password" class="form_input" required/>
                 </div>  
 
                 <div class="mb-4">

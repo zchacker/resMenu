@@ -239,26 +239,70 @@ class AuthClient extends Controller
         if(strlen($request->id) > 0 && strlen($request->token) > 0)
         {
             
-            $id      = $request->id;
-            $token   = $request->token;
-            $isFound =  DB::table('password_resets')
-            ->where(['id' => $id, 'token' => $token])            
-            ->count();
+            $id             = $request->id;
+            $token          = $request->token;
+            $reset_data     =  DB::table('password_resets')
+            ->where(['id' => $id, 'token' => $token]);
             
-            if($isFound == 0)
+            if($reset_data->count() == 0)
             {
                 return abort(Response::HTTP_NOT_FOUND , "Not found");
+
             }else{
 
+                $rules = array(
+                    'password' => 'required',
+                    're-password' => 'required'            
+                );
+        
+                $messages = [
+                    'password.required' => __('password_required'),
+                    're-password.required' => __('re-password_required')      
+                ];
+        
+                $validator = Validator::make($request->all(), $rules, $messages);
+        
+                if ($validator->fails() == true) {
+        
+                    $error     = $validator->errors();
+                    $allErrors = "";
+        
+                    foreach ($error->all() as $err) {
+                        $allErrors .= $err . " <br/>";
+                    }
+        
+                    return back()->withErrors(['error' => $allErrors]);
+        
+                } else {
+                    
+                    if( strcmp($request->password, $request->get('re-password') ) != 0){                        
+                        
+                        return back()->withErrors(['error' => __('password-not-match')]);
 
+                    }
 
-            }
-            
-            return view( 'home.forgot_password.reset_password' , compact( 'id' , 'token') );
+                    $data = $reset_data->first();
+                    $profile_data = UsersModel::where([ 'email' => $data->email ])->first();
+
+                    $profile_data->password = Hash::make($request->get('password'));  
+                
+                    if ($profile_data->update()) {
+                        
+                        DB::table('password_resets')->where(['email'=> $data->email])->delete();
+                        return redirect(route('login'))->with(['success' => __('password_updated')]);                        
+        
+                    } else {
+                        
+                        return back()->withErrors(['error' => __('unknown_error')]);
+        
+                    }
+                }
+
+            }                        
 
         }else{
             
-            return abort(Response::HTTP_NOT_FOUND , "Not found");
+            return back()->withErrors(['error' => __('unknown_error')]);
 
         }
 

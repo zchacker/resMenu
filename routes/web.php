@@ -41,7 +41,7 @@ Route::get('/forgotPassword'  , [\App\Http\Controllers\AuthClient::class , 'forg
 Route::post('/forgotPassword/submit' , [\App\Http\Controllers\AuthClient::class , 'forgotPasswordSubmit'])->name('forgotPassword.submit');
 
 Route::get('/resetPassword/{id}/{token}'  , [\App\Http\Controllers\AuthClient::class , 'restPassword'])->name('resetPassword');
-Route::get('/resetPassword/submit'  , [\App\Http\Controllers\AuthClient::class , 'restPasswordSubmit'])->name('resetPassword.submit');
+Route::post('/resetPassword/submit'  , [\App\Http\Controllers\AuthClient::class , 'restPasswordSubmit'])->name('resetPassword.submit');
 
 
 Route::group(['prefix' => '{language?}'], function($language){
