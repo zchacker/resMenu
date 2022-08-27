@@ -25,8 +25,10 @@
                     <input type="submit" value="{{ __('login_btn') }}" class="bg-red-600 text-white rounded-full py-2 px-4" />
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4 flex justify-between w-3/12">
                     <a href="{{ route('register' , app()->getLocale() ) }}" title="{{__('register')}}" class="link">{{__('register')}}</a>
+                    <span> . </span>
+                    <a href="{{ route('forgotPassword' , app()->getLocale() ) }}" title="{{__('forgot_password')}}" class="link">{{__('forgot_password')}}</a>
                 </div>
             </form>
             

@@ -36,6 +36,14 @@ Route::get('/error_pay/{order_id?}' , [\App\Http\Controllers\Home::class , 'erro
 Route::get('/payment_result/{order_id?}' , [\App\Http\Controllers\Home::class , 'payment_result'])->name('payment.result');
 
 
+// forgot password
+Route::get('/forgotPassword'  , [\App\Http\Controllers\AuthClient::class , 'forgotPassword'])->name('forgotPassword');    
+Route::post('/forgotPassword/submit' , [\App\Http\Controllers\AuthClient::class , 'forgotPasswordSubmit'])->name('forgotPassword.submit');
+
+Route::get('/resetPassword/{id}/{token}'  , [\App\Http\Controllers\AuthClient::class , 'restPassword'])->name('resetPassword');
+Route::get('/resetPassword/submit'  , [\App\Http\Controllers\AuthClient::class , 'restPasswordSubmit'])->name('resetPassword.submit');
+
+
 Route::group(['prefix' => '{language?}'], function($language){
 
     if (! in_array($language, ['en', 'ar'])) {
@@ -48,6 +56,9 @@ Route::group(['prefix' => '{language?}'], function($language){
     Route::get('/', [\App\Http\Controllers\Home::class, 'index'])->name('home');
     Route::get('/register' , [\App\Http\Controllers\AuthClient::class , 'register'])->name('register');
     Route::get('/login' , [\App\Http\Controllers\AuthClient::class , 'loginView'])->name('login');
+    
+    
+
     Route::prefix('/service')->group(function(){
         
     });

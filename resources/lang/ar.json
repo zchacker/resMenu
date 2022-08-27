@@ -1,5 +1,6 @@
 {
     "register" : "تسجيل حساب جديد",
+    "forgot_password" : "نسيت كلمة المرور",    
     "login" : "الدخول إلى حسابك",
     "login_btn" : "دخول",
     "name": "اسمك",
@@ -7,6 +8,7 @@
     "email": "البريد الالكتروني",
     "phone": "رقم الهاتف",
     "password": "كلمة السر",
+    "re-password" : "تأكيد كلمة السر",
     "create_account" : "إنشاء حساب جديد",    
     "name_required" : "يجب كتابة الاسم",
     "email_required" : "يجب كتابة البريد الالكتروني",
@@ -26,6 +28,8 @@
     "save": "حفظ",
     "edit" : "تعديل",
     "delete" : "حذف",
+    "send" : "أرسل",
+    "forgot_pass_sent" : "سيتم إرسال بريد الكتروني اذا كان مسجل معنا, تأكد من بريدك الالكتروني",
 
     "unknown_error" : "خطأ غير معروف",
     "updated_successfuly" : "تم التحديث بنجاح",
@@ -84,6 +88,8 @@
     "update_password" : "تحديث كلمة المرور",
     "account_status" : "حالة الحساب",
     "active" : "نشط",
-    "unactive" : "غير نشط"
+    "unactive" : "غير نشط",
+    "current-password" : "كلمة السر الحالية",
+    "new-password" : "كلمة السر الجديدة"
 
 }

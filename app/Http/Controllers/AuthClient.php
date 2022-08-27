@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\MenusModel;
 use App\Models\RestrantsModel;
 use App\Models\UsersModel;
+use Barryvdh\Debugbar\SymfonyHttpDriver;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+
 
 class AuthClient extends Controller
 {
@@ -160,9 +167,106 @@ class AuthClient extends Controller
 
     }
 
+    public function forgotPassword(Request $request)
+    {
+        return view('home.forgot_password.forgot');
+    }
+
+    public function forgotPasswordSubmit(Request $request)
+    {
+
+        $validator = $request->validate([
+            'email' => 'required|email|exists:users',
+        ]);       
+
+        $token = Str::random(64);
+
+        DB::table('password_resets')->insert([
+            'email' => $request->email, 
+            'token' => $token, 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        $user_id = DB::getPdo()->lastInsertId();
+
+        Mail::send('email.resetpassword', ['token' => $token, 'user_id' => $user_id], function($message) use($request){
+            $message->to($request->email);
+            $message->subject(' طلب استعادة كلمة المرور ');
+        });
+
+        
+        return back()->with(['success' => __('forgot_pass_sent')]);
+
+    }
+
+    public function restPassword(Request $request)
+    {
+
+        if($request->get('id')){
+            print 'has id';
+        }
+
+        if(strlen($request->id) > 0 && strlen($request->token) > 0)
+        {
+            
+            $id      = $request->id;
+            $token   = $request->token;
+            $isFound =  DB::table('password_resets')
+            ->where(['id' => $id, 'token' => $token])
+            // ->where('id'    , '=' , $id)
+            // ->where('token' , '=' , $token)
+            ->count();
+            
+            if($isFound == 0)
+            {
+                return abort(Response::HTTP_NOT_FOUND , "Not found");
+            }
+            
+            return view( 'home.forgot_password.reset_password' , compact( 'id' , 'token') );
+
+        }else{
+            
+            return abort(Response::HTTP_NOT_FOUND , "Not found");
+
+        }
+
+    }
+
+    public function restPasswordSubmit(Request $request)
+    {
+
+        if(strlen($request->id) > 0 && strlen($request->token) > 0)
+        {
+            
+            $id      = $request->id;
+            $token   = $request->token;
+            $isFound =  DB::table('password_resets')
+            ->where(['id' => $id, 'token' => $token])            
+            ->count();
+            
+            if($isFound == 0)
+            {
+                return abort(Response::HTTP_NOT_FOUND , "Not found");
+            }else{
+
+
+
+            }
+            
+            return view( 'home.forgot_password.reset_password' , compact( 'id' , 'token') );
+
+        }else{
+            
+            return abort(Response::HTTP_NOT_FOUND , "Not found");
+
+        }
+
+    }
+
     public function logout(Request $request) 
     {
-        if(Auth::guard('user')->check()) // this means that the admin was logged in.
+        if(Auth::guard('user')->check()) // this means that the user was logged in.
         {
             Auth::guard('user')->logout();
             return redirect()->route('home');

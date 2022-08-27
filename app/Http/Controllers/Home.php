@@ -57,7 +57,6 @@ class Home extends Controller
         //return view('home.index');
     }
 
-
     public function add_order(Request $request)
     {
 

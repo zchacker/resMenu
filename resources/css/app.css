@@ -54,7 +54,7 @@
 }
 
 .link{
-    @apply text-blue-600 hover:text-blue-700 transition-all transform-gpu duration-500
+    @apply text-blue-600 hover:text-red-600 transition-all transform-gpu duration-500
 }
 
 .normal_button{

@@ -83,6 +83,14 @@ return [
     |
     */
 
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => TRUE,
+            'verify_peer' => FALSE,
+            'verify_peer_name' => FALSE,
+        ]
+    ],
+
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
