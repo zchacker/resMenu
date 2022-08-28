@@ -139,6 +139,7 @@ class AuthClient extends Controller
 
             if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password]))
             {
+                //Auth::guard('user')->logoutOtherDevices( $request->password );
                 
                 return redirect()->intended(route('dashboard.home'));
 
