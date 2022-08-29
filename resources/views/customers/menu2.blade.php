@@ -12,60 +12,58 @@
 </head>
 
 <body>
-    <div class="block w-full min-h-fit my-4 mx-auto lg:w-3/4 bg-transparent -z-10">
-   
-        @if(strlen($restrant->cover) == 0 )
-        <div class="absolute top-0 right-0 left-0 z-10 opacity-100 bg-local bg-no-repeat bg-cover bg-left-bottom mx-auto w-full lg:w-3/4 h-[200px]" style="background-image: url('{{ asset('img/food.jpg') }}');">
-        @else 
-        <div class="absolute top-0 right-0 left-0 z-10 opacity-100 bg-local bg-no-repeat bg-cover bg-left-bottom mx-auto w-full lg:w-3/4 h-[200px]" style="background-image: url('{{ route('image.displayImage', $cover_img) }}');">
-        @endif 
+    @if(strlen($restrant->cover) == 0 )
+    <div class="block w-full min-h-[250px] mb-4 md:mx-auto bg-gray-200 -z-10 bg-local bg-no-repeat bg-cover bg-center-bottom" style="background-image: url('{{ asset('img/food.jpg') }}');" >
+    @else 
+    <div class="block w-full min-h-[250px] mb-5 md:mx-auto bg-gray-500 -z-10 bg-local bg-no-repeat bg-cover bg-center-bottom" style="background-image: url('{{ route('image.displayImage', $cover_img) }}');" >
+    @endif
+        
+        <div class="lg:flex relative1 bg-[#0000008e] opacity-100 w-full min-h-[250px] h-fit py-5 z-[12] text-white">
+            
+            <div class="md:w-2/12 w-full">
+                @if(strlen($restrant->avatar) == 0 )
+                    <img src="{{ asset('img/shop.jpg') }}" alt="" id="avatar-preview-image" class="w-[75px] h-[75px] lg:w-[150px] lg:h-[150px] mb-3 md:mb-0 relative top-2 md:top-6 right-3 rounded-md" />
+                @else
+                    <img src="{{ route('image.displayImage', $avatar_img) }}" alt="" id="avatar-preview-image" class="w-[75px] h-[75px] lg:w-[150px] lg:h-[150px] mb-3 md:mb-0 relative top-2 md:top-6 right-3 rounded-md" />
+                @endif
+            </div>
 
-        </div>
-
-        <div class="absolute top-0 right-0 left-0 z-[11] opacity-60 bg-[#333333fb] mx-auto w-full lg:w-3/4 h-[200px]">
-
-        </div>
-
-        <div class="lg:flex relative bg-transparent opacity-100 w-full h-auto pb-10 z-[12] text-white">
-            <!-- <img src="{{asset('img/McDonald\'s_logo.png')}}" alt="" class="w-[75px] h-[75px] lg:w-[150px] lg:h-[150px] mb-3 md:mb-0 relative top-2 md:top-6 right-3" /> -->
-
-            @if(strlen($restrant->avatar) == 0 )
-                <img src="{{ asset('img/shop.jpg') }}" alt="" id="avatar-preview-image" class="w-[75px] h-[75px] lg:w-[150px] lg:h-[150px] mb-3 md:mb-0 relative top-2 md:top-6 right-3" />
-            @else
-                <img src="{{ route('image.displayImage', $avatar_img) }}" alt="" id="avatar-preview-image" class="w-[75px] h-[75px] lg:w-[150px] lg:h-[150px] mb-3 md:mb-0 relative top-2 md:top-6 right-3" />
-            @endif
-
-            <div>
-                <h1 class="relative lg:top-6 lg:right-8 mr-2 text-[2rem] font-bold"> {{$restrant->name}} </h1>
-                <h1 class="relative lg:top-6 lg:right-8 mr-2 text-[1.7rem] font-thin"> {{$restrant->message}} </h1>
-                <div class="relative lg:top-6 lg:right-8 mr-2 bg-transparent h-5 w-full" title="social medida">
-                    <div class="flex items-center">
+            <div class="md:w-10/12 w-full px-2">
+                <h1 class="md:mr-2 mb-4 text-[2rem] font-bold"> {{$restrant->name}} </h1>
+                <h1 class="md:mr-2 mb-4 text-[1.2rem] font-thin"> {{$restrant->message}} </h1>
+                <div class="md:mr-2 mb-6 bg-transparent h-5 w-full" >
+                    <div class="flex items-center bg-[#ffffff52] w-fit rounded-full text-center p-1 px-2 md:px-2 md:justify-start justify-center">
                         <p>العنوان : {{$restrant->address}}</p>
-                        <a href="#" class="text-white text-3xl font-bold  mx-4"><i class="lar la-map"></i></a>
+                        <a href="#" class="text-white text-xl font-bold  mx-4"><i class="lar la-map"></i></a>
                     </div>
                 </div>
-                <div class="relative lg:top-6 lg:right-8 mr-2 bg-transparent h-5 w-full">
-                    <div class="flex items-center">
-                        <a href="#" class="text-white text-3xl font-bold  mx-4"><i class="lab la-twitter"></i></a>
+                <div class="md:mr-2 mb-4 bg-transparent h-5 w-full" title="social medida">
+                    <div class="flex items-center justify-center w-fit">
+                        <a href="#" class="text-yellow-400 text-3xl font-bold  mx-4"> <i class="lab la-twitter"></i> </a>
+                        <a href="#" class="text-yellow-400 text-3xl font-bold  mx-4"> <i class="lab la-facebook-f"></i> </a>
+                        <a href="#" class="text-yellow-400 text-3xl font-bold  mx-4"> <i class="lab la-instagram"></i> </a>
+                        <a href="#" class="text-yellow-400 text-3xl font-bold  mx-4"> <i class="lab la-snapchat-ghost"></i> </a>
                     </div>
                 </div>
             </div>
+
+
         </div>
 
     </div>
 
-    <div class="relative top-8">
-        <div class="flex h-20 bg-white w-full lg:w-3/4 m-auto overflow-x-auto p-2">
+    <div class="relative1 top-8">
+        <div class="flex h-20 bg-white w-full md:w-3/4 m-auto overflow-x-auto p-2">
             @foreach($menucategories as $category)
                 <a href="#{{$category->id}}" class="relative px-[15px] min-w-[130px] py-[5px] mx-2 h-10 rounded-3xl border-[1px] border-blue-400 bg-blue-400 text-white w-[200px] text-center">{{$category->title_ar}}</a>
             @endforeach
         </div>
     </div>
 
-    <div class="block w-full min-h-fit mx-auto lg:w-3/4 bg-transparent -z-10 mb-8 pb-16">
+    <div class="block w-full min-h-fit mx-auto md:w-3/4 bg-transparent -z-10 mb-8 pb-16">
 
         @foreach($menueitems as $item)
-        <div id="{{$item->menu_category_id}}" class="relative top-10 mt-5 rounded-md z-0 h-25 w-5/6 mx-auto lg:w-full text-black">
+        <div id="{{$item->menu_category_id}}" class="relative top-10 mt-5 rounded-md z-0 h-25 w-5/6 mx-auto md:w-5/6 text-black">
             <div class="lg:flex block bg-purple-100 border-2 border-purple-400 border-dashed rounded-md h-full p-4">
                 <img class="w-[105px] h-[105px] lg:w-[15%] lg:h-[150px] object-cover rounded-md" src="{{ route('image.displayImage', $item->file_name ) }}">
                 <div class="mx-4 self-stretch lg:w-[80%] w-full text-right">

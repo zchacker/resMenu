@@ -23,7 +23,7 @@ class Home extends Controller
         $user_id = $request->user()->id;
         $restrant = RestrantsModel::where(['user_id' => $user_id])->first();
 
-        $cover_img = '';
+        $cover_img  = '';
         $avatar_img = '';
 
 

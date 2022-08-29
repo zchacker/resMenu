@@ -42,7 +42,7 @@
 
             <div class="mb-4">
                 <label for="message" class="lable_form ">{{ __('shop_message') }}</label>
-                <textarea name="message" id="" cols="30" rows="10" class="form_dash_input" placeholder="{{__('shop_message')}}">{{ $restrant->shop_message }}</textarea>
+                <textarea name="message" id="" cols="30" rows="10" class="form_dash_input" placeholder="{{__('shop_message')}}">{{ $restrant->message }}</textarea>
             </div>
 
             <!-- <div class="flex items-center cursor-pointer justify-center relative w-16 h-16 rounded-full border-2 border-brand-100">

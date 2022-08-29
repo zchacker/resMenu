@@ -11,7 +11,7 @@ class MenueItemsModel extends Model
 {
     use HasFactory, SoftDeletes, Notifiable;
 
-    protected $table = 'menue_items';
+    protected $table = 'menu_items';
     
     /**
      * The primary key associated with the table.

@@ -26,7 +26,8 @@ class Home extends Controller
     public function menu(Request $request)
     {
 
-        $restrant = RestrantsModel::where(['slug' => $request->slug])->first();
+        // $restrant = RestrantsModel::where(['slug' => $request->slug])->first();
+        $restrant = DB::table('restrants')->where([ 'slug' => $request->slug ])->first();
 
         if($restrant == NULL){
             abort(Response::HTTP_NOT_FOUND);
@@ -36,20 +37,51 @@ class Home extends Controller
             $restrant_id = $restrant->id;
 
             // get menue 
-            $menu = MenusModel::where([ 'restrant_id' => $restrant_id ])->first();
+            // $menu = MenusModel::where([ 'restrant_id' => $restrant_id ])->first();
+            $menu = DB::table('menus')->where([ 'restrant_id' => $restrant_id ])->first();
 
             if($menu == NULL){
                 
                 return "menu NOT found";
 
             }else{
+                
+                $menucategories = DB::table('menu_categories')->where([ 'menu_id' => $menu->id ])->get();
 
-                $menucategories = MenuCategoriesModel::where(['menu_id' => $menu->id])->get();
-                $menueitems     = MenueItemsModel::where(['menu_id' => $menu->id])
-                ->join('files' , 'menue_items.image_file_id', '=' , 'files.id')
-                ->get(['menue_items.*' , 'files.file_name']);                                           
+                $menueitems     = DB::table('menu_items')->where([ 'menu_id' => $menu->id ])
+                ->join('files' , 'menu_items.image_file_id', '=' , 'files.id')
+                ->get(['menu_items.*' , 'files.file_name']);
 
-                return view('customers.menu1' , compact('menucategories' , 'menueitems' , 'restrant_id' , 'restrant'));
+                $cover_img  = '';
+                $avatar_img = '';
+
+
+                if( ! empty($restrant->cover) )
+                {
+                    $cover_img_query = DB::table('files')
+                    ->select('file_name')
+                    ->where('id' , '=' , $restrant->cover )
+                    ->get();
+
+                    if($cover_img_query != NULL){
+                        $cover_img = $cover_img_query[0]->file_name;
+                    }
+                }
+                
+
+                if(! empty($restrant->avatar))
+                {
+                    $avatar_img_query = DB::table('files')
+                    ->select('file_name')
+                    ->where('id' , '=' , $restrant->avatar )
+                    ->first();
+
+                    if($avatar_img_query != NULL){
+                        $avatar_img = $avatar_img_query->file_name;
+                    }
+                }
+
+                return view('customers.menu2' , compact('menucategories' , 'menueitems' , 'restrant_id' , 'restrant', 'cover_img' , 'avatar_img'));
 
             }
         }
