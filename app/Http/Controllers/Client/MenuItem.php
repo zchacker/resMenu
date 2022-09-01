@@ -18,8 +18,8 @@ class MenuItem extends Controller
         $category_id = $request->category_id;
         $category = MenuCategoriesModel::where(['id' => $request->category_id])->first();
         $items = MenueItemsModel::where(['menu_category_id' => $request->category_id])
-        ->join('files' , 'menue_items.image_file_id', '=' , 'files.id')
-        ->get(['menue_items.*' , 'files.file_name']);
+        ->join('files' , 'menu_items.image_file_id', '=' , 'files.id')
+        ->get(['menu_items.*' , 'files.file_name']);
 
         return view('client_dashboard.menu_item.items', compact('category' , 'items' , 'category_id'));
     }
@@ -161,9 +161,9 @@ class MenuItem extends Controller
 
         $category_id = $request->category_id;
 
-        $item = MenueItemsModel::where(['menue_items.id' => $request->item_id])
-        ->join('files' , 'menue_items.image_file_id', '=' , 'files.id')
-        ->first(['menue_items.*' , 'files.file_name']);
+        $item = MenueItemsModel::where(['menu_items.id' => $request->item_id])
+        ->join('files' , 'menu_items.image_file_id', '=' , 'files.id')
+        ->first(['menu_items.*' , 'files.file_name']);
 
         return view('client_dashboard.menu_item.edit_item' , compact('category_id' , 'item'));
     }

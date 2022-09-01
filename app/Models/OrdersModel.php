@@ -27,7 +27,7 @@ class OrdersModel extends Model
      * @var array
      */
     protected $fillable = [
-        'status', 'restrant_id' , 'customer_id'
+        'status', 'restrant_id' , 'customer_id', 'total_amount'
     ];
     
 }

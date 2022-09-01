@@ -35,6 +35,8 @@ Route::get('/success_pay/{order_id?}' , [\App\Http\Controllers\Home::class , 'su
 Route::get('/error_pay/{order_id?}' , [\App\Http\Controllers\Home::class , 'error_pay'])->name('payment.error');
 Route::get('/payment_result/{order_id?}' , [\App\Http\Controllers\Home::class , 'payment_result'])->name('payment.result');
 
+Route::get('/send_whatsapp/{order_id?}' , [\App\Http\Controllers\Home::class , 'send_whatsapp'])->name('send.whatsapp');
+
 
 // forgot password
 Route::get('/forgotPassword'  , [\App\Http\Controllers\AuthClient::class , 'forgotPassword'])->name('forgotPassword');    

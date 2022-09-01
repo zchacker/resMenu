@@ -30,8 +30,9 @@ class Home extends Controller
         $restrant = DB::table('restrants')->where([ 'slug' => $request->slug ])->first();
 
         if($restrant == NULL){
-            abort(Response::HTTP_NOT_FOUND);
-            //return "no menu found";
+            
+            return abort(Response::HTTP_NOT_FOUND);
+            
         }else{
             
             $restrant_id = $restrant->id;
@@ -42,7 +43,7 @@ class Home extends Controller
 
             if($menu == NULL){
                 
-                return "menu NOT found";
+                return abort(Response::HTTP_NOT_FOUND);
 
             }else{
                 
@@ -124,11 +125,20 @@ class Home extends Controller
                     $orderItem = new OrderItemsModel();
 
                     $orderItem->order_id = $order_id;
-                    $orderItem->item_id = $item['productId'];
+                    $orderItem->item_id  = $item['productId'];
                     $orderItem->quantity = $item['counter'];
                     $orderItem->save();
 
                 }
+
+                // update order total amount
+                $sub_total = DB::table('order_items')->where(['order_id' => $order_id])
+                ->join('menu_items' , 'menu_items.id' , '=' , 'order_items.item_id')
+                ->sum(DB::raw('order_items.quantity * IF(menu_items.offer_price > 0, menu_items.offer_price , menu_items.price) '));                
+
+                $update_order = OrdersModel::find($order_id);
+                $update_order->total_amount = $sub_total;
+                $update_order->update();
 
                 $myObj = new \stdClass();
                 $myObj->success = TRUE;                
@@ -156,36 +166,105 @@ class Home extends Controller
 
     public function order_details(Request $request)
     {
-        $start = microtime(true);
 
-        $order_id = $request->order_id;
-        $SessionId = '';
-        $CountryCode = '';
 
-        // get sub total amount 
-        $sub_total = OrderItemsModel::where(['order_id' => $order_id])
-        ->join('menue_items' , 'menue_items.id' , '=' , 'orderitems.item_id')
-        ->sum(DB::raw('orderitems.quantity * IF(menue_items.offer_price > 0, menue_items.offer_price , menue_items.price) '));                
+        $start          = microtime(true);
 
-        $time = microtime(true) - $start;
+        $order_id       = $request->order_id;
+        $SessionId      = '';
+        $CountryCode    = '';
 
-        $response = Http::withToken('rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL')
-       ->withOptions(['verify' => false])
-        ->post('https://apitest.myfatoorah.com/v2/InitiateSession' , 
-        [
-            'CustomerIdentifier' => '123',
-        ]);
+        $order_data = OrdersModel::where(['id' => $order_id ])->first();
 
-        
-        if($response->ok())
+        if($order_data->payment_type == 'credit'){
+            
+            // get sub total amount 
+            $sub_total = DB::table('order_items')->where(['order_id' => $order_id])
+            ->join('menu_items' , 'menu_items.id' , '=' , 'order_items.item_id')
+            ->sum(DB::raw('order_items.quantity * IF(menu_items.offer_price > 0, menu_items.offer_price , menu_items.price) '));                
+
+            $sub_total = round($sub_total , 2);
+
+            $time = microtime(true) - $start;
+
+            $response = Http::withToken('rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL')
+            ->withOptions(['verify' => false])
+            ->post('https://apitest.myfatoorah.com/v2/InitiateSession' , 
+            [
+                'CustomerIdentifier' => '123',
+            ]);
+
+            
+            if($response->ok())
+            {
+                $SessionId = $response->json(['Data' , 'SessionId']);
+                $CountryCode = $response->json(['Data' , 'CountryCode']);
+            }                
+
+            //print($sub_total.' time: '. $time. ' Secunds ');
+
+            return view('customers.order_payment' , compact('SessionId' , 'CountryCode' , 'sub_total', 'order_id'));
+
+        }else{
+
+            $order = OrdersModel::where(['id' => $order_id])->first();
+            $restrant_id = $order->restrant_id;
+
+            $restrant = RestrantsModel::where(['id' => $restrant_id])->first();        
+            $slug = $restrant->slug;
+
+            return view('customers.order_summary' , compact('order_id', 'slug'));
+
+        }
+
+
+    }
+
+    public function send_whatsapp(Request $request)
+    {
+
+        $order_id       = $request->order_id;
+        $order_data     = DB::table('orders')->where([ 'id' => $order_id ])->first();
+
+        $items = DB::table('order_items')->where(['order_id' => $order_id])
+        ->join('menu_items' , 'menu_items.id' , '=' , 'order_items.item_id')
+        ->get([ 'order_items.id' , 'order_items.quantity' , 'menu_items.name' ]);
+
+        $customer_data = DB::table('customers')->where([ 'id' => $order_data->customer_id ])->first();
+        $sub_total = DB::table('order_items')->where(['order_id' => $order_id])
+        ->join('menu_items' , 'menu_items.id' , '=' , 'order_items.item_id')
+        ->sum(DB::raw('order_items.quantity * IF(menu_items.offer_price > 0, menu_items.offer_price , menu_items.price) '));                
+
+        $sub_total = round($sub_total , 2);
+
+        $customer_details = 'الاسم: '. $customer_data->name . '
+رقم الهاتف: ' . $customer_data->phone;
+        $order_details    = '';
+
+        foreach($items as $item)
         {
-            $SessionId = $response->json(['Data' , 'SessionId']);
-            $CountryCode = $response->json(['Data' , 'CountryCode']);
-        }                
+            $order_details .= $item->name.' ------- *  '. $item->quantity . '
+';
+        }        
 
-        //print($sub_total.' time: '. $time. ' Secunds ');
+        $restrant_id = $order_data->restrant_id;
 
-        return view('customers.order_summary' , compact('SessionId' , 'CountryCode' , 'sub_total', 'order_id'));
+        $restrant_data = DB::table('restrants')->where([ 'id' => $restrant_id ])->first();
+        $restrant_phone = $restrant_data->phone;
+        $wahtsapp_message_body = $restrant_data->wahtsapp_message_body;
+
+        $search = array('{ORDER_ID}', '{ORDER_DETAILS}', '{CUSTOMER_DETAILS}', '{ORDER_TOTAL}');
+        $replace = array($order_id, $order_details , $customer_details , $sub_total );
+        $string = $wahtsapp_message_body;
+        
+        // urlencode
+        $message = urlencode(str_replace($search, $replace, $string, $count));
+        //echo(str_replace($search, $replace, $string, $count));
+
+
+        $url = "https://wa.me/$restrant_phone?text=$message";
+        return redirect($url);
+
     }
 
     public function init_payment(Request $request)
@@ -195,9 +274,10 @@ class Home extends Controller
         $order_id   = $request->order_id;
         $cardBrand  = $request->cardBrand;
 
-        $sub_total = OrderItemsModel::where(['order_id' => $order_id])
-        ->join('menue_items' , 'menue_items.id' , '=' , 'orderitems.item_id')
-        ->sum(DB::raw('orderitems.quantity * IF(menue_items.offer_price > 0, menue_items.offer_price , menue_items.price) '));
+        // get sub total amount 
+        $sub_total = DB::table('order_items')->where(['order_id' => $order_id])
+        ->join('menu_items' , 'menu_items.id' , '=' , 'order_items.item_id')
+        ->sum(DB::raw('order_items.quantity * IF(menu_items.offer_price > 0, menu_items.offer_price , menu_items.price) '));                
 
         $customer_data = OrdersModel::where(['orders.id' => $order_id])
         ->join('customers' , 'customers.id' , '=' , 'orders.customer_id')
@@ -240,7 +320,7 @@ class Home extends Controller
 
         } else {
 
-            //var_dump($response->json());
+            var_dump($response->json());
 
             $error ='';// $response->json(['ValidationErrors']);
             
@@ -363,7 +443,7 @@ class Home extends Controller
         $slug = $restrant->slug;
         $result = $request->result;
 
-        return view('customers.payment_result' , compact('slug' ,'result'));
+        return view('customers.payment_result' , compact('slug' ,'result', 'order_id'));
 
     }
 

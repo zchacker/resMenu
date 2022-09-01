@@ -1,138 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <title>ملخص الطلب و الدفع</title>
+    <title>شكراً لاستخدامكم منصة الطلبات</title>
 </head>
-
-<body>
-    <div class="bg-blue-100 w-full h-screen pt-5">
-        <div class="md:w-1/2 px-2 mx-auto text-center">
-            <h1 class="font-bold text-xl text-center my-5">الدفع للطلب</h1>
-            <h2 class="font-bold text-right my-4">الإجمالي: <span class="text-red-500 font-bold text-2xl my-5">{{$sub_total}}</span> ريال</h2>
-            <div id="card-element" class="h-[330px]"></div>
-            <button onclick="submit()" class="bg-green-400 font-bold text-xl text-white text-center rounded-md w-1/2 mx-auto p-2">أدفع الان</button>
+<body class="bg-green-50">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <div class="bg-white w-[350px] md:w-[500px] mx-auto mt-5 pb-8 items-center place-self-center shadow-lg shadow-gray-200 border border-gray-300 rounded-lg">
+        <div class="w-[300px] lg:w-[400px] mx-auto text-center">
+            <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_5cl8ifa4.json"  background="transparent"  speed="1"  class="w-[300px] h-[300px] md:w-[400px] md:h-[400px]"    autoplay></lottie-player>
+            <h1 class="text-2xl mb-4 text-black font-bold">شكرا لك</h1>
+            <h3 class="text-gray-400 mb-6 "> تم استلام طلبك رقم ( {{ $order_id }} ) بنجاح, سيتم التواصل معك من طرف ادارة المطعم لتسليم الطلب. </h3>
+            <div class="w-full h-[150px] grid grid-cols-1">
+                <a href="{{route('menu', [$slug])}}"              class="w-full p-2 items-center bg-transparent border border-green-400 text-green-400 hover:bg-green-400 hover:text-white text-xl font-bold my-2 rounded-full">  عودة للقائمة <i class="lar la-check-circle"></i> </a>
+                <a href="{{route('send.whatsapp', [$order_id])}}" class="w-full p-2 items-center bg-transparent border border-green-400 text-green-400 hover:bg-green-400 hover:text-white text-xl font-bold my-2 rounded-full" target="_blank">  ارسل الطلب للواتساب <i class="lab la-whatsapp"></i> </a>
+            </div>
         </div>
     </div>
-
-    <!-- Test Environment -->
-    <script src="{{asset('js/app.js')}}"></script>
-    <script src="https://demo.myfatoorah.com/cardview/v1/session.js"></script>
-
-    <script>
-        var config = {
-            countryCode: "{{$CountryCode}}", // Here, add your Country Code.
-            sessionId: "{{$SessionId}}", // Here you add the "SessionId" you receive from InitiateSession Endpoint.
-            cardViewId: "card-element",
-            // The following style is optional.
-            style: {
-                direction: "rtl",
-                cardHeight: 250,
-                input: {
-                    color: "black",
-                    fontSize: "13px",
-                    fontFamily: "sans-serif",
-                    inputHeight: "42px",
-                    inputMargin: "5px",
-                    borderColor: "c7c7c7",
-                    borderWidth: "1px",
-                    borderRadius: "8px",
-                    boxShadow: "",
-                    placeHolder: {
-                        holderName: "الاسم على البطاقة",
-                        cardNumber: "رقم البطاقة",
-                        expiryDate: "الشهر / السنة",
-                        securityCode: "الكود السري",
-                    }
-                },
-                label: {
-                    display: false,
-                    color: "black",
-                    fontSize: "13px",
-                    fontWeight: "normal",
-                    fontFamily: "sans-serif",
-                    text: {
-                        holderName: "Card Holder Name",
-                        cardNumber: "Card Number",
-                        expiryDate: "Expiry Date",
-                        securityCode: "Security Code",
-                    },
-                },
-                error: {
-                    borderColor: "red",
-                    borderRadius: "8px",
-                    boxShadow: "0px",
-                },
-            },
-        };
-        myFatoorah.init(config);
-
-        function submit() {
-            myFatoorah.submit()
-                // On success
-                .then(function(response) {
-                    // Here you need to pass session id to you backend here
-                    var sessionId = response.SessionId;
-                    var cardBrand = response.CardBrand;
-                    
-                    send_payment(sessionId , cardBrand);
-
-                    //alert('sessionId: ' + sessionId + ' cardBrand: ' + cardBrand);
-
-                })
-                // In case of errors
-                .catch(function(error) {
-                    alert("erorr:" + error)
-                    console.log(error);
-                });
-        }
-
-
-        function send_payment(sessionId , cardBrand)
-        {
-            $.ajax('{{route("order.pay")}}', {
-                
-                type: 'POST', // http method
-                dataType: 'json',
-                data: {
-
-                    _token: '{{ csrf_token() }}',
-                    sessionId: sessionId,
-                    order_id: '{{$order_id}}',
-                    cardBrand: cardBrand,
-
-                }, // data to submit
-                success: function(data, status, xhr) {
-                    
-                    console.log(data);
-                    
-                    if( data.success ) {                        
-                        
-                        location.replace(data.url);
-
-                    }else{
-
-                        alert(data.error);
-                    
-                    }
-
-                },
-                error: function(jqXhr, textStatus, errorMessage) {
-                                        
-                    alert("حدث خطأ غير متوقع حاول لاحقاً");
-                    console.log('server error: ', [errorMessage]);
-
-                }
-            });
-        }
-
-    </script>
-
 </body>
-
 </html>

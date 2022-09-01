@@ -64,7 +64,7 @@
 
         @foreach($menueitems as $item)
         <div id="{{$item->menu_category_id}}" class="relative top-10 mt-5 rounded-md z-0 h-25 w-5/6 mx-auto md:w-5/6 text-black">
-            <div class="lg:flex block bg-purple-100 border-2 border-purple-400 border-dashed rounded-md h-full p-4">
+            <div class="lg:flex block bg-green-50 border-2 border-purple-400 border-dashed rounded-md h-full p-4">
                 <img class="w-[105px] h-[105px] lg:w-[15%] lg:h-[150px] object-cover rounded-md" src="{{ route('image.displayImage', $item->file_name ) }}">
                 <div class="mx-4 self-stretch lg:w-[80%] w-full text-right">
                     <h1 class=" text-black font-bold text-3xl mb-2">{{$item->name}}</h1>
@@ -119,7 +119,9 @@
 
                     <select name="" id="payment_type" class="form_dash_input !bg-slate-50 my-3">
                         <option value="cash" selected>الدفع عند الاستلام</option>
+                        @if( strlen($restrant->payment_token) > 0 && $restrant->payment_allow == 'on')
                         <option value="credit">الدفع بالبطاقة</option>
+                        @endif
                     </select>
                     <div class="border border-gray-500 p-2 my-5 rounded-md shadow-md">
                         <p>

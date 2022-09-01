@@ -43,16 +43,16 @@
             <div class="mb-4">
                 <label for="" class="lable_form">{{__('shortcode')}}</label>
                 <div class="flex items-center">
-                    <input type="text" class="form_dash_input !p-1 ml-2 my-2  !w-[250px]" disabled value="{ORDER_ID}" /> {{__('order_id')}}
+                    <input type="text" class="form_dash_input !p-1 ml-2 my-2 !w-[250px]" disabled value="{ORDER_ID}" /> {{__('order_id')}}
                 </div>
                 <div class="flex items-center">
-                    <input type="text" class="form_dash_input !p-1 ml-2 my-2  !w-[250px]" disabled value="{ORDER_ID}" /> {{__('order_details')}}
+                    <input type="text" class="form_dash_input !p-1 ml-2 my-2 !w-[250px]" disabled value="{ORDER_DETAILS}" /> {{__('order_details')}}
                 </div>
                 <div class="flex items-center">
-                    <input type="text" class="form_dash_input !p-1 ml-2 my-2  !w-[250px]" disabled value="{ORDER_ID}" /> {{__('client_details')}}
+                    <input type="text" class="form_dash_input !p-1 ml-2 my-2 !w-[250px]" disabled value="{CUSTOMER_DETAILS}" /> {{__('client_details')}}
                 </div>
                 <div class="flex items-center">
-                    <input type="text" class="form_dash_input !p-1 ml-2 my-2  !w-[250px]" disabled value="{ORDER_ID}" /> {{__('order_subtotal')}}
+                    <input type="text" class="form_dash_input !p-1 ml-2 my-2 !w-[250px]" disabled value="{ORDER_TOTAL}" /> {{__('order_subtotal')}}
                 </div>                
             </div>
             
