@@ -62,6 +62,13 @@
     "item_img_notvalid" : "صيغة الصورة غير صحيحة",
     "item_img_size_notvalid" : "مساحة الصورة يجب أن لا تتجاوز :size ميجا",
 
+    "orders" : "الطلبات",
+    "order_no" : "رقم الطلب",
+    "status" : "الحالة",
+    "payment_type" : "طريقة الدفع",
+    "date" : "التاريخ",
+    "total_amount" : "المبلغ الاجمالي",
+
     "back" : "رجوع",
 
     "whatsapp_nofication" : "الربط مع الواتساب",
