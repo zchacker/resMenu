@@ -69,6 +69,15 @@
     "date" : "التاريخ",
     "total_amount" : "المبلغ الاجمالي",
 
+    "pending" : "انتظار",
+    "holding" : "معلق",
+    "uncompleted" : "غير مكتمل",
+    "completed" : "مكتمل",
+
+    "cash" : "عند الاستلام",
+    "credit" : "إئتمان",
+
+
     "back" : "رجوع",
 
     "whatsapp_nofication" : "الربط مع الواتساب",

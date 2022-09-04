@@ -94,6 +94,7 @@ Route::group([ 'middleware' => ['auth:user'] ] , function(){
 
     // manage order
     Route::get('/dashboard/orders', [\App\Http\Controllers\Client\Orders::class, 'get_orders'])->name('dashboard.orders');
+    Route::get('/dashboard/orders/details/{order_id?}', [\App\Http\Controllers\Client\Orders::class, 'order_details'])->name('dashboard.orders.details');
 
     // to update whatsapp    
     Route::get('/dashboard/whatsapp', [\App\Http\Controllers\Client\Whatsapp::class, 'whatsapp_info'])->name('dashboard.whatsapp');

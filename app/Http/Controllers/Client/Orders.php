@@ -27,4 +27,10 @@ class Orders extends Controller
         return view('client_dashboard.order.orders', compact('orders'));
     }
 
+    public function order_details(Request $request)
+    {
+
+        return view('client_dashboard.order.order_details');
+    }
+
 }
