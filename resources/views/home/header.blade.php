@@ -27,7 +27,7 @@
                     <div class="hidden md:flex items-center space-x-1">
                         <a href="{{route('home')}}/#head" class="scrollTo py-4 px-2 text-black hover:text-red-500 font-semibold ">الرئيسية</a>
                         <a href="{{route('home')}}/#features" class="scrollTo py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">المميزات</a>
-                        <a href="{{route('home')}}/#menus" class="scrollTo py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">القوالب</a>
+                        <!-- <a href="{{route('home')}}/#menus" class="scrollTo py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">القوالب</a> -->
                         <a href="{{route('home')}}/#prices" class="scrollTo py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">الأسعار</a>
                         <a href="{{route('home')}}/#contact" class="scrollTo py-4 px-2 text-black font-semibold hover:text-red-500 transition duration-300">اتصل بنا</a>
                     </div>
@@ -35,7 +35,7 @@
                 <!-- Secondary Navbar items -->
                 <div class="hidden md:flex items-center space-x-3 ">
                     <a href="{{ route('login' , app()->getLocale() ) }}" class="py-2 px-2 font-medium text-green-800 rounded  hover:text-red-800 transition duration-300">دخول</a>
-                    <a href="{{ route('register' , app()->getLocale() ) }}" class="call_to_action">انضم الان</a>
+                    <a href="{{ route('register.user' , app()->getLocale() ) }}" class="call_to_action">انضم الان</a>
                 </div>
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
@@ -52,11 +52,11 @@
             <ul class="px-5">
                 <li class="active"><a href="{{route('home')}}/#head" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 font-semibold">الرئيسية</a></li>
                 <li><a href="{{route('home')}}/#features" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">المميزات</a></li>
-                <li><a href="{{route('home')}}/#menus" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">القوالب</a></li>
+                <!-- <li><a href="{{route('home')}}/#menus" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">القوالب</a></li> -->
                 <li><a href="{{route('home')}}/#prices" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">الاسعار</a></li>
                 <li><a href="{{route('home')}}/#contact" class="scrollTo block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300">اتصل بنا</a></li>
                 <li><a href="{{ route('login' , app()->getLocale() ) }}" class="block text-md px-2 py-4 text-black hover:bg-yellow-300 transition duration-300"> دخول </a></li>
-                <li><a href="{{ route('register' , app()->getLocale() ) }}" class="block call_to_action my-5  mb-8"> انضم الان </a></li>
+                <li><a href="{{ route('register.user' , app()->getLocale() ) }}" class="block call_to_action my-5  mb-8"> انضم الان </a></li>
             </ul>
         </div>
         <script>

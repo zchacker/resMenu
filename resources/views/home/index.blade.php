@@ -20,9 +20,9 @@
         <img src="{{asset('img/menu-header.png')}}" alt="" class="absolute object-cover opacity-0 right-0 left-0 top-auto -z-10 w-full h-full">
     </video> -->
     <img src="{{asset('img/menu-header.png')}}" alt="" class="absolute object-cover object-right-bottom md:object-left  opacity-50 md:opacity-100 right-0 left-0 top-auto -z-10 w-full h-full">
-    <div class="absolute mx-4 lg:mx-0 top-[25%] lg:top-[40%] right-[0%] lg:right-[50%]">
+    <div class="absolute mx-4 lg:mx-0 top-[25%] lg:top-[40%] right-[0%] md:right-[10%] lg:right-[10%]">
         <h1 class="relative self-start align-bottom  text-white md:text-black p-0 text-right font-bold text-[45px]">أسهل وأوفر طريقة لعمل منيو الكتروني مع باركود</h1>
-        <a href="{{ route('register' , app()->getLocale() ) }}" class="relative top-6 mt-4 call_to_action text-3xl">انضم الان</a>
+        <a href="{{ route('register' , app()->getLocale() ) }}" class="relative top-6 mt-4 call_to_action text-3xl"> تصفح الباقات </a>
     </div>
 </section>
 
@@ -81,7 +81,7 @@
     </div>
 </section>
 
-<section title="page header" id="menus" class="grid w-full min-h-[400px] px-[10%] py-[5%] bg-white">
+<!-- <section title="page header" id="menus" class="grid w-full min-h-[400px] px-[10%] py-[5%] bg-white">
     <h2 class="text-3xl font-bold text-red-600 text-center">نماذج المنيو</h2>
     <div class="block lg:flex m-auto overflow-x-auto my-5">
 
@@ -96,28 +96,9 @@
         </div>
 
     </div>
-</section>
+</section> -->
 
-<section title="page header" class="w-full mx-auto min-h-[300px] px-[0%] lg:px-[10%] py-[7%] bg-blue-200">
 
-    <h2 class="text-3xl font-bold text-white text-center">الربط مع شبكات التواصل</h2>
-
-    <div class="md:block  grid grid-cols-2 lg:flex lg:w-[400px] w-full m-auto my-5">
-        <div class="menue_sample_wraper">
-            <img src="{{ asset('img/whatsapp.png') }}" class="w-14">
-        </div>
-        <div class="menue_sample_wraper">
-            <img src="{{ asset('img/twitter.png') }}" class="w-14">
-        </div>
-        <div class="menue_sample_wraper">
-            <img src="{{ asset('img/google.png') }}" class="w-14">
-        </div>
-        <div class="menue_sample_wraper">
-            <img src="{{ asset('img/instagram.png') }}" class="w-14">
-        </div>
-    </div>
-
-</section>
 
 
 <section class="bg-white " id="prices">
@@ -126,14 +107,14 @@
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-black ">باقات تناسب جميع الانشطة</h2>
             <p class="mb-5 font-light text-black sm:text-xl ">مطاعم، مقاهي، فنادق، فود ترك، مراكز صحية، الصالونات، المعارض، المستشفيات، الشركات والمؤسسات</p>
         </div>
-        <div class="grid grid-cols-2 text-center items-center bg-transparent h-14 md:w-1/3 mx-auto my-14 rounded-md">
+        <!-- <div class="grid grid-cols-2 text-center items-center bg-transparent h-14 md:w-1/3 mx-auto my-14 rounded-md">
             <span onclick="select_mounth()" id="mounth" class="monthly transition-all duration-200 hover:opacity-90 rounded-tr-md rounded-br-md">شهري</span>
             <span onclick="select_year()" id="year" class="yearly transition-all duration-200 hover:opacity-90 rounded-tl-md rounded-bl-md">سنوي</span>
-        </div>
+        </div> -->
         <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             <!-- Pricing Card -->
             <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-black bg-white rounded-lg border border-gray-700 shadow xl:p-8">
-                <h3 class="mb-4 text-2xl font-semibold">مبتدئ</h3>
+                <h3 class="mb-4 text-2xl font-semibold">المجاني</h3>
                 <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">إذا كنت صاحب عمل متناهي الصغر وما زلت في البدايات, نحن نرحب بك</p>
                 <div class="flex justify-center items-baseline my-8">
                     <span class="mr-2 text-5xl font-extrabold">مجاناً</span>
@@ -153,15 +134,8 @@
                         <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span>إضافة 7 منتجات</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>مساحة تخزين تصل الى <span class="font-semibold">500 ميجا</span></span>
-                    </li>
+                        <span>إضافة المنيو pdf لامحدود</span>
+                    </li>                    
                     <!-- <li class="flex items-center space-x-3"> -->
                         <!-- Icon -->
                         <!-- <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -174,59 +148,18 @@
                         <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span>مجاني <span class="font-semibold">مدى الحياة</span></span>
+                        <span>مجاني <span class="font-semibold">مدى الحياة</span>*</span>
                     </li>
                 </ul>
-                <a href="{{ route('login' , app()->getLocale() ) }}" class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">اشترك الان</a>
-            </div>
-            <!-- Pricing Card -->
-            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-black bg-white rounded-lg border border-gray-700 shadow xl:p-8">
-                <h3 class="mb-4 text-2xl font-semibold">أساسي</h3>
-                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">مناسب لأغلب الانشطة والمحلات بإمكانيات منافسة</p>
-                <div class="flex justify-center items-baseline my-8">
-                    <span class="mr-2 text-5xl font-extrabold" id="pk-1" >29 ريال</span>
-                    <span class="text-gray-500" id="pk-1-time">/شهريا</span>
-                </div>
-                <!-- List -->
-                <ul role="list" class="mb-8 space-y-4 text-left">
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>منتجات غير محدودة</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>تخزين غير محدود</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>إمكانية إضافة  <span class="font-semibold">وسائل التواصل الاجتماعي</span></span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>إستقبال طلبات العملاء <span class="font-semibold">داخل لوحة التحكم</span></span>
-                    </li>                    
-                </ul>
-                <a href="{{ route('login' , app()->getLocale() ) }}" class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">اشترك الان</a>
+                <a href="{{ route( 'register.user', ['month' , 1] ) }}" class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">اشترك الان</a>
             </div>
             <!-- Pricing Card -->
             <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-black bg-white rounded-lg border border-gray-700 shadow xl:p-8">
                 <h3 class="mb-4 text-2xl font-semibold">أعمال</h3>
-                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">باقة الأعمال للشركات والمؤسسات الاحترافية</p>
+                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400"> باقة الأعمال للشركات والمؤسسات الاحترافية </p>
                 <div class="flex justify-center items-baseline my-8">
-                    <span class="mr-2 text-5xl font-extrabold" id="pk-2" >39 ريال</span>
-                    <span class="text-gray-500" id="pk-2-time" >/شهريا</span>
+                    <span class="mr-2 text-5xl font-extrabold" id="pk-1" >180 ريال</span>
+                    <span class="text-gray-500" id="pk-1-time">/سنوياً</span>
                 </div>
                 <!-- List -->
                 <ul role="list" class="mb-8 space-y-4 text-left">
@@ -235,45 +168,72 @@
                         <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span>منتجات غير محدودة</span>
+                        <span>إتاحة تحديد الطلبات</span>
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
                         <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span>تخزين غير محدود</span>
+                        <span> إتاحة السوشيال ميديا </span>
                     </li>
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
                         <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span>إمكانية إضافة  <span class="font-semibold">وسائل التواصل الاجتماعي</span></span>
-                    </li>
+                        <span> إضافة المنيو pdf لامحدود </span>
+                    </li>       
                     <li class="flex items-center space-x-3">
                         <!-- Icon -->
                         <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        <span>إستقبال طلبات العملاء <span class="font-semibold">داخل لوحة التحكم</span></span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>إستقبال طلبات العملاء <span class="font-semibold">عبر الواتساب</span></span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                        <!-- Icon -->
-                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span>استلم المدفوعات <span class="font-semibold">عبر بطاقات فيزا/مدى</span></span>
-                    </li>                      
+                        <span>دفع الكتروني فيزا ، مدى ، ابل باي</span>
+                    </li>                                  
                 </ul>
-                <a href="{{ route('login' , app()->getLocale() ) }}" class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">اشترك الان</a>
+                <a href="{{ route('register.user' , ['year' , 3] ) }}" id="pk-1-link" class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">اشترك الان</a>
+            </div>
+            <!-- Pricing Card -->
+            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-black bg-white rounded-lg border border-gray-700 shadow xl:p-8">
+                <h3 class="mb-4 text-2xl font-semibold">أعمال VIP</h3>
+                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">باقة الأعمال للشركات والمؤسسات الاحترافية</p>
+                <div class="flex justify-center items-baseline my-8">
+                    <span class="mr-2 text-5xl font-extrabold" id="pk-2" >500 ريال</span>
+                    <span class="text-gray-500" id="pk-2-time" >/مدى الحياة</span>
+                </div>
+                <!-- List -->
+                <ul role="list" class="mb-8 space-y-4 text-left">
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>إتاحة تحديد الطلبات</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>إتاحة السوشيال ميديا</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>إضافة المنيو pdf لامحدود</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span>دفع الكتروني فيزا ، مدى ، ابل باي</span>
+                    </li>                                                              
+                </ul>
+                <a href="{{ route('register.user' , ['forever' , 3] ) }}" id="pk-2-link" class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">اشترك الان</a>
             </div>
         </div>
     </div>
@@ -286,11 +246,17 @@
         $('#mounth').removeClass('yearly').addClass('monthly');
         $('#year').removeClass('monthly').addClass('yearly');
 
-        $('#pk-1').text('29 ريال');
-        $('#pk-2').text('39 ريال');
+        $('#pk-1').text('15 ريال');
+        $('#pk-2').text('23 ريال');
 
         $('#pk-1-time').text(' / شهريا');
         $('#pk-2-time').text(' / شهريا');
+
+        var pk1_url = "{{ route('register.user' , ['month' , 2] ) }}";
+        var pk2_url = "{{ route('register.user' , ['month' , 3] ) }}";
+
+        $('#pk-1-link').prop('href' , pk1_url ); 
+        $('#pk-2-link').prop('href' , pk2_url ); 
 
     }
 
@@ -299,11 +265,17 @@
         $('#year').removeClass('yearly').addClass('monthly');
         $('#mounth').removeClass('monthly').addClass('yearly');
 
-        $('#pk-1').text('319 ريال');
-        $('#pk-2').text('429 ريال');
+        $('#pk-1').text('115 ريال');
+        $('#pk-2').text('230 ريال');
 
         $('#pk-1-time').text(' / سنويا ');
         $('#pk-2-time').text(' / سنويا ');
+
+        var pk1_url = "{{ route('register.user' , ['year' , 2] ) }}";
+        var pk2_url = "{{ route('register.user' , ['year' , 3] ) }}";
+
+        $('#pk-1-link').prop('href' , pk1_url ); 
+        $('#pk-2-link').prop('href' , pk2_url ); 
 
     }
 

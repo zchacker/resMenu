@@ -7,12 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class UsersModel extends Authenticatable
 {
-    use HasFactory, SoftDeletes, Notifiable;
+    use HasFactory, SoftDeletes, Notifiable, HasRoles;
 
+    // set user permisson
+    // https://www.honeybadger.io/blog/user-roles-permissions-in-laravel/
     protected $table = 'users';
+
+    protected $guard_name = 'web';
     
     /**
      * The primary key associated with the table.

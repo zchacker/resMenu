@@ -87,12 +87,15 @@ class MenuItem extends Controller
 
             if ($fileDB == null) {
 
-                // TODO: this to change file name
+                // TODO: this to change file name                
                 /*
                     $file = Input::file('upfile')->getClientOriginalName();
                     $filename = pathinfo($file, PATHINFO_FILENAME);
                     $extension = pathinfo($file, PATHINFO_EXTENSION);
                 */
+
+                // TODO: reduce image file size
+                // https://laratutorials.com/laravel-8-intervention-image-upload-tutorial/
                 
                 $original_file_name = $request->item_img->getClientOriginalName();
                 $fileName = time() . '_' . $original_file_name. '.' . $request->item_img->extension();

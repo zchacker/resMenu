@@ -27,7 +27,7 @@ class PaymentTransactionsModel extends Model
      * @var array
      */
     protected $fillable = [
-        'amount', 'transaction_id' , 'status', 'user_id'
+        'invoiceStatus', 'user_id', 'amount', 'paymentGateway', 'paymentId', 'transactionStatus' , 'currency', 'cardNumber' , 'error'
     ];
 
 }

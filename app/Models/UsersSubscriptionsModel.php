@@ -27,6 +27,6 @@ class UsersSubscriptionsModel extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'package_id' , 'amount', 'transaction_id', 'start_date', 'end_date'
+        'user_id', 'package_id' , 'amount', 'transaction_id', 'recurringId', 'start_date', 'end_date'
     ];
 }

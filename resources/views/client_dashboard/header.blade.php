@@ -24,8 +24,7 @@
             <div class="sidebar z-50 transition duration-150 ease-in-out  hidden lg:block fixed top-0 bottom-0 lg:right-0 p-2 w-[250px] overflow-y-auto text-center bg-[#17203d]">
                 <div class="text-gray-100 text-xl">
                     <div class="p-2.5 mt-1 flex items-center">
-                        <h1 class="font-bold text-right text-white lg:text-[1.6rem] ml-3">لوحة التحكم</h1>
-
+                        <a href="{{route('home')}}"><h1 class="font-bold text-right text-white lg:text-[1.6rem] ml-3">لوحة التحكم</h1></a>
                         <div class="lg:hidden left-0 absolute">
                             <i class="las la-times-circle la-2x h-8 w-8 ml-5 cursor-pointer" onclick="openSidebar()"></i>
                         </div>

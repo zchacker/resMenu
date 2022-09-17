@@ -13,15 +13,35 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
+use function PHPUnit\Framework\isEmpty;
 
 class AuthClient extends Controller
 {
     
     public function register(Request $request)
-    {
+    {   
+        $package = $request->package;
+        $period  = $request->period;
+
+
+        if(empty($package) == TRUE){
+            $package = 1;
+        }        
+
+        if(empty($period)){
+            $period = 'month';
+        }
+
+        $request->session()->put('package' , $package);
+        $request->session()->put('period' , $period);        
+
+        // Session::push('package' , $package);
+        // Session::push('period' , $period);
+
         return view('home.register');
     }
 
@@ -75,8 +95,31 @@ class AuthClient extends Controller
                 //if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $password] , 1))
                 if(Auth::guard('user')->attempt(['email' => $request->email, 'password' => $password] , TRUE))
                 {
+                    
+                    // check package type then redirect to payment page
+                    //$package = $request->session()->pull('package' , 1);        
+                    //$period  = $request->session()->pull('period' , 'month'); 
+                    
+                    $package = session('package');
+                    $period  = session('period');
+                    
+                    // get packages prices
+                    $packages = DB::table('packages')
+                    ->where('code' , '=' , $package)
+                    ->where('period' , '=' , $period)
+                    ->first();                    
 
-                    return redirect()->intended(route('dashboard.home'));
+                    if($packages->code == 1)
+                    {
+                                                
+                        return redirect()->intended(route('dashboard.home'));
+
+                    }else{
+
+                        return redirect()->intended(route('dashboard.package.pay'));
+
+                    }
+                    
 
                     /*if(Auth::user()->role == 'user')
                     {                    
