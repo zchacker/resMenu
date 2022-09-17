@@ -54,18 +54,22 @@
                     <i class="las la-qrcode la-2x"></i>
                     <a href="{{route('dashboard.qr')}}" class="navbar_item_text">باركود</a>
                 </div>
+                @role('paidUser')
                 <div class="navbar_item">
                     <i class="lab la-whatsapp la-2x"></i>
                     <a href="{{ route('dashboard.whatsapp') }}" class="navbar_item_text">ربط مع whatsApp</a>
                 </div>
+                @endrole
                 <div class="navbar_item">
                     <i class="las la-poll la-2x"></i>
                     <span class="navbar_item_text">الباقة</span>
                 </div>
+                @role('paidUser')
                 <div class="navbar_item">
                     <i class="las la-file-invoice la-2x"></i>
                     <span class="navbar_item_text">المدفوعات</span>
                 </div>
+                @endrole
                 <!-- <div class="navbar_item">
                     <i class="las la-cog la-2x"></i>
                     <a href="{{ route('dashboard.settings') }}" class="navbar_item_text">الاعدادات</a>
