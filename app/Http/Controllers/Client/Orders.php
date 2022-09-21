@@ -30,7 +30,24 @@ class Orders extends Controller
     public function order_details(Request $request)
     {
 
-        return view('client_dashboard.order.order_details');
+        // get order data
+        $order = DB::table('orders')
+        ->where(['id' => $request->order_id])
+        ->first();
+
+        // get customet data
+        $customer = DB::table('customers')
+        ->where(['id' => $order->customer_id ])
+        ->first();        
+
+        // get order data
+        $order_items = DB::table('order_items')
+        ->join('menu_items' , 'order_items.item_id' , '=' , 'menu_items.id')
+        ->join('files' , 'menu_items.image_file_id' , '=' , 'files.id')
+        ->where(['order_items.order_id' => $request->order_id ])
+        ->get(['order_items.*' , 'menu_items.name' , 'menu_items.price' , 'menu_items.offer_price', 'files.file_name']);
+
+        return view('client_dashboard.order.order_details', compact( 'order' , 'customer' , 'order_items' ));
     }
 
 }

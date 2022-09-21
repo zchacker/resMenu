@@ -3,7 +3,7 @@
     "forgot_password" : "نسيت كلمة المرور",    
     "login" : "الدخول إلى حسابك",
     "login_btn" : "دخول",
-    "name": "اسمك",
+    "name": "الاسم",
     "balance" : "رصيدك",
     "email": "البريد الالكتروني",
     "phone": "رقم الهاتف",
@@ -73,8 +73,9 @@
     "holding" : "معلق",
     "uncompleted" : "غير مكتمل",
     "completed" : "مكتمل",
+    "canceled" : "ملغي",
 
-    "cash" : "عند الاستلام",
+    "cash" : "نقداً عند الاستلام",
     "credit" : "إئتمان",
 
 
@@ -111,6 +112,10 @@
     "current-password" : "كلمة السر الحالية",
     "new-password" : "كلمة السر الجديدة",
     "password_updated" : "تم تحديث كلمة المرور, يمكنك تسجيل الدخول الان",
-    "password-not-match" :  "كلمة المرور غير مطابقة"
+    "password-not-match" :  "كلمة المرور غير مطابقة",
+    "customer_details" : "بيانات الزبون",
+    "order_data" : "بيانات الطلب",
+    "order_status" : "حالة الطلب",
+    "order_amount" : "مبلغ الطلب"
 
 }

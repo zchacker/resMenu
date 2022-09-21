@@ -8,7 +8,7 @@
         <div class="overflow-x-auto relative">
             
             <table class="w-full text-sm text-right text-gray-500">
-                <thead class="text-xs text-gray-50 uppercase bg-blue-400">
+                <thead class="text-xs text-gray-50 uppercase bg-[#17203d]">
                     <tr>
                         <th scope="col" class="py-3 px-6">{{__('order_no')}}</th>
                         <th scope="col" class="py-3 px-6">{{__('status')}}</th>
@@ -32,6 +32,9 @@
                                 @case(3)
                                     <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-green-600 font-bold"> {{ __('completed') }} </td>
                                     @break
+                                @case(4)
+                                    <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-red-700 font-bold">   {{ __('canceled') }} </td>
+                                    @break
                                 @default
                                     <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 font-bold"> {{ __('uncomplete') }} </td>
                             @endswitch
@@ -47,7 +50,7 @@
                                     <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 "> {{ __('cash') }} </td>
                             @endswitch
                             
-                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 "> {{$order->created_at}} </td>
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 text-right"> {{ date("d-m-Y | g:i A" , strtotime(  $order->created_at ))}} </td>
                             <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 "> {{$order->total_amount}} </td>
                         </tr>
                     @endforeach

@@ -209,6 +209,8 @@ class Home extends Controller
 
             $order = OrdersModel::where(['id' => $order_id])->first();
             $restrant_id = $order->restrant_id;
+            $order->status = 2;
+            $order->update();
 
             $restrant = RestrantsModel::where(['id' => $restrant_id])->first();        
             $slug = $restrant->slug;
@@ -374,6 +376,10 @@ class Home extends Controller
         
         if($savePayment->save())
         {
+            $order = OrdersModel::where(['id' => $order_id])->first();            
+            $order->status = 2;
+            $order->update();
+
             return redirect(route('payment.result' , [$order_id]).'?result=success' , Response::HTTP_FOUND);
 
         }else{

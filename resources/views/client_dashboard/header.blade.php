@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/app.css')}}?v=2">
     <script src="{{asset('js/app.js')}}"></script>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <title>لوحة التحكم</title>
@@ -46,10 +46,12 @@
                     <i class="las la-box la-2x"></i>
                     <a href="{{ route('dashboard.categories') }}" class="navbar_item_text">المنتجات</a>
                 </div>
+                @role('paidUser')
                 <div class="navbar_item">
                     <i class="las la-shipping-fast la-2x"></i>
                     <a href="{{ route('dashboard.orders') }}" class="navbar_item_text">الطلبات</a>
                 </div>
+                @endrole
                 <div class="navbar_item">
                     <i class="las la-qrcode la-2x"></i>
                     <a href="{{route('dashboard.qr')}}" class="navbar_item_text">باركود</a>
@@ -62,7 +64,7 @@
                 @endrole
                 <div class="navbar_item">
                     <i class="las la-poll la-2x"></i>
-                    <span class="navbar_item_text">الباقة</span>
+                    <a href="{{ route('dashboard.package.list') }}" class="navbar_item_text">الباقة</a>
                 </div>
                 @role('paidUser')
                 <div class="navbar_item">

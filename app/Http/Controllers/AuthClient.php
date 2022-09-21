@@ -104,18 +104,27 @@ class AuthClient extends Controller
                     $period  = session('period');
                     
                     // get packages prices
-                    $packages = DB::table('packages')
+                    $packageData = DB::table('packages')
                     ->where('code' , '=' , $package)
                     ->where('period' , '=' , $period)
                     ->first();                    
 
-                    if($packages->code == 1)
+                    if($packageData->code == 1)
                     {
-                                                
+
+                        // this for free user subscription
+                        $update_user = DB::table('users')
+                        ->where(['id' => $user->id])
+                        ->update(['package_id' => $packageData->id]);
+                        
+                        // assign role to him
+                        $user->assignRole('freeUser');
+                        
                         return redirect()->intended(route('dashboard.home'));
 
                     }else{
 
+                        // return "go to dashboard";
                         return redirect()->intended(route('dashboard.package.pay'));
 
                     }

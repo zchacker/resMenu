@@ -5,7 +5,7 @@
         <!-- grid md:grid-cols-1 grid-cols-1 -->
         <div class="bloack">
             <h1 class="font-bold text-xl text-center my-5">الدفع للاشتراك</h1>
-            <h2 class="font-bold text-right my-4">الإجمالي: <span class="text-red-500 font-bold text-2xl my-5">15</span> ريال</h2>
+            <h2 class="font-bold text-right my-4">الإجمالي: <span class="text-red-500 font-bold text-2xl my-5">{{$priceValue}}</span> ريال</h2>
             <div id="card-element" class="h-[330px]"></div>
             <button onclick="submit()" id="paymentBtn" class="bg-green-400 font-bold text-xl text-white text-center rounded-md w-1/2 mx-auto p-2">أدفع الان</button>
         </div>

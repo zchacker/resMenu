@@ -36,10 +36,47 @@ class Packages extends Controller
             $CountryCode = $response->json(['Data' , 'CountryCode']);
         }
 
-        return view( 'client_dashboard.packages.payforpackage' , compact('SessionId' , 'CountryCode') );
+        // get selected package
+        $package = session('package');
+        $period  = session('period');
+
+        // get packages prices
+        $packageData = DB::table('packages')
+        ->where('code', '=', $package)
+        ->where('period', '=', $period)
+        ->first();
+
+        $priceValue   = $packageData->price;
+
+        return view( 'client_dashboard.packages.payforpackage' , compact('SessionId' , 'CountryCode', 'priceValue') );
 
     }
 
+    public function listPackages(Request $request)
+    {
+
+        $package_id = $request->user()->package_id;
+        $package_code = DB::table('packages')
+        ->where(['id' => $package_id])
+        ->first()->code;  
+        
+        $subscription = DB::table('users_subscriptions')
+        ->where(['user_id' => $request->user()->id])
+        ->latest("start_date")
+        ->first();
+
+        return view('client_dashboard.packages.list' , compact('package_code', 'subscription'));
+    }
+
+    public function currect_subscription(Request $request)
+    {
+
+    }
+
+    public function upgradePackage(Request $request)
+    {
+
+    }
 
     public function executePayment(Request $request)
     {
@@ -64,7 +101,7 @@ class Packages extends Controller
         if($periodValue == 'year'){
             $intervalDays = 180;   
             $priceValue = ($priceValue/2);         
-        }        
+        }       
 
         $requestBody = [
             'SessionId' => $sessionId,
@@ -75,11 +112,11 @@ class Packages extends Controller
             'CallBackUrl' => route('dashboard.package.pay.success') ,
             'ErrorUrl' => route('dashboard.package.pay.error') ,
             'Language' => 'ar',                  
-            'RecurringModel'  => [
-                'RecurringType' => 'Custom',
-                'IntervalDays'  => $intervalDays,
-                'Iteration'     => 0
-            ]      
+            // 'RecurringModel'  => [
+            //     'RecurringType' => 'Custom',
+            //     'IntervalDays'  => $intervalDays,
+            //     'Iteration'     => 0
+            // ]      
         ];
 
         if($periodValue == 'forever'){
@@ -105,9 +142,9 @@ class Packages extends Controller
         if($response->ok())
         {
             $url = $response->json(['Data' , 'PaymentURL']);            
-            $RecurringId = $response->json(['Data' , 'RecurringId']);
+            //$RecurringId = $response->json(['Data' , 'RecurringId']);
 
-            $request->session()->put('RecurringId' , $RecurringId);
+            //$request->session()->put('RecurringId' , $RecurringId);
 
             $myObj          = new \stdClass();
             $myObj->success = TRUE;                
@@ -198,10 +235,14 @@ class Packages extends Controller
         $subscribtion->package_id = $packageData->id;
         $subscribtion->amount = $amount;
         $subscribtion->transaction_id = $paymentId;
-        $subscribtion->recurringId = session('RecurringId');
+        //$subscribtion->recurringId = session('RecurringId');
         $subscribtion->start_date = Carbon::now();
         $subscribtion->end_date = Carbon::now()->addDays($days);// add('day' , $days);
         $subscribtion->save();
+
+        $update_user = DB::table('users')
+        ->where(['id' => $request->user()->id])
+        ->update(['package_id' => $packageData->id]);
 
         if($savePayment->save())
         {            

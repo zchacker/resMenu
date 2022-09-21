@@ -1,28 +1,15 @@
 @include('home.header')
 
-<script>
-  $(".scrollTo").on('click', function(e) {    
-     e.preventDefault();
-     var target = $(this).attr('href');
-     var targetArr = target.split("#");
-     var id = "#"+targetArr[1];
-     console.log(id)
-
-     $('html, body').animate({
-       scrollTop: ($(id).offset().top)
-     }, 800);
-  });
-</script>
-
-<section id="head" class="h-[600px] bg-[#000000] opacity-90 md:opacity-100 md:bg-transparent mt-[0px]  p-0 w-full mb-[0px] relative justify-center">
+<section id="head" class="h-[600px] bg-transparent opacity-90 md:opacity-100 md:bg-transparent mt-[0px]  p-0 w-full mb-[0px] relative justify-center">
     <!-- <video autoplay loop muted plays-inline poster="{{asset('img/menu-header.png')}}" class="absolute object-cover opacity-50 right-0 left-0 top-auto -z-10 w-full h-full">
         <source src="{{asset('video/intro1.mp4')}}" type="video/mp4" />
         <img src="{{asset('img/menu-header.png')}}" alt="" class="absolute object-cover opacity-0 right-0 left-0 top-auto -z-10 w-full h-full">
     </video> -->
-    <img src="{{asset('img/menu-header.png')}}" alt="" class="absolute object-cover object-right-bottom md:object-left  opacity-50 md:opacity-100 right-0 left-0 top-auto -z-10 w-full h-full">
+    <!-- <img src="{{asset('img/menu-header.png')}}" alt="" class="absolute object-cover object-right-bottom md:object-left  opacity-50 md:opacity-100 right-0 left-0 top-auto -z-10 w-full h-full"> -->
+    <img src="{{asset('img/header-bg.png')}}" alt="" class="absolute object-cover object-right-bottom md:object-left  opacity-50 md:opacity-100 right-0 left-0 top-auto -z-10 w-full h-full">    
     <div class="absolute mx-4 lg:mx-0 top-[25%] lg:top-[40%] right-[0%] md:right-[10%] lg:right-[10%]">
-        <h1 class="relative self-start align-bottom  text-white md:text-black p-0 text-right font-bold text-[45px]">أسهل وأوفر طريقة لعمل منيو الكتروني مع باركود</h1>
-        <a href="{{ route('register' , app()->getLocale() ) }}" class="relative top-6 mt-4 call_to_action text-3xl"> تصفح الباقات </a>
+        <h1 class="relative self-start align-bottom  text-black md:text-black p-0 text-right font-bold text-[38px] md:text-[45px]">أسهل وأوفر طريقة لعمل منيو الكتروني مع باركود</h1>
+        <a href="{{route('home')}}/#prices" class="scrollTo relative top-14 mt-8 call_to_action text-3xl"> تصفح الباقات </a>
     </div>
 </section>
 
@@ -233,11 +220,25 @@
                         <span>دفع الكتروني فيزا ، مدى ، ابل باي</span>
                     </li>                                                              
                 </ul>
-                <a href="{{ route('register.user' , ['forever' , 3] ) }}" id="pk-2-link" class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">اشترك الان</a>
+                <a href="{{ route('register.user' , ['forever' , 4] ) }}" id="pk-2-link" class="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">اشترك الان</a>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+  $(".scrollTo").on('click', function(e) {    
+     e.preventDefault();
+     var target = $(this).attr('href');
+     var targetArr = target.split("#");
+     var id = "#"+targetArr[1];
+     console.log(id)
+
+     $('html, body').animate({
+       scrollTop: ($(id).offset().top)
+     }, 800);
+  });
+</script>
 
 <script>
 

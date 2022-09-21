@@ -114,6 +114,7 @@ Route::group([ 'middleware' => ['auth:user'] ] , function(){
     Route::post('/dashboard/settings/update', [\App\Http\Controllers\Client\Settings::class, 'update_profile'])->name('dashboard.settings.update');
     
     // packages
+    Route::get('/dashboard/packages/list' , [\App\Http\Controllers\Client\Packages::class, 'listPackages'])->name('dashboard.package.list');
     Route::get('/dashboard/packagePay' , [\App\Http\Controllers\Client\Packages::class, 'payForPackageAfterRegister'])->name('dashboard.package.pay');
     Route::post('/dashboard/package/make/payment' , [\App\Http\Controllers\Client\Packages::class, 'executePayment'])->name('dashboard.package.pay.submit');
 
