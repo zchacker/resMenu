@@ -65,6 +65,7 @@ class Home extends Controller
             'address' => 'required',
             'working_hours' => 'required',
             'phone' => 'required',
+            'slug' => 'required|unique:restrants',
             'avatar' => 'mimes:jpeg,png,jpg|image|max:7000',
             'cover' => 'mimes:jpeg,png,jpg|image|max:7000',
         );
@@ -80,6 +81,8 @@ class Home extends Controller
             'cover.mimes' => __('item_img_notvalid'),
             'cover.max' => __('item_img_size_notvalid' , ['size' => '7']),
             'cover.image' => __('item_img_notvalid'),
+            'slug.required' => __('unique_required'),
+            'slug.unique' => __('unique_slug'),
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -112,7 +115,11 @@ class Home extends Controller
             $restrant->latitude = $request->latitude;
             $restrant->longitude = $request->longitude;
             $restrant->orders_allow = $request->orders_allow;
+            if($request->orders_allow == NULL)
+                $restrant->orders_allow = 'off';
             $restrant->payment_allow = $request->payment_allow;
+            if($request->payment_allow == NULL)
+                $restrant->payment_allow = 'off';
             $restrant->payment_token = $request->payment_token;
 
             if ($restrant->update()) {
