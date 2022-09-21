@@ -79,12 +79,13 @@
                     <p>{{$item->description}}</p>
                 </div>
 
-                @if ($item->offer_price != NULL || $item->offer_price > 0)
-                    <button onclick="show_item({{$item->id}} , '{{$item->name}}' , {{$item->offer_price}});" class="bg-red-700 text-white rounded-md lg:mt-0 mt-4 h-10 lg:self-center text-xl text-center lg:px-4 px-6 lg:w-[20%] w-full"> إضافة <i class="las la-plus la-1x"></i></button>
-                @else
-                    <button onclick="show_item({{$item->id}} , '{{$item->name}}' , {{$item->price}});" class="bg-red-700 text-white rounded-md lg:mt-0 mt-4 h-10 lg:self-center text-xl text-center lg:px-4 px-6 lg:w-[20%] w-full"> إضافة <i class="las la-plus la-1x"></i></button>
+                @if($restrant->orders_allow == 'on')
+                    @if ($item->offer_price != NULL || $item->offer_price > 0)
+                        <button onclick="show_item({{$item->id}} , '{{$item->name}}' , {{$item->offer_price}});" class="bg-red-700 text-white rounded-md lg:mt-0 mt-4 h-10 lg:self-center text-xl text-center lg:px-4 px-6 lg:w-[20%] w-full"> إضافة <i class="las la-plus la-1x"></i></button>
+                    @else
+                        <button onclick="show_item({{$item->id}} , '{{$item->name}}' , {{$item->price}});" class="bg-red-700 text-white rounded-md lg:mt-0 mt-4 h-10 lg:self-center text-xl text-center lg:px-4 px-6 lg:w-[20%] w-full"> إضافة <i class="las la-plus la-1x"></i></button>
+                    @endif
                 @endif
-
             </div>
         </div>
         @endforeach
