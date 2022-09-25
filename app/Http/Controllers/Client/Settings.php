@@ -95,13 +95,14 @@ class Settings extends Controller
        
 
         //Change Password
-        $user_id  = $request->user()->id;
+        $user_id      = $request->user()->id;
         $profile_data = UsersModel::where(['id' => $user_id])->first();
 
         $profile_data->password = Hash::make($request->get('new-password'));  
 
         if ($profile_data->update()) {
-                
+                            
+            Auth::login( $profile_data );
             return back()->with(['success' => __('updated_successfuly')]);
 
         } else {

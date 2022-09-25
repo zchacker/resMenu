@@ -109,6 +109,18 @@ class AuthClient extends Controller
                     ->where('period' , '=' , $period)
                     ->first();                    
 
+                    if($packageData == NULL)
+                    {
+                        $update_user = DB::table('users')
+                        ->where(['id' => $user->id])
+                        ->update(['package_id' => 5]);
+                        
+                        // assign role to him
+                        $user->assignRole('freeUser');
+                        
+                        return redirect()->intended(route('dashboard.home'));
+                    }
+
                     if($packageData->code == 1)
                     {
 

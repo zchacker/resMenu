@@ -29,20 +29,27 @@ class Packages extends Controller
         ->latest("start_date")
         ->first();
 
-        // get dates
-        $now     = date('m/d/Y H:i:s' , time() );
-        $my_date = date("m/d/Y H:i:s" , strtotime( $subscription->end_date ));
-
-        // convert dates
-        $date1 = Carbon::createFromFormat('m/d/Y H:i:s', $now );
-        $date2 = Carbon::createFromFormat('m/d/Y H:i:s', $my_date );
-               
-        // is there valid subscription
-        $valid_subscription = $date1->lte($date2);
+        $valid_subscription = TRUE;
+        $days_diff = 0;
         
-        // days diffrence
-        $interval = $date1->diff($date2);
-        $days_diff = $interval->format('%a');//now do whatever you like with $days                
+        if($subscription != NULL)
+        {
+            // get dates
+            $now     = date('m/d/Y H:i:s' , time() );
+            $my_date = date("m/d/Y H:i:s" , strtotime( $subscription->end_date ));
+
+            // convert dates
+            $date1 = Carbon::createFromFormat('m/d/Y H:i:s', $now );
+            $date2 = Carbon::createFromFormat('m/d/Y H:i:s', $my_date );
+                
+            // is there valid subscription
+            $valid_subscription = $date1->lte($date2);
+
+            // days diffrence
+            $interval = $date1->diff($date2);
+            $days_diff = $interval->format('%a');//now do whatever you like with $days
+        }
+                        
 
         return view('client_dashboard.packages.list' , compact('package_code', 'subscription', 'valid_subscription', 'days_diff'));
     } 
