@@ -9,6 +9,21 @@
 
 # Introduction
 
+to run this web applcation please run this command:
+
+```bash
+composer install
+```
+
+you can find database code in this file named: DatabaseCode.sql
+
+we use these packages:
+
+- simplesoftwareio/simple-qrcode "~4"
+- spatie/laravel-permission "^5.5"
+- barryvdh/laravel-debugbar "^3.7"
+- intervention/image "^2.7"
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
