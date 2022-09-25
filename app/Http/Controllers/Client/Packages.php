@@ -16,6 +16,37 @@ class Packages extends Controller
 {
     
 
+    public function listPackages(Request $request)
+    {
+
+        $package_id = $request->user()->package_id;
+        $package_code = DB::table('packages')
+        ->where(['id' => $package_id])
+        ->first()->code;  
+        
+        $subscription = DB::table('users_subscriptions')
+        ->where(['user_id' => $request->user()->id])
+        ->latest("start_date")
+        ->first();
+
+        // get dates
+        $now     = date('m/d/Y H:i:s' , time() );
+        $my_date = date("m/d/Y H:i:s" , strtotime( $subscription->end_date ));
+
+        // convert dates
+        $date1 = Carbon::createFromFormat('m/d/Y H:i:s', $now );
+        $date2 = Carbon::createFromFormat('m/d/Y H:i:s', $my_date );
+               
+        // is there valid subscription
+        $valid_subscription = $date1->lte($date2);
+        
+        // days diffrence
+        $interval = $date1->diff($date2);
+        $days_diff = $interval->format('%a');//now do whatever you like with $days                
+
+        return view('client_dashboard.packages.list' , compact('package_code', 'subscription', 'valid_subscription', 'days_diff'));
+    } 
+
     public function payForPackageAfterRegister(Request $request)
     {
 
@@ -49,32 +80,6 @@ class Packages extends Controller
         $priceValue   = $packageData->price;
 
         return view( 'client_dashboard.packages.payforpackage' , compact('SessionId' , 'CountryCode', 'priceValue') );
-
-    }
-
-    public function listPackages(Request $request)
-    {
-
-        $package_id = $request->user()->package_id;
-        $package_code = DB::table('packages')
-        ->where(['id' => $package_id])
-        ->first()->code;  
-        
-        $subscription = DB::table('users_subscriptions')
-        ->where(['user_id' => $request->user()->id])
-        ->latest("start_date")
-        ->first();
-
-        return view('client_dashboard.packages.list' , compact('package_code', 'subscription'));
-    }
-
-    public function currect_subscription(Request $request)
-    {
-
-    }
-
-    public function upgradePackage(Request $request)
-    {
 
     }
 
@@ -219,7 +224,7 @@ class Packages extends Controller
         // get data from our package
         $priceValue  = $packageData->price;
         $periodValue = $packageData->period;
-        $days = 30;
+        $days        = 30;
 
         if($periodValue == 'year'){
             $days = 365;
@@ -269,7 +274,6 @@ class Packages extends Controller
 
     }
 
-
     public function errorPay(Request $request)
     {
 
@@ -282,6 +286,8 @@ class Packages extends Controller
             'KeyType' => "PaymentId",                       
         ]);       
 
+        //var_dump($response->json());
+
         $invoiceStatus       = $response->json(['Data' , 'InvoiceStatus']);
         $amount              = $response->json(['Data' , 'InvoiceValue']);
         $InvoiceTransactions = $response->json(['Data' , 'InvoiceTransactions']); 
@@ -291,7 +297,9 @@ class Packages extends Controller
         $currency            = $InvoiceTransactions[0]['PaidCurrency'];
         $cardNumber          = $InvoiceTransactions[0]['CardNumber'];
 
-        $savePayment = new PaymentTransactionsModel();
+        return redirect(route('dashboard.package.pay.result').'?result=error' , Response::HTTP_FOUND);
+
+        /*$savePayment = new PaymentTransactionsModel();
         $savePayment->invoiceStatus = $invoiceStatus;
         $savePayment->user_id = $request->user()->id;
         $savePayment->amount = $amount;
@@ -300,13 +308,14 @@ class Packages extends Controller
         $savePayment->transactionStatus = $transactionStatus;
         $savePayment->currency = $currency;
         $savePayment->cardNumber = $cardNumber;
+        $savePayment->error = '';
         
         if($savePayment->save())
         {
             return redirect(route('dashboard.package.pay.result').'?result=error' , Response::HTTP_FOUND);
         }else{
             print "not saved";
-        }
+        }*/
 
     }
 
@@ -317,10 +326,11 @@ class Packages extends Controller
         $message = 'تم الاشتراك بنجاح';
 
         if($result == 'error'){
-            $message = '';
+            $message = 'حدث خطأ أثناء الدفع, حاول مرة أخرى';
         }
 
-        return view('client_dashboard.packages.result' , compact('message'));
+        return view('client_dashboard.packages.result' , compact('message' , 'result'));
     }
+
 
 }

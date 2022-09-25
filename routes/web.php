@@ -117,6 +117,10 @@ Route::group([ 'middleware' => ['auth:user'] ] , function(){
     Route::get('/dashboard/packages/list' , [\App\Http\Controllers\Client\Packages::class, 'listPackages'])->name('dashboard.package.list');
     Route::get('/dashboard/packagePay' , [\App\Http\Controllers\Client\Packages::class, 'payForPackageAfterRegister'])->name('dashboard.package.pay');
     Route::post('/dashboard/package/make/payment' , [\App\Http\Controllers\Client\Packages::class, 'executePayment'])->name('dashboard.package.pay.submit');
+    
+    // renew package
+    Route::get('/dashboard/package/renew' , [\App\Http\Controllers\Client\RenewSubscription::class, 'renewSubscription'])->name('dashboard.package.renew');
+    
 
     Route::get('dashboard/package/pay/result/' , [\App\Http\Controllers\Client\Packages::class, 'result'])->name('dashboard.package.pay.result');
     Route::get('dashboard/pay/success/' , [\App\Http\Controllers\Client\Packages::class, 'successPay'])->name('dashboard.package.pay.success');

@@ -3,9 +3,15 @@
 <div class="content">
 
 @if($subscription != NULL)
-<div class="bg-green-200 w-full rounded-xl min-h-fit p-4">
-    <p class="text-blue-900">ينتهي اشتراكك في: <strong>{{ date("d/m/Y" , strtotime( $subscription->end_date )) }}</strong></p>
-</div>
+    @if($valid_subscription == TRUE)
+        <div class="bg-green-200 w-full rounded-xl min-h-fit p-4">
+            <p class="text-blue-900">ينتهي اشتراكك في: <strong>{{ date("d/m/Y" , strtotime( $subscription->end_date )) }}</strong></p>
+        </div>
+    @else
+        <div class="bg-red-700 w-full rounded-xl min-h-fit p-4">
+            <p class="text-white">ينتهي اشتراكك في: <strong>{{ date("d/m/Y" , strtotime( $subscription->end_date )) }}</strong> - <a href="{{route('dashboard.package.renew')}}" class="text-yellow-300 underline">تجديد الاشتراك</a></p>
+        </div>
+    @endif
 @endif
 
 <section class="bg-white " id="prices">

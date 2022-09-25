@@ -176,6 +176,10 @@ class Home extends Controller
 
         $order_data = OrdersModel::where(['id' => $order_id ])->first();
 
+        $restrant_id   = $order_data->restrant_id;
+        $restrant      = RestrantsModel::where(['id' => $restrant_id])->first();        
+        $payment_token = $restrant->payment_token;
+
         if($order_data->payment_type == 'credit'){
             
             // get sub total amount 
@@ -187,7 +191,7 @@ class Home extends Controller
 
             $time = microtime(true) - $start;
 
-            $response = Http::withToken(env('PAYTOKEN'))
+            $response = Http::withToken($payment_token)
             ->withOptions(['verify' => false])
             ->post('https://apitest.myfatoorah.com/v2/InitiateSession' , 
             [
@@ -276,6 +280,12 @@ class Home extends Controller
         $order_id   = $request->order_id;
         $cardBrand  = $request->cardBrand;
 
+        $order_data = OrdersModel::where(['id' => $order_id ])->first();
+
+        $restrant_id   = $order_data->restrant_id;
+        $restrant      = RestrantsModel::where(['id' => $restrant_id])->first();        
+        $payment_token = $restrant->payment_token;
+
         // get sub total amount 
         $sub_total = DB::table('order_items')->where(['order_id' => $order_id])
         ->join('menu_items' , 'menu_items.id' , '=' , 'order_items.item_id')
@@ -290,7 +300,7 @@ class Home extends Controller
 
         // send request to server for payment
         
-        $response = Http::withToken(env('PAYTOKEN'))
+        $response = Http::withToken($payment_token)
         ->withOptions(['verify' => false])
         ->post('https://apitest.myfatoorah.com/v2/ExecutePayment',
         [
@@ -346,7 +356,13 @@ class Home extends Controller
         
         $order_id = $request->order_id;
 
-        $response = Http::withToken(env('PAYTOKEN'))
+        $order_data    = OrdersModel::where(['id' => $order_id ])->first();
+
+        $restrant_id   = $order_data->restrant_id;
+        $restrant      = RestrantsModel::where(['id' => $restrant_id])->first();        
+        $payment_token = $restrant->payment_token;
+
+        $response = Http::withToken($payment_token)
         ->withOptions(['verify' => false])
         ->post('https://apitest.myfatoorah.com/v2/GetPaymentStatus',
         [
@@ -395,7 +411,13 @@ class Home extends Controller
 
         $order_id = $request->order_id;
 
-        $response = Http::withToken(env('PAYTOKEN'))
+        $order_data    = OrdersModel::where(['id' => $order_id ])->first();
+
+        $restrant_id   = $order_data->restrant_id;
+        $restrant      = RestrantsModel::where(['id' => $restrant_id])->first();        
+        $payment_token = $restrant->payment_token;
+
+        $response = Http::withToken($payment_token)
         ->withOptions(['verify' => false])
         ->post('https://apitest.myfatoorah.com/v2/GetPaymentStatus',
         [

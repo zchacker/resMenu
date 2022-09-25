@@ -96,7 +96,7 @@ class Home extends Controller
                 $allErrors .= $err . " <br/>";
             }
 
-            return back()->withErrors(['error' => $allErrors]);
+            return back()->withErrors(['error' => $allErrors])->withInput($request->all());
 
         } else {
             
@@ -128,7 +128,7 @@ class Home extends Controller
 
             } else {
                 
-                return back()->withErrors(['error' => __('unknown_error')]);
+                return back()->withErrors(['error' => __('unknown_error')])->withInput($request->all());
 
             }
         }
