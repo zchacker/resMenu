@@ -1,0 +1,42 @@
+التقنيات المستخدمة
+
+Laravel 8
+tailwindcss
+
+الباكج المستخدم 
+
+- simplesoftwareio/simple-qrcode "~4"
+- spatie/laravel-permission "^5.5"
+- barryvdh/laravel-debugbar "^3.7"
+- intervention/image "^2.7"
+
+المتطلبات السيرفر 
+
+PHP >= 7.3
+BCMath PHP Extension
+Ctype PHP Extension
+Fileinfo PHP Extension
+JSON PHP Extension
+Mbstring PHP Extension
+OpenSSL PHP Extension
+PDO PHP Extension
+Tokenizer PHP Extension
+XML PHP Extension
+
+يجب تثبيت
+
+composor 
+node js
+
+التشغيل
+
+لبدء تتنزيل جميع متطلبات التطبيق نفذ الامر 
+
+composer install
+
+لعمل تطبيق لتعديلات tailwindcss نفذ هذا الأمر
+
+npm run watch
+
+لمزيد من المعلومات:
+https://tailwindcss.com/docs/guides/laravel

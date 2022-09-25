@@ -25,6 +25,34 @@ we use these packages:
 - barryvdh/laravel-debugbar "^3.7"
 - intervention/image "^2.7"
 
+
+## Server Requirement
+
+- PHP >= 7.3
+- BCMath PHP Extension
+- Ctype PHP Extension
+- Fileinfo PHP Extension
+- JSON PHP Extension
+- Mbstring PHP Extension
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+
+to build css you need to install node js
+
+to build css tailwind css:
+
+```bash
+npm run watch
+```
+
+to build production css
+
+```bash
+npm run prod
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
